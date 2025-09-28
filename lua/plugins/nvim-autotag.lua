@@ -1,6 +1,6 @@
 return {
 	"windwp/nvim-ts-autotag",
-	event = "LspAttach",
+	event = "BufRead",
 	config = function()
 		require("nvim-ts-autotag").setup({
 			opts = {
