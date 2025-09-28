@@ -1,0 +1,12 @@
+{
+  "arrow function": {
+    "prefix": "arr",
+    "body": ["const $1 = () => {$0}"],
+    "description": "basic arrow function"
+  },
+  "Try Catch Block": {
+    "prefix": "try",
+    "body": ["try {", "\t$1", "} catch (err: any) {", "\t$2", "}"],
+    "description": "Inserts a try-catch block"
+  }
+}

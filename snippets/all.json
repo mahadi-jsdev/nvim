@@ -1,0 +1,27 @@
+{
+  "comment": {
+    "prefix": "comment",
+    "body": ["{/* $0 */}"],
+    "description": "comment"
+  },
+  "note": {
+    "prefix": "note",
+    "body": ["{/*NOTE: $0 */}"],
+    "description": "note"
+  },
+  "fixme": {
+    "prefix": "fixme",
+    "body": ["{/*FIXME: $0 */}"],
+    "description": "fixme"
+  },
+  "Console Log Variable": {
+    "prefix": "log",
+    "body": ["console.log('$1:', $1);"],
+    "description": "Console log current variable"
+  },
+  "mark": {
+    "prefix": "mark",
+    "body": ["- **$0**"],
+    "description": "bold text"
+  }
+}

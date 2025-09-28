@@ -1,0 +1,7 @@
+{
+  "bold": {
+    "prefix": "star",
+    "body": ["- **$0**"],
+    "description": "bold text"
+  }
+}
