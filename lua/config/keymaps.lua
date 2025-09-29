@@ -5,6 +5,7 @@ map({ "n", "i", "v" }, "<C-s>", "<CMD>w<CR>")
 map("n", "<ESC>", "<CMD>nohlsearch<CR>")
 map("n", "<C-v>", "<CMD>leftabove vsplit<CR>")
 map("n", "<leader>qq", "<CMD>q<CR>")
+map("n", "zz", "za")
 
 -- QuickFix
 map("n", "<M-o>", "<CMD>copen<CR>", { desc = "Open quickfix" })
