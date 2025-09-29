@@ -6,14 +6,6 @@ map("n", "<ESC>", "<CMD>nohlsearch<CR>")
 map("n", "<C-v>", "<CMD>leftabove vsplit<CR>")
 map("n", "<leader>qq", "<CMD>q<CR>")
 
--- autopairs
-vim.keymap.set("i", "(", "()<Left>")
-vim.keymap.set("i", "[", "[]<Left>")
-vim.keymap.set("i", "{", "{}<Left>")
-vim.keymap.set("i", '"', '""<Left>')
-vim.keymap.set("i", "'", "''<Left>")
-vim.keymap.set("i", "`", "``<Left>")
-
 -- QuickFix
 map("n", "<M-o>", "<CMD>copen<CR>", { desc = "Open quickfix" })
 map("n", "<M-x>", "<CMD>cclose<CR>", { desc = "close quickfix" })
@@ -27,7 +19,7 @@ map("n", "=", [[<cmd>vertical resize +5<cr>]])
 -- cycle between buffer
 map("n", "<C-Right>", ":bnext<CR>", { desc = "Next buffer" })
 map("n", "<C-Left>", ":bprevious<CR>", { desc = "Previous buffer" })
-map("n", "<C-x>", ":bd<CR>", { desc = "delete buffer" })
+-- map("n", "<C-x>", ":bd<CR>", { desc = "delete buffer" })
 
 -- move lines
 map("n", "<M-u>", ":m .-2<CR>==", { desc = "Move line up" })

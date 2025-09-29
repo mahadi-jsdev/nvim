@@ -263,66 +263,6 @@ function M.list_bookmarks()
 	vim.api.nvim_win_set_option(0, "winfixwidth", true)
 end
 
--- Search files using telescope and bookmark selected (multi-select support)
-function M.search_and_bookmark()
-	local has_telescope, telescope = pcall(require, "telescope.builtin")
-	if has_telescope then
-		local actions = require("telescope.actions")
-		local action_state = require("telescope.actions.state")
-
-		telescope.find_files({
-			prompt_title = "Select Files to Bookmark (<Tab> to select, <C-q> to bookmark)",
-			cwd = get_project_id(),
-			attach_mappings = function(prompt_bufnr, map)
-				-- Multi-select with Tab
-				map("i", "<Tab>", actions.toggle_selection)
-				map("n", "<Tab>", actions.toggle_selection)
-
-				-- Bookmark selected files with C-q
-				local bookmark_selected = function()
-					local picker = action_state.get_current_picker(prompt_bufnr)
-					local selections = picker:get_multi_selection()
-
-					if #selections > 0 then
-						local paths = {}
-						for _, selection in ipairs(selections) do
-							table.insert(paths, get_absolute_path(selection.value))
-						end
-						actions.close(prompt_bufnr)
-						M.add_multiple_bookmarks(paths)
-					else
-						-- Bookmark current selection if nothing is multi-selected
-						local entry = action_state.get_selected_entry()
-						if entry then
-							actions.close(prompt_bufnr)
-							M.add_bookmark(get_absolute_path(entry.value))
-						end
-					end
-				end
-
-				map("i", "<C-q>", bookmark_selected)
-				map("n", "<C-q>", bookmark_selected)
-
-				return true
-			end,
-		})
-	else
-		-- Fallback to single file bookmarking
-		vim.ui.input({
-			prompt = "File path (relative to project): ",
-		}, function(input)
-			if input and input ~= "" then
-				local abs_path = get_absolute_path(input)
-				if vim.fn.filereadable(abs_path) == 1 then
-					M.add_bookmark(abs_path)
-				else
-					vim.notify("File not found: " .. abs_path, vim.log.levels.ERROR)
-				end
-			end
-		end)
-	end
-end
-
 -- Setup function
 function M.setup()
 	-- Initialize bookmarks for current project
@@ -338,13 +278,6 @@ function M.setup()
 	end, {})
 
 	local map = vim.keymap.set
-
-	-- Set up keymaps
-	map("n", "<leader><leader>", M.search_and_bookmark, {
-		noremap = true,
-		silent = true,
-		desc = "Search and bookmark files",
-	})
 
 	map("n", "<C-l>", "<CMD>ProjectBookmarkOpen<CR>", {
 		noremap = true,
