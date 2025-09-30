@@ -29,13 +29,6 @@ return {
 			desc = "explorer",
 		},
 		{
-			"<leader>gg",
-			function()
-				Snacks.lazygit()
-			end,
-			desc = "lazygit",
-		},
-		{
 			"<C-f>",
 			function()
 				Snacks.picker.grep()
