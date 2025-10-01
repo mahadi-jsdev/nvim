@@ -29,6 +29,13 @@ return {
 			desc = "explorer",
 		},
 		{
+			"<C-b>",
+			function()
+				Snacks.picker.buffers()
+			end,
+			desc = "buffers",
+		},
+		{
 			"<C-f>",
 			function()
 				Snacks.picker.grep()
