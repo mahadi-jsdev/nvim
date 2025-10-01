@@ -34,7 +34,6 @@ local servers = {
 	"tailwindcss",
 	"html",
 	"cssls",
-	"emmet_language_server",
 }
 
 capabilities.textDocument.foldingRange = {

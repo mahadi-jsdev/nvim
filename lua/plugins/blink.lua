@@ -7,8 +7,9 @@ return {
 			keymap = {
 				preset = "none",
 				["<CR>"] = { "accept", "fallback" },
-				["<S-Tab>"] = { "hide", "fallback" },
 				["<Tab>"] = { "accept", "fallback" },
+				["<C-j>"] = { "select_next", "fallback" },
+				["<C-k>"] = { "select_prev", "fallback" },
 				["<Down>"] = { "select_next", "fallback" },
 				["<Up>"] = { "select_prev", "fallback" },
 				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
