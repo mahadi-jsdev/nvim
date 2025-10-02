@@ -2,12 +2,6 @@ return {
 	"saghen/blink.cmp",
 	event = "LspAttach",
 	version = "1.*",
-	dependencies = {
-		{
-			"mikavilpas/blink-ripgrep.nvim",
-			version = "*",
-		},
-	},
 	config = function()
 		require("blink.cmp").setup({
 			keymap = {
@@ -30,45 +24,6 @@ return {
 					"buffer",
 					"path",
 					"snippets",
-					"ripgrep",
-				},
-				providers = {
-					ripgrep = {
-						module = "blink-ripgrep",
-						name = "Ripgrep",
-						opts = {
-							prefix_min_len = 3,
-							project_root_marker = ".git",
-							fallback_to_regex_highlighting = true,
-							toggles = {
-								on_off = nil,
-								debug = nil,
-							},
-							backend = {
-								use = "gitgrep-or-ripgrep",
-								customize_icon_highlight = true,
-								ripgrep = {
-									context_size = 5,
-									max_filesize = "1M",
-									project_root_fallback = true,
-									search_casing = "--ignore-case",
-									additional_rg_options = {},
-									ignore_paths = {},
-									additional_paths = {},
-								},
-							},
-							gitgrep = {},
-							debug = false,
-						},
-						transform_items = function(_, items)
-							for _, item in ipairs(items) do
-								item.labelDetails = {
-									description = "(rg)",
-								}
-							end
-							return items
-						end,
-					},
 				},
 			},
 			completion = {

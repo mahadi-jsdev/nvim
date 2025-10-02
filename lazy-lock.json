@@ -1,5 +1,4 @@
 {
-  "blink-ripgrep.nvim": { "branch": "main", "commit": "0fa6bdfbb03d09f25dafee84afb4c2e6c1d0437c" },
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
   "buffer-sticks.nvim": { "branch": "main", "commit": "2fa401da50b04b5e660c77b03cf5eb59b5ccf0d2" },
   "conform.nvim": { "branch": "master", "commit": "9d6f881a4047a51c7709223dcf24e967633c6523" },
