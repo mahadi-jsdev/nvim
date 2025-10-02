@@ -12,6 +12,7 @@ return {
 		notifier = {},
 		terminal = {},
 		lazygit = {},
+		dashboard = {},
 	},
 	keys = {
 		{
@@ -29,7 +30,7 @@ return {
 			desc = "explorer",
 		},
 		{
-			"<C-l>",
+			"<C-b>",
 			function()
 				Snacks.picker.buffers()
 			end,
