@@ -30,7 +30,7 @@ return {
 			desc = "explorer",
 		},
 		{
-			"<C-l>",
+			"<C-b>",
 			function()
 				Snacks.picker.buffers()
 			end,

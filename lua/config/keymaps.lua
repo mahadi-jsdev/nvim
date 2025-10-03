@@ -6,6 +6,8 @@ map("n", "<ESC>", "<CMD>nohlsearch<CR>")
 map("n", "<C-v>", "<CMD>leftabove vsplit<CR>")
 map("n", "<leader>qq", "<CMD>q<CR>")
 map("n", "zz", "za")
+map("n", "<C-j>", "<C-d>")
+map("n", "<C-k>", "<C-u>")
 
 -- QuickFix
 map("n", "<M-o>", "<CMD>copen<CR>", { desc = "Open quickfix" })
@@ -18,8 +20,8 @@ map("n", "=", [[<cmd>vertical resize +5<cr>]])
 -- Key("n", "-", [[<cmd>vertical resize -5<cr>]])
 
 -- cycle between buffer
-map("n", "<C-Right>", ":bnext<CR>", { desc = "Next buffer" })
-map("n", "<C-Left>", ":bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<C-l>", ":bnext<CR>", { desc = "Next buffer" })
+map("n", "<C-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 -- map("n", "<C-x>", ":bd<CR>", { desc = "delete buffer" })
 
 -- move lines
