@@ -53,5 +53,35 @@
     "prefix": "img",
     "body": ["<Image src={$0} width={1920} height={1080} alt='img' />"],
     "description": "nextjs image component"
+  },
+  "React Query useMutation": {
+    "prefix": "rqm",
+    "body": [
+      "const { mutate, isPending } = useMutation({",
+      "\tmutationKey: [\"$1\"],",
+      "\tmutationFn: ($2) => {",
+      "\t\t// TODO",
+      "\t},",
+      "\tonSuccess: () => {",
+      "\t\t// TODO",
+      "\t},",
+      "\tonError: (err) => {",
+      "\t\t// TODO",
+      "\t},",
+      "});"
+    ],
+    "description": "React Query useMutation hook structure"
+  },
+  "React Query useQuery": {
+    "prefix": "rqq",
+    "body": [
+      "const { data, isLoading } = useQuery({",
+      "\tqueryKey: [\"$1\"],",
+      "\tqueryFn: () => {",
+      "\t\t// TODO",
+      "\t},",
+      "});"
+    ],
+    "description": "React Query useQuery hook structure"
   }
 }
