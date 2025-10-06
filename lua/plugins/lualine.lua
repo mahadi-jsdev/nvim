@@ -39,8 +39,8 @@ return {
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff" },
-				lualine_c = { "diagnostics" },
-				lualine_x = { "encoding", "fileformat", "filetype" },
+				lualine_c = { { "filename", path = 1 }, "diagnostics" },
+				lualine_x = { "filetype" },
 				lualine_y = { "progress" },
 				lualine_z = { "location" },
 			},
@@ -54,7 +54,8 @@ return {
 			},
 			tabline = {
 				lualine_a = { "buffers" },
-				lualine_z = { { "filename", path = 1 } },
+				lualine_y = { "encoding" },
+				lualine_z = { "fileformat" },
 			},
 		})
 	end,
