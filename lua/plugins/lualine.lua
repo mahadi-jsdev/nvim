@@ -54,8 +54,7 @@ return {
 			},
 			tabline = {
 				lualine_a = { "buffers" },
-				lualine_y = { "encoding" },
-				lualine_z = { "fileformat" },
+				lualine_z = { { "filename", path = 1 } },
 			},
 		})
 	end,
