@@ -1,4 +1,6 @@
 local opt = vim.opt
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 -- Settings
 opt.clipboard = "unnamedplus"

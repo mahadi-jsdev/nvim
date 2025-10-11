@@ -53,8 +53,8 @@ return {
 				lualine_z = {},
 			},
 			tabline = {
-				lualine_a = { "buffers" },
-				lualine_z = { { "filename", path = 1 } },
+				lualine_a = { { "filename", path = 1 } },
+				lualine_z = { "tabs" },
 			},
 		})
 	end,
