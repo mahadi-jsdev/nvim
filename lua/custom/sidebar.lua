@@ -98,6 +98,6 @@ vim.api.nvim_set_hl(0, "SidebarActive", { bg = Sidebar.colors.bg, fg = Sidebar.c
 vim.api.nvim_set_hl(0, "SidebarBorder", { fg = Sidebar.colors.border })
 
 -- Keymap to toggle sidebar
-vim.keymap.set("n", "<leader>bs", Sidebar.toggle, { desc = "[B]uffer [S]idebar" })
+vim.keymap.set("n", "<C-b>", Sidebar.toggle, { desc = "[B]uffer [S]idebar" })
 
 return Sidebar
