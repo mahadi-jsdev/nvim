@@ -4,11 +4,19 @@ local capabilities = blink.get_lsp_capabilities() or {}
 local on_attach = function(_, bufnr)
 	local map = vim.keymap.set
 	local opts = { noremap = true, silent = true, buffer = bufnr }
-
 	-- LSP keymaps
 	map("n", "<leader>lr", vim.lsp.buf.rename, opts)
 	map("n", "<leader>la", vim.lsp.buf.code_action, opts)
 	map("n", "<leader>ld", vim.diagnostic.open_float, opts)
+	map("n", "<leader>ff", function()
+		vim.lsp.buf.code_action({
+			apply = true,
+			context = {
+				only = { "source.organizeImports" },
+				diagnostics = {},
+			},
+		})
+	end, opts)
 	map("n", "K", vim.lsp.buf.hover, opts)
 	map("n", "gd", function()
 		Snacks.picker.lsp_definitions()
