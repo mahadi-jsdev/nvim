@@ -22,11 +22,6 @@ map("n", "<C-j>", ":bnext<CR>", { desc = "Next buffer" })
 map("n", "<C-k>", ":bprevious<CR>", { desc = "Previous buffer" })
 -- map("n", "<C-x>", ":bd<CR>", { desc = "delete buffer" })
 
--- cycle between tabs
-map("n", "<C-t>", ":tabnew<CR>", { desc = "New tab" })
-map("n", "<C-Right>", ":tabnext<CR>", { desc = "next tab" })
-map("n", "<C-Left>", ":tabclose<CR>", { desc = "close tab" })
-
 -- move lines
 map("n", "<M-u>", ":m .-2<CR>==", { desc = "Move line up" })
 map("n", "<M-d>", ":m .+1<CR>==", { desc = "Move line down" })

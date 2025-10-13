@@ -72,6 +72,14 @@ return {
 				Snacks.terminal.toggle()
 			end,
 			desc = "open terminal",
+			mode = { "n" },
+		},
+		{
+			"<C-t>",
+			function()
+				Snacks.terminal.toggle()
+			end,
+			desc = "open terminal",
 			mode = { "t" },
 		},
 	},
