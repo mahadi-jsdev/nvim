@@ -1,8 +1,10 @@
 local api = vim.api
-
 local Sidebar = {}
 Sidebar.win = nil
 Sidebar.buf = nil
+
+-- Check if nvim-web-devicons is available
+local has_devicons, devicons = pcall(require, "nvim-web-devicons")
 
 -- 🎨 Dracula-inspired colors
 Sidebar.colors = {
@@ -27,23 +29,38 @@ local function two_level_path(full_path)
 	end
 end
 
+-- Helper: get file icon
+local function get_icon(filename)
+	if not has_devicons then
+		return "  " -- fallback: 2 spaces
+	end
+
+	if filename == "" or filename == "[No Name]" then
+		return "  " -- 2 spaces for unnamed buffers
+	end
+
+	local icon, hl = devicons.get_icon(filename, vim.fn.fnamemodify(filename, ":e"), { default = true })
+	return icon and (icon .. " ") or "  "
+end
+
 -- Draw buffer list
 function Sidebar.render()
 	if not Sidebar.buf or not api.nvim_buf_is_valid(Sidebar.buf) then
 		Sidebar.buf = api.nvim_create_buf(false, true)
 		api.nvim_buf_set_option(Sidebar.buf, "bufhidden", "wipe")
 	end
-
 	local lines = {}
 	local current = api.nvim_get_current_buf()
 	local buffers = vim.fn.getbufinfo({ buflisted = 1 })
 
 	for _, b in ipairs(buffers) do
 		local display = two_level_path(b.name)
+		local icon = get_icon(b.name)
+
 		if b.bufnr == current then
-			table.insert(lines, " " .. display .. " *") -- highlight active buffer
+			table.insert(lines, " " .. icon .. display .. " *") -- highlight active buffer
 		else
-			table.insert(lines, " " .. display)
+			table.insert(lines, " " .. icon .. display)
 		end
 	end
 
@@ -65,9 +82,7 @@ function Sidebar.toggle()
 		Sidebar.win = nil
 		return
 	end
-
 	Sidebar.render()
-
 	local columns = vim.o.columns
 	local width = 40
 	Sidebar.win = api.nvim_open_win(Sidebar.buf, false, {
@@ -79,7 +94,6 @@ function Sidebar.toggle()
 		style = "minimal",
 		border = "single",
 	})
-
 	api.nvim_win_set_option(Sidebar.win, "winhl", "Normal:SidebarNormal,FloatBorder:SidebarBorder")
 end
 
