@@ -43,19 +43,30 @@ local function get_icon(filename)
 	return icon and (icon .. " ") or "  "
 end
 
+-- Store buffer list for click handling
+Sidebar.buffer_list = {}
+
 -- Draw buffer list
 function Sidebar.render()
 	if not Sidebar.buf or not api.nvim_buf_is_valid(Sidebar.buf) then
 		Sidebar.buf = api.nvim_create_buf(false, true)
 		api.nvim_buf_set_option(Sidebar.buf, "bufhidden", "wipe")
+		api.nvim_buf_set_option(Sidebar.buf, "modifiable", true)
 	end
+
 	local lines = {}
 	local current = api.nvim_get_current_buf()
 	local buffers = vim.fn.getbufinfo({ buflisted = 1 })
 
+	-- Reset buffer list mapping
+	Sidebar.buffer_list = {}
+
 	for _, b in ipairs(buffers) do
 		local display = two_level_path(b.name)
 		local icon = get_icon(b.name)
+
+		-- Store buffer number for this line
+		table.insert(Sidebar.buffer_list, b.bufnr)
 
 		if b.bufnr == current then
 			table.insert(lines, " " .. icon .. display .. " *") -- highlight active buffer
@@ -71,6 +82,28 @@ function Sidebar.render()
 	for i, b in ipairs(buffers) do
 		if b.bufnr == current then
 			api.nvim_buf_add_highlight(Sidebar.buf, -1, "SidebarActive", i - 1, 0, -1)
+		end
+	end
+end
+
+-- Open buffer from sidebar
+function Sidebar.open_buffer()
+	local line = api.nvim_win_get_cursor(Sidebar.win)[1]
+	local bufnr = Sidebar.buffer_list[line]
+
+	if bufnr and api.nvim_buf_is_valid(bufnr) then
+		-- Find the last non-sidebar window
+		local target_win = nil
+		for _, win in ipairs(api.nvim_list_wins()) do
+			if win ~= Sidebar.win then
+				target_win = win
+				break
+			end
+		end
+
+		if target_win then
+			api.nvim_set_current_win(target_win)
+			api.nvim_set_current_buf(bufnr)
 		end
 	end
 end
@@ -95,6 +128,12 @@ function Sidebar.toggle()
 		border = "single",
 	})
 	api.nvim_win_set_option(Sidebar.win, "winhl", "Normal:SidebarNormal,FloatBorder:SidebarBorder")
+
+	-- Set up keymaps for the sidebar buffer
+	local opts = { buffer = Sidebar.buf, silent = true, nowait = true }
+	vim.keymap.set("n", "<CR>", Sidebar.open_buffer, opts)
+	vim.keymap.set("n", "<2-LeftMouse>", Sidebar.open_buffer, opts)
+	vim.keymap.set("n", "q", Sidebar.toggle, opts)
 end
 
 -- Auto-refresh when buffers change
