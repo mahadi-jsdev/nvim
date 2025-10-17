@@ -1,5 +1,6 @@
 -- Monospace Dark Theme for Neovim
 -- Ported from VSCode theme
+-- Extended support for lualine, snacks.nvim, yazi.nvim, and other popular plugins
 
 local M = {}
 
@@ -217,6 +218,154 @@ function M.setup()
 	M.hl("SpellLocal", { undercurl = true, sp = colors.infForeground })
 	M.hl("SpellRare", { undercurl = true, sp = colors.infForeground })
 
+	-- Lualine support
+	M.hl("lualine_a_normal", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
+	M.hl("lualine_a_insert", { fg = colors.editorBackground, bg = colors.string, bold = true })
+	M.hl("lualine_a_visual", { fg = colors.editorBackground, bg = colors.variable, bold = true })
+	M.hl("lualine_a_replace", { fg = colors.editorBackground, bg = colors.errorForeground, bold = true })
+	M.hl("lualine_a_command", { fg = colors.editorBackground, bg = colors.constant, bold = true })
+	M.hl("lualine_b_normal", { fg = colors.statuslineForeground, bg = colors.statuslineBackground })
+	M.hl("lualine_c_normal", { fg = colors.statuslineForeground, bg = colors.editorBackground })
+
+	-- Snacks.nvim support
+	-- Notifier
+	M.hl("SnacksNotifierBorder", { fg = "#333e4f" })
+	M.hl("SnacksNotifierTitleError", { fg = colors.errorForeground, bg = colors.editorBackground, bold = true })
+	M.hl("SnacksNotifierTitleWarn", { fg = colors.warningForeground, bg = colors.editorBackground, bold = true })
+	M.hl("SnacksNotifierTitleInfo", { fg = colors.infForeground, bg = colors.editorBackground, bold = true })
+	M.hl("SnacksNotifierTitleDebug", { fg = "#71c2ee", bg = colors.editorBackground, bold = true })
+	M.hl("SnacksNotifierBodyError", { fg = colors.editorForeground, bg = colors.editorBackground })
+	M.hl("SnacksNotifierBodyWarn", { fg = colors.editorForeground, bg = colors.editorBackground })
+	M.hl("SnacksNotifierBodyInfo", { fg = colors.editorForeground, bg = colors.editorBackground })
+	M.hl("SnacksNotifierBodyDebug", { fg = colors.editorForeground, bg = colors.editorBackground })
+
+	-- Dashboard
+	M.hl("SnacksDashboardHeader", { fg = colors.buttonBackground, bold = true })
+	M.hl("SnacksDashboardFooter", { fg = colors.comment })
+	M.hl("SnacksDashboardKey", { fg = colors.constant })
+	M.hl("SnacksDashboardDesc", { fg = colors.editorForeground })
+	M.hl("SnacksDashboardIcon", { fg = colors.variable })
+	M.hl("SnacksDashboardTitle", { fg = colors.buttonBackground, bold = true })
+
+	-- Picker (fuzzy finder)
+	M.hl("SnacksPickerBorder", { fg = "#333e4f" })
+	M.hl("SnacksPickerNormal", { fg = colors.editorForeground, bg = "#10151d" })
+	M.hl("SnacksPickerTitle", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
+	M.hl("SnacksPickerPrompt", { fg = colors.editorForeground, bg = colors.inputBackground })
+	M.hl("SnacksPickerInput", { fg = colors.editorForeground, bg = colors.inputBackground })
+	M.hl("SnacksPickerList", { fg = colors.editorForeground, bg = "#10151d" })
+	M.hl("SnacksPickerItem", { fg = colors.editorForeground })
+	M.hl("SnacksPickerSelected", { bg = colors.selectionBackground, bold = true })
+	M.hl("SnacksPickerMatch", { fg = colors.variable, bold = true })
+	M.hl("SnacksPickerDir", { fg = colors.constant })
+	M.hl("SnacksPickerFile", { fg = colors.editorForeground })
+	M.hl("SnacksPickerPreview", { fg = colors.editorForeground, bg = "#10151d" })
+
+	-- Input
+	M.hl("SnacksInputBorder", { fg = "#333e4f" })
+	M.hl("SnacksInputNormal", { fg = colors.editorForeground, bg = "#10151d" })
+	M.hl("SnacksInputTitle", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
+	M.hl("SnacksInputPrompt", { fg = colors.editorForeground })
+
+	-- Terminal
+	M.hl("SnacksTerminalBorder", { fg = "#333e4f" })
+	M.hl("SnacksTerminalNormal", { fg = colors.editorForeground, bg = colors.editorBackground })
+	M.hl("SnacksTerminalTitle", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
+
+	-- Lazygit
+	M.hl("SnacksLazygitBorder", { fg = "#333e4f" })
+	M.hl("SnacksLazygitNormal", { fg = colors.editorForeground, bg = colors.editorBackground })
+	M.hl("SnacksLazygitTitle", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
+
+	-- Indent
+	M.hl("SnacksIndent", { fg = "#333e4f" })
+	M.hl("SnacksIndentScope", { fg = colors.buttonBackground })
+
+	-- Scope
+	M.hl("SnacksScopeBorder", { fg = "#333e4f" })
+	M.hl("SnacksScopeNormal", { fg = colors.editorForeground, bg = "#10151d" })
+
+	-- Status Column
+	M.hl("SnacksStatusColumnFold", { fg = "#475365" })
+	M.hl("SnacksStatusColumnSign", { fg = "#475365" })
+
+	-- BuffDelete (undouble)
+	M.hl("SnacksBuffDeleteBorder", { fg = "#333e4f" })
+	M.hl("SnacksBuffDeleteNormal", { fg = colors.editorForeground, bg = colors.editorBackground })
+
+	-- QuickFile
+	M.hl("SnacksQuickfileBorder", { fg = "#333e4f" })
+	M.hl("SnacksQuickfileNormal", { fg = colors.editorForeground, bg = "#10151d" })
+
+	-- Yazi.nvim support
+	M.hl("YaziHeader", { fg = colors.constant, bold = true })
+	M.hl("YaziDirHighlight", { fg = colors.constant })
+	M.hl("YaziFileHighlight", { fg = colors.editorForeground })
+	M.hl("YaziSymlinkHighlight", { fg = colors.link })
+	M.hl("YaziExecutableHighlight", { fg = colors.string })
+	M.hl("YaziSelectedHighlight", { bg = colors.selectionBackground })
+	M.hl("YaziHoverHighlight", { bg = colors.editorLineHighlight })
+
+	-- Nvim-tree support (extended)
+	M.hl("NvimTreeRootFolder", { fg = colors.constant, bold = true })
+	M.hl("NvimTreeGitStaged", { fg = colors.diffAdded })
+	M.hl("NvimTreeGitDirty", { fg = colors.warningForeground })
+	M.hl("NvimTreeGitNew", { fg = colors.infForeground })
+	M.hl("NvimTreeGitDeleted", { fg = colors.errorForeground })
+
+	-- Gitsigns support
+	M.hl("GitSignsAdd", { fg = colors.diffAdded })
+	M.hl("GitSignsChange", { fg = colors.diffModified })
+	M.hl("GitSignsDelete", { fg = colors.diffRemoved })
+	M.hl("GitSignsAddNr", { fg = colors.diffAdded })
+	M.hl("GitSignsChangeNr", { fg = colors.diffModified })
+	M.hl("GitSignsDeleteNr", { fg = colors.diffRemoved })
+	M.hl("GitSignsAddLn", { bg = "#001f12" })
+	M.hl("GitSignsChangeLn", { bg = "#001a33" })
+	M.hl("GitSignsDeleteLn", { bg = "#220012" })
+
+	-- Blink.cmp support
+	M.hl("BlinkCmpMenu", { fg = colors.editorForeground, bg = colors.dropdownBackground })
+	M.hl("BlinkCmpMenuBorder", { fg = "#333e4f" })
+	M.hl("BlinkCmpMenuSelection", { fg = colors.editorForeground, bg = colors.inputBackground, bold = true })
+	M.hl("BlinkCmpMenuItem", { fg = colors.editorForeground })
+	M.hl("BlinkCmpMenuScrollbar", { bg = colors.editorLineHighlight })
+	M.hl("BlinkCmpMenuThumb", { bg = colors.statuslineForeground })
+	M.hl("BlinkCmpDocBorder", { fg = "#333e4f" })
+	M.hl("BlinkCmpDocNormal", { fg = colors.editorForeground, bg = "#10151d" })
+	M.hl("BlinkCmpSignatureHint", { fg = colors.editorForeground })
+	M.hl("BlinkCmpSignatureLabel", { fg = colors.editorForeground })
+
+	-- Blink.cmp Kind highlights (completion item types)
+	M.hl("BlinkCmpKind", { fg = colors.editorForeground })
+	M.hl("BlinkCmpKindText", { fg = colors.string })
+	M.hl("BlinkCmpKindMethod", { fg = colors.function_name })
+	M.hl("BlinkCmpKindFunction", { fg = colors.function_name })
+	M.hl("BlinkCmpKindConstructor", { fg = colors.function_name })
+	M.hl("BlinkCmpKindField", { fg = colors.variable })
+	M.hl("BlinkCmpKindVariable", { fg = colors.variable })
+	M.hl("BlinkCmpKindClass", { fg = colors.constant })
+	M.hl("BlinkCmpKindInterface", { fg = colors.constant })
+	M.hl("BlinkCmpKindModule", { fg = colors.constant })
+	M.hl("BlinkCmpKindProperty", { fg = colors.variable })
+	M.hl("BlinkCmpKindUnit", { fg = colors.constant })
+	M.hl("BlinkCmpKindValue", { fg = colors.constant })
+	M.hl("BlinkCmpKindEnum", { fg = colors.constant })
+	M.hl("BlinkCmpKindKeyword", { fg = colors.keyword })
+	M.hl("BlinkCmpKindSnippet", { fg = colors.string })
+	M.hl("BlinkCmpKindColor", { fg = colors.variable })
+	M.hl("BlinkCmpKindFile", { fg = colors.editorForeground })
+	M.hl("BlinkCmpKindReference", { fg = colors.editorForeground })
+	M.hl("BlinkCmpKindFolder", { fg = colors.constant })
+	M.hl("BlinkCmpKindEnumMember", { fg = colors.variable })
+	M.hl("BlinkCmpKindConstant", { fg = colors.constant })
+	M.hl("BlinkCmpKindStruct", { fg = colors.constant })
+	M.hl("BlinkCmpKindEvent", { fg = colors.constant })
+	M.hl("BlinkCmpKindOperator", { fg = colors.keyword })
+	M.hl("BlinkCmpKindTypeParameter", { fg = colors.constant })
+	M.hl("BlinkCmpKindCopilot", { fg = colors.buttonBackground })
+	M.hl("BlinkCmpKindDefault", { fg = colors.editorForeground })
+
 	-- Terminal mode colors
 	vim.g.terminal_color_0 = colors.black
 	vim.g.terminal_color_1 = colors.red
@@ -234,6 +383,11 @@ function M.setup()
 	vim.g.terminal_color_13 = colors.brightMagenta
 	vim.g.terminal_color_14 = colors.brightCyan
 	vim.g.terminal_color_15 = colors.brightWhite
+
+	-- UFO-specific highlights (Monospace Dark theme)
+	vim.api.nvim_set_hl(0, "UfoFoldedFg", { fg = "#7f8d9f" })
+	vim.api.nvim_set_hl(0, "UfoFoldedBg", { bg = "#1f2939" })
+	vim.api.nvim_set_hl(0, "Folded", { fg = "#7f8d9f", bg = "#1f2939" })
 end
 
 function M.hl(name, val)
