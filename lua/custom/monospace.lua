@@ -1,7 +1,3 @@
--- Monospace Dark Theme for Neovim
--- Ported from VSCode theme
--- Extended support for lualine, snacks.nvim, yazi.nvim, and other popular plugins
-
 local M = {}
 
 local colors = {
@@ -78,6 +74,10 @@ local colors = {
 	brightMagenta = "#c8aaff",
 	brightCyan = "#71c2ee",
 	brightWhite = "#fafbfe",
+
+	_transparent = "#29364b",
+	_yellow = "#fed294",
+	_pink = "#c84f66",
 }
 
 function M.setup()
@@ -95,8 +95,9 @@ function M.setup()
 	M.hl("CursorLine", { bg = colors.editorLineHighlight })
 	M.hl("CursorColumn", { bg = colors.editorLineHighlight })
 	M.hl("Cursor", { fg = colors.editorBackground, bg = colors.editorCursor })
-	M.hl("Visual", { bg = colors.selectionBackground })
-	M.hl("VisualNOS", { bg = colors.inactiveSelectionBackground })
+	M.hl("Visual", { bg = colors._transparent })
+	M.hl("VisualNOS", { bg = colors._transparent })
+	M.hl("Yank", { bg = colors._pink })
 
 	-- UI Elements
 	M.hl("StatusLine", { fg = colors.statuslineForeground, bg = colors.statuslineBackground })
@@ -106,15 +107,9 @@ function M.setup()
 	M.hl("NormalFloat", { fg = colors.editorForeground, bg = "#10151d" })
 	M.hl("WildMenu", { fg = colors.editorForeground, bg = colors.inputBackground })
 
-	-- Sidebar/File explorer
-	M.hl("NvimTreeFolderName", { fg = colors.sidebarForeground })
-	M.hl("NvimTreeFolderIcon", { fg = colors.constant })
-	M.hl("NvimTreeFileIcon", { fg = colors.constant })
-	M.hl("NvimTreeNormal", { fg = colors.sidebarForeground, bg = colors.sidebarBackground })
-
 	-- Search
 	M.hl("Search", { fg = colors.editorBackground, bg = "#ffa23e" })
-	M.hl("IncSearch", { fg = colors.editorBackground, bg = colors.matchBackground })
+	M.hl("IncSearch", { fg = colors.editorBackground, bg = colors._yellow })
 
 	-- Diagnostics
 	M.hl("DiagnosticError", { fg = colors.errorForeground })
@@ -212,12 +207,6 @@ function M.setup()
 	M.hl("DiffChange", { fg = colors.diffModified, bg = "#001a33" })
 	M.hl("DiffText", { fg = colors.diffModified, bg = "#003d66" })
 
-	-- Spell
-	M.hl("SpellBad", { undercurl = true, sp = colors.errorForeground })
-	M.hl("SpellCap", { undercurl = true, sp = colors.warningForeground })
-	M.hl("SpellLocal", { undercurl = true, sp = colors.infForeground })
-	M.hl("SpellRare", { undercurl = true, sp = colors.infForeground })
-
 	-- Lualine support
 	M.hl("lualine_a_normal", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
 	M.hl("lualine_a_insert", { fg = colors.editorBackground, bg = colors.string, bold = true })
@@ -251,31 +240,21 @@ function M.setup()
 	M.hl("SnacksPickerBorder", { fg = "#333e4f" })
 	M.hl("SnacksPickerNormal", { fg = colors.editorForeground, bg = "#10151d" })
 	M.hl("SnacksPickerTitle", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
-	M.hl("SnacksPickerPrompt", { fg = colors.editorForeground, bg = colors.inputBackground })
-	M.hl("SnacksPickerInput", { fg = colors.editorForeground, bg = colors.inputBackground })
-	M.hl("SnacksPickerList", { fg = colors.editorForeground, bg = "#10151d" })
+	M.hl("SnacksPickerPrompt", { fg = colors.editorForeground, bg = "#171f2b" })
+	M.hl("SnacksPickerInput", { fg = colors.editorForeground, bg = "#171f2b" })
+	M.hl("SnacksPickerList", { fg = colors.editorForeground, bg = "#171f2b" })
 	M.hl("SnacksPickerItem", { fg = colors.editorForeground })
 	M.hl("SnacksPickerSelected", { bg = colors.selectionBackground, bold = true })
-	M.hl("SnacksPickerMatch", { fg = colors.variable, bold = true })
+	M.hl("SnacksPickerMatch", { fg = nil, bold = true })
 	M.hl("SnacksPickerDir", { fg = colors.constant })
 	M.hl("SnacksPickerFile", { fg = colors.editorForeground })
-	M.hl("SnacksPickerPreview", { fg = colors.editorForeground, bg = "#10151d" })
+	M.hl("SnacksPickerPreview", { fg = colors.editorForeground, bg = "#171f2b" })
 
 	-- Input
 	M.hl("SnacksInputBorder", { fg = "#333e4f" })
 	M.hl("SnacksInputNormal", { fg = colors.editorForeground, bg = "#10151d" })
 	M.hl("SnacksInputTitle", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
 	M.hl("SnacksInputPrompt", { fg = colors.editorForeground })
-
-	-- Terminal
-	M.hl("SnacksTerminalBorder", { fg = "#333e4f" })
-	M.hl("SnacksTerminalNormal", { fg = colors.editorForeground, bg = colors.editorBackground })
-	M.hl("SnacksTerminalTitle", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
-
-	-- Lazygit
-	M.hl("SnacksLazygitBorder", { fg = "#333e4f" })
-	M.hl("SnacksLazygitNormal", { fg = colors.editorForeground, bg = colors.editorBackground })
-	M.hl("SnacksLazygitTitle", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
 
 	-- Indent
 	M.hl("SnacksIndent", { fg = "#333e4f" })
@@ -293,10 +272,6 @@ function M.setup()
 	M.hl("SnacksBuffDeleteBorder", { fg = "#333e4f" })
 	M.hl("SnacksBuffDeleteNormal", { fg = colors.editorForeground, bg = colors.editorBackground })
 
-	-- QuickFile
-	M.hl("SnacksQuickfileBorder", { fg = "#333e4f" })
-	M.hl("SnacksQuickfileNormal", { fg = colors.editorForeground, bg = "#10151d" })
-
 	-- Yazi.nvim support
 	M.hl("YaziHeader", { fg = colors.constant, bold = true })
 	M.hl("YaziDirHighlight", { fg = colors.constant })
@@ -305,13 +280,6 @@ function M.setup()
 	M.hl("YaziExecutableHighlight", { fg = colors.string })
 	M.hl("YaziSelectedHighlight", { bg = colors.selectionBackground })
 	M.hl("YaziHoverHighlight", { bg = colors.editorLineHighlight })
-
-	-- Nvim-tree support (extended)
-	M.hl("NvimTreeRootFolder", { fg = colors.constant, bold = true })
-	M.hl("NvimTreeGitStaged", { fg = colors.diffAdded })
-	M.hl("NvimTreeGitDirty", { fg = colors.warningForeground })
-	M.hl("NvimTreeGitNew", { fg = colors.infForeground })
-	M.hl("NvimTreeGitDeleted", { fg = colors.errorForeground })
 
 	-- Gitsigns support
 	M.hl("GitSignsAdd", { fg = colors.diffAdded })
@@ -327,7 +295,7 @@ function M.setup()
 	-- Blink.cmp support
 	M.hl("BlinkCmpMenu", { fg = colors.editorForeground, bg = colors.dropdownBackground })
 	M.hl("BlinkCmpMenuBorder", { fg = "#333e4f" })
-	M.hl("BlinkCmpMenuSelection", { fg = colors.editorForeground, bg = colors.inputBackground, bold = true })
+	M.hl("BlinkCmpMenuSelection", { fg = colors.editorForeground, bg = colors._pink, bold = true })
 	M.hl("BlinkCmpMenuItem", { fg = colors.editorForeground })
 	M.hl("BlinkCmpMenuScrollbar", { bg = colors.editorLineHighlight })
 	M.hl("BlinkCmpMenuThumb", { bg = colors.statuslineForeground })
@@ -387,7 +355,7 @@ function M.setup()
 	-- UFO-specific highlights (Monospace Dark theme)
 	vim.api.nvim_set_hl(0, "UfoFoldedFg", { fg = "#7f8d9f" })
 	vim.api.nvim_set_hl(0, "UfoFoldedBg", { bg = "#1f2939" })
-	vim.api.nvim_set_hl(0, "Folded", { fg = "#7f8d9f", bg = "#1f2939" })
+	vim.api.nvim_set_hl(0, "Folded", { fg = "#7f8d9f", bg = colors._transparent })
 end
 
 function M.hl(name, val)

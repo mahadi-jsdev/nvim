@@ -1,6 +1,6 @@
 require("config.options")
 require("config.keymaps")
+require("custom.monospace")
 require("config.autocmds")
 require("config.lazy")
 require("custom.sidebar")
-require("custom.monospace")
