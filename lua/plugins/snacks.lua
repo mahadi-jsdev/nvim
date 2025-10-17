@@ -53,6 +53,14 @@ return {
 			mode = { "x" },
 		},
 		{
+			"<C-l>",
+			function()
+				Snacks.picker.lines()
+			end,
+			desc = "Grep",
+			mode = { "n" },
+		},
+		{
 			"<C-g>",
 			function()
 				Snacks.picker.git_status()
