@@ -4,3 +4,6 @@ require("config.autocmds")
 require("config.lazy")
 require("config.highlight")
 require("custom.sidebar")
+
+-- theme
+require("custom.monospace")
