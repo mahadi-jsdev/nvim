@@ -1,108 +1,171 @@
 # 🚀 Neovim Configuration
 
-A modern, modular Neovim setup optimized for web development with full LSP support, autocomplete, formatting, and more.
+A modern, modular Neovim setup optimized for web development with full LSP support, fast autocomplete, formatting, and more. Built with lazy.nvim for efficient plugin management.
 
 ## 📁 Project Structure
 
 ```
 ~/.config/nvim/
-├── init.lua                
-├── snippets/
+├── init.lua                    # Main entry point
+├── lazy-lock.json             # Plugin lock file
+├── .luarc.json               # Lua language server config
+├── lua/
+│   ├── config/               # Core configuration
+│   │   ├── options.lua       # Neovim options
+│   │   ├── keymaps.lua       # Key mappings
+│   │   ├── autocmds.lua      # Auto commands
+│   │   ├── lazy.lua          # Lazy.nvim setup
+│   │   └── lsp.lua           # LSP configuration
+│   └── plugins/              # Plugin configurations
+│       ├── blink.lua         # Blink.cmp completion
+│       ├── conform.lua       # Code formatting
+│       ├── lualine.lua       # Status line
+│       ├── mason.lua         # LSP/DAP installer
+│       ├── nvim-lsp.lua      # LSP client
+│       ├── snacks.lua        # Snacks.nvim utilities
+│       ├── treesitter.lua    # Syntax highlighting
+│       ├── yazi.lua          # File manager
+│       └── ...               # Other plugins
+├── snippets/                 # Code snippets
 │   ├── all.json
 │   ├── javascript.json
 │   ├── typescript.json
-│   ├── typescriptreact.json 
+│   └── typescriptreact.json
+└── colors/                   # Custom color schemes
 ```
 
 ## 🎨 Features
 
-### 🌈 UI & Themes
-- **Dracula** - Dark theme with vibrant colors
-- **Nerd Fonts** - Icon support
-- **Indent Guides** - Visual indentation
-- **Mini.diff** - Git diff in sign column
+### 🌈 UI & Experience
+
+- **Lualine** - Beautiful status line with git integration
+- **Nerd Fonts** - Icon support throughout the interface
+- **Rounded Windows** - Modern UI with rounded borders
+- **Relative Line Numbers** - Enhanced navigation
+- **Code Folding** - Intelligent folding with nvim-ufo
 
 ### 🔍 Navigation & Search
-- **Telescope** - Fuzzy finder for files, buffers, grep
-- **NERDTree** - File explorer with syntax highlighting
-- **Buffer Navigation** - Switch between buffers easily
+
+- **Snacks.nvim** - Unified picker for files, buffers, grep, and more
+- **Yazi** - Modern file manager with preview capabilities
+- **Flash.nvim** - Enhanced search and navigation
+- **Buffer Navigation** - Easy switching between buffers
 
 ### 🧠 Language Support
+
 - **LSP** - Full language server support for:
-  - JavaScript/TypeScript
-  - HTML/CSS
-  - Lua
-  - Bash
-  - Tailwind CSS
-- **Treesitter** - Enhanced syntax highlighting
+  - JavaScript/TypeScript (ts_ls)
+  - HTML/CSS (html, cssls)
+  - Lua (lua_ls)
+  - Tailwind CSS (tailwindcss)
+  - ESLint (eslint)
+- **Treesitter** - Enhanced syntax highlighting and parsing
 - **Auto Tag** - Automatic HTML/XML tag closing
 - **Template Strings** - JavaScript template string support
 
 ### ⚡ Development Tools
-- **Blink CMP** - Fast autocompletion engine
+
+- **Blink.cmp** - Ultra-fast autocompletion engine
 - **Conform** - Code formatting with Prettier/Stylua
-- **Multicursor** - Multiple cursor editing
+- **Multicursor** - Multiple cursor editing with mouse support
 - **LazyGit** - Git integration
 - **Fidget** - LSP progress notifications
+- **Todo Comments** - Highlight and manage TODO comments
+- **Session Management** - Automatic session persistence
 
 ### 🛠️ Code Editing
+
 - **Multiple Cursors** - Edit multiple lines simultaneously
 - **Code Folding** - Intelligent code folding
-- **Auto Formatting** - Format on save
+- **Auto Formatting** - Format on save with fallback
 - **Smart Indentation** - Context-aware indentation
+- **Auto Pairs** - Automatic bracket/parenthesis completion
+- **Neogen** - Generate documentation comments
 
 ## ⌨️ Key Mappings
 
 ### Basic Navigation
-| Key | Action |
-|-----|--------|
-| `Ctrl + s` | Save file |
-| `Ctrl + v` | Vertical split |
-| `Ctrl + \` | Toggle terminal |
-| `Ctrl + a` | Toggle NERDTree |
-| `Ctrl + →/←` | Next/Previous buffer |
-| `Ctrl + x` | Close buffer |
 
-### Search & Find
-| Key | Action |
-|-----|--------|
-| `Space + Space` | Find files |
-| `Ctrl + /` | Live grep |
-| `Ctrl + b` | Find buffers |
-| `Ctrl + g` | Git status |
+| Key          | Action                    |
+| ------------ | ------------------------- |
+| `Ctrl + s`   | Save file                 |
+| `Ctrl + v`   | Vertical split            |
+| `Ctrl + j/k` | Next/Previous buffer      |
+| `Ctrl + x`   | Delete buffer             |
+| `ESC`        | Clear search highlighting |
+| `zz`         | Toggle fold               |
 
-### Code Actions
-| Key | Action |
-|-----|--------|
-| `K` | Hover documentation |
-| `gd` | Go to definition |
-| `gr` | Find references |
-| `Space + lr` | Rename symbol |
-| `Space + la` | Code actions |
-| `Space + ld` | Line diagnostics |
+### Search & Find (Snacks.nvim)
+
+| Key             | Action                                  |
+| --------------- | --------------------------------------- |
+| `Space + Space` | Find files                              |
+| `Ctrl + f`      | Live grep (normal) / Grep word (visual) |
+| `Ctrl + l`      | Search lines                            |
+| `Space + fb`    | Find buffers                            |
+| `Ctrl + g`      | Git status                              |
+| `-`             | Open Yazi file manager                  |
+| `Ctrl + e`      | Open folders only (Yazi)                |
+
+### Code Actions (LSP)
+
+| Key          | Action                   |
+| ------------ | ------------------------ |
+| `K`          | Hover documentation      |
+| `gd`         | Go to definition         |
+| `gr`         | Find references          |
+| `gs`         | Find symbols             |
+| `Space + lr` | Rename symbol            |
+| `Space + la` | Code actions             |
+| `Space + ld` | Line diagnostics         |
+| `Space + ll` | Show all diagnostics     |
+| `Space + ff` | Organize imports         |
+| `[d` / `]d`  | Previous/Next diagnostic |
 
 ### QuickFix Navigation
-| Key | Action |
-|-----|--------|
-| `Alt + o` | Open QuickFix |
-| `Alt + x` | Close QuickFix |
-| `Alt + j` | Next QuickFix item |
+
+| Key       | Action                 |
+| --------- | ---------------------- |
+| `Alt + o` | Open QuickFix          |
+| `Alt + x` | Close QuickFix         |
+| `Alt + j` | Next QuickFix item     |
 | `Alt + k` | Previous QuickFix item |
 
 ### Line Manipulation
-| Key | Action |
-|-----|--------|
-| `Alt + ↑/↓` | Move line up/down |
-| `Alt + ↑/↓` (Visual) | Move selection up/down |
+
+| Key                  | Action                 |
+| -------------------- | ---------------------- |
+| `Alt + u`            | Move line up           |
+| `Alt + d`            | Move line down         |
+| `Alt + u/d` (Visual) | Move selection up/down |
+| `=`                  | Resize window wider    |
+
+### Multiple Cursors
+
+| Key                 | Action                   |
+| ------------------- | ------------------------ |
+| `Alt + Left Click`  | Add cursor at position   |
+| `Ctrl + o` (Visual) | Add cursor for selection |
+| `ESC`               | Toggle/clear cursors     |
 
 ### Git Integration
-| Key | Action |
-|-----|--------|
+
+| Key          | Action       |
+| ------------ | ------------ |
 | `Space + gg` | Open LazyGit |
+
+### Completion (Blink.cmp)
+
+| Key            | Action               |
+| -------------- | -------------------- |
+| `Ctrl + Space` | Show/hide completion |
+| `Ctrl + j/k`   | Navigate completion  |
+| `Enter`        | Accept completion    |
 
 ## 📦 Plugins
 
 ### Core Plugins
+
 - **[dracula/vim](https://github.com/dracula/vim)** - Beautiful dark theme
 - **[nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)** - Better syntax highlighting
 - **[nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)** - Fuzzy finder
@@ -110,10 +173,12 @@ A modern, modular Neovim setup optimized for web development with full LSP suppo
 - **[williamboman/mason.nvim](https://github.com/williamboman/mason.nvim)** - Package manager for LSP/DAP/etc
 
 ### Completion & Snippets
+
 - **[saghen/blink.cmp](https://github.com/saghen/blink.cmp)** - Fast completion engine
 - **[stevearc/conform.nvim](https://github.com/stevearc/conform.nvim)** - Formatting engine
 
 ### Utilities
+
 - **[preservim/nerdtree](https://github.com/preservim/nerdtree)** - File explorer
 - **[kdheepak/lazygit.nvim](https://github.com/kdheepak/lazygit.nvim)** - Git integration
 - **[jake-stewart/multicursor.nvim](https://github.com/jake-stewart/multicursor.nvim)** - Multiple cursors
@@ -123,28 +188,33 @@ A modern, modular Neovim setup optimized for web development with full LSP suppo
 ## 🚀 Installation
 
 1. **Backup your current config:**
+
    ```bash
    mv ~/.config/nvim ~/.config/nvim.backup
    ```
 
 2. **Clone this repository:**
+
    ```bash
    git clone https://github.com/yourusername/nvim-config ~/.config/nvim
    ```
 
 3. **Install vim-plug (if not already installed):**
+
    ```bash
    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
    ```
 
 4. **Open Neovim and install plugins:**
+
    ```bash
    nvim
    :PlugInstall
    ```
 
 5. **Install language servers:**
+
    ```bash
    :MasonInstall lua-language-server typescript-language-server eslint prettier
    ```

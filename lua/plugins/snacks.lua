@@ -3,14 +3,12 @@ return {
 	lazy = false,
 	opts = {
 		bufDelete = {},
-		quickfile = {},
 		indent = {},
 		statuscolumn = {},
 		scope = {},
 		picker = {},
 		input = {},
 		notifier = {},
-		terminal = {},
 		lazygit = {},
 		dashboard = {},
 	},
@@ -21,13 +19,6 @@ return {
 				Snacks.picker.files()
 			end,
 			desc = "search files",
-		},
-		{
-			"<leader>e",
-			function()
-				Snacks.explorer()
-			end,
-			desc = "explorer",
 		},
 		{
 			"<leader>fb",
@@ -73,22 +64,6 @@ return {
 				Snacks.bufdelete()
 			end,
 			desc = "Delete Buffer",
-		},
-		{
-			"<C-t>",
-			function()
-				Snacks.terminal.toggle()
-			end,
-			desc = "open terminal",
-			mode = { "n" },
-		},
-		{
-			"<C-t>",
-			function()
-				Snacks.terminal.toggle()
-			end,
-			desc = "open terminal",
-			mode = { "t" },
 		},
 	},
 }

@@ -6,13 +6,13 @@ Sidebar.buf = nil
 -- Check if nvim-web-devicons is available
 local has_devicons, devicons = pcall(require, "nvim-web-devicons")
 
--- 🎨 Dracula-inspired colors
+-- 🎨 Monospace Dark theme colors
 Sidebar.colors = {
-	bg = "#282a36", -- background
-	fg = "#f8f8f2", -- text
-	active = "#bd93f9", -- active buffer
-	accent = "#ffb86c", -- accent text
-	border = "#44475a", -- border
+	bg = "#171f2a", -- sidebar background (darker than editor)
+	fg = "#d9dfe7", -- text
+	active = "#a87ffb", -- active buffer (purple accent)
+	accent = "#ffd395", -- accent text (yellow)
+	border = "#333e4f", -- border
 }
 
 -- Helper: get 2-level relative path
@@ -145,7 +145,7 @@ vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete", "BufEnter" }, {
 	end,
 })
 
--- Dracula highlights
+-- Monospace Dark theme highlights
 vim.api.nvim_set_hl(0, "SidebarNormal", { bg = Sidebar.colors.bg, fg = Sidebar.colors.fg })
 vim.api.nvim_set_hl(0, "SidebarActive", { bg = Sidebar.colors.bg, fg = Sidebar.colors.active, bold = true })
 vim.api.nvim_set_hl(0, "SidebarBorder", { fg = Sidebar.colors.border })
@@ -153,4 +153,4 @@ vim.api.nvim_set_hl(0, "SidebarBorder", { fg = Sidebar.colors.border })
 -- Keymap to toggle sidebar
 vim.keymap.set("n", "<C-b>", Sidebar.toggle, { desc = "[B]uffer [S]idebar" })
 
-return Sidebar
+_G.Sidebar = Sidebar
