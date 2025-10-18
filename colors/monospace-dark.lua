@@ -111,7 +111,7 @@ local function setup()
 	hl("StatusLineNC", { fg = "#738295", bg = "#10151d" })
 	hl("VertSplit", { fg = "#333e4f" })
 	hl("FloatBorder", { fg = "#333e4f" })
-	hl("NormalFloat", { fg = colors.editorForeground, bg = "#10151d" })
+	hl("NormalFloat", { fg = colors.editorForeground, bg = colors.editorBackground })
 	hl("WildMenu", { fg = colors.editorForeground, bg = colors.inputBackground })
 
 	-- Search
