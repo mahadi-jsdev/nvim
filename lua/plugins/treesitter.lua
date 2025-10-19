@@ -24,9 +24,6 @@ return {
 				"cpp",
 				"c",
 			},
-			highlight = {
-				enable = true,
-			},
 			auto_install = true,
 			indent = {
 				enable = true,
