@@ -112,6 +112,7 @@ local function setup()
 	hl("VertSplit", { fg = "#333e4f" })
 	hl("FloatBorder", { fg = "#333e4f" })
 	hl("NormalFloat", { fg = colors.editorForeground, bg = colors.editorBackground })
+	hl("FloatTitle", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
 	hl("WildMenu", { fg = colors.editorForeground, bg = colors.inputBackground })
 
 	-- Search
@@ -259,9 +260,9 @@ local function setup()
 
 	-- Input
 	hl("SnacksInputBorder", { fg = "#333e4f" })
-	hl("SnacksInputNormal", { fg = colors.editorForeground, bg = "#10151d" })
+	hl("SnacksInputNormal", { fg = colors.editorForeground, bg = colors.editorBackground })
 	hl("SnacksInputTitle", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
-	hl("SnacksInputPrompt", { fg = colors.editorForeground })
+	hl("SnacksInputPrompt", { fg = colors.editorForeground, bg = colors.editorBackground })
 
 	-- Indent
 	hl("SnacksIndent", { fg = "#333e4f" })
@@ -278,6 +279,16 @@ local function setup()
 	-- BuffDelete (undouble)
 	hl("SnacksBuffDeleteBorder", { fg = "#333e4f" })
 	hl("SnacksBuffDeleteNormal", { fg = colors.editorForeground, bg = colors.editorBackground })
+
+	-- LSP Input/Rename
+	hl("SnacksLspInputBorder", { fg = "#333e4f" })
+	hl("SnacksLspInputNormal", { fg = colors.editorForeground, bg = colors.editorBackground })
+	hl("SnacksLspInputTitle", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
+	hl("SnacksLspInputPrompt", { fg = colors.editorForeground, bg = colors.editorBackground })
+	hl("SnacksLspRenameBorder", { fg = "#333e4f" })
+	hl("SnacksLspRenameNormal", { fg = colors.editorForeground, bg = colors.editorBackground })
+	hl("SnacksLspRenameTitle", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
+	hl("SnacksLspRenamePrompt", { fg = colors.editorForeground, bg = colors.editorBackground })
 
 	-- Yazi.nvim support
 	hl("YaziHeader", { fg = colors.constant, bold = true })
