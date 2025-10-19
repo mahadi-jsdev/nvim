@@ -1,6 +1,3 @@
--- Monospace Dark Color Scheme
--- A modern dark theme with excellent plugin support
-
 local M = {}
 
 local colors = {
@@ -374,43 +371,6 @@ local function setup()
 	hl("UfoFoldedFg", { fg = "#7f8d9f" })
 	hl("UfoFoldedBg", { bg = "#1f2939" })
 	hl("Folded", { fg = "#7f8d9f", bg = colors._transparent })
-
-	-- Dap (Debug Adapter Protocol)
-	hl("DapBreakpoint", { fg = colors.errorForeground })
-	hl("DapBreakpointCondition", { fg = colors.warningForeground })
-	hl("DapBreakpointRejected", { fg = colors.errorForeground })
-	hl("DapLogPoint", { fg = colors.infForeground })
-	hl("DapStopped", { fg = colors.buttonBackground })
-	hl("DapUIBreakpointsCurrentLine", { fg = colors.buttonBackground, bold = true })
-	hl("DapUIBreakpointsDisabledLine", { fg = colors.comment })
-	hl("DapUIBreakpointsInfo", { fg = colors.infForeground })
-	hl("DapUIBreakpointsLine", { fg = colors.editorForeground })
-	hl("DapUIBreakpointsPath", { fg = colors.constant })
-	hl("DapUICurrentFrameName", { fg = colors.buttonBackground, bold = true })
-	hl("DapUIDecoration", { fg = colors.comment })
-	hl("DapUIFloatBorder", { fg = "#333e4f" })
-	hl("DapUILineNumber", { fg = colors.comment })
-	hl("DapUIModifiedValue", { fg = colors.warningForeground, bold = true })
-	hl("DapUINormal", { fg = colors.editorForeground, bg = colors.dropdownBackground })
-	hl("DapUIPlayPause", { fg = colors.string })
-	hl("DapUIRestart", { fg = colors.buttonBackground })
-	hl("DapUIRestartCount", { fg = colors.buttonBackground, bg = colors.editorLineHighlight })
-	hl("DapUIScope", { fg = colors.constant })
-	hl("DapUISource", { fg = colors.editorForeground })
-	hl("DapUIStepBack", { fg = colors.buttonBackground })
-	hl("DapUIStepInto", { fg = colors.buttonBackground })
-	hl("DapUIStepOut", { fg = colors.buttonBackground })
-	hl("DapUIStepOver", { fg = colors.buttonBackground })
-	hl("DapUIStop", { fg = colors.errorForeground })
-	hl("DapUIStoppedThread", { fg = colors.constant })
-	hl("DapUIThread", { fg = colors.editorForeground })
-	hl("DapUIType", { fg = colors.constant })
-	hl("DapUIUnavailable", { fg = colors.comment })
-	hl("DapUIValue", { fg = colors.editorForeground })
-	hl("DapUIWatchesEmpty", { fg = colors.comment })
-	hl("DapUIWatchesError", { fg = colors.errorForeground })
-	hl("DapUIWatchesValue", { fg = colors.buttonBackground })
-	hl("DapUIWinSelect", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
 end
 
 -- Initialize the color scheme
