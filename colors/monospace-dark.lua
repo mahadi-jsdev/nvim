@@ -212,15 +212,6 @@ local function setup()
 	hl("DiffChange", { fg = colors.diffModified, bg = "#001a33" })
 	hl("DiffText", { fg = colors.diffModified, bg = "#003d66" })
 
-	-- Lualine support
-	hl("lualine_a_normal", { fg = colors.editorBackground, bg = colors.buttonBackground, bold = true })
-	hl("lualine_a_insert", { fg = colors.editorBackground, bg = colors.string, bold = true })
-	hl("lualine_a_visual", { fg = colors.editorBackground, bg = colors.variable, bold = true })
-	hl("lualine_a_replace", { fg = colors.editorBackground, bg = colors.errorForeground, bold = true })
-	hl("lualine_a_command", { fg = colors.editorBackground, bg = colors.constant, bold = true })
-	hl("lualine_b_normal", { fg = colors.statuslineForeground, bg = colors.statuslineBackground })
-	hl("lualine_c_normal", { fg = colors.statuslineForeground, bg = colors.editorBackground })
-
 	-- Snacks.nvim support
 	-- Notifier
 	hl("SnacksNotifierBorder", { fg = "#333e4f" })
