@@ -1,3 +1,15 @@
+-- Store the start time (in seconds since epoch)
+local start_time = os.time()
+
+-- Function to format elapsed time as hh:mm:ss
+local function format_time_spent()
+	local elapsed = os.time() - start_time
+	local hours = math.floor(elapsed / 3600)
+	local mins = math.floor((elapsed % 3600) / 60)
+	local secs = elapsed % 60
+	return string.format(" %02d:%02d:%02d", hours, mins, secs)
+end
+
 return {
 	"nvim-lualine/lualine.nvim",
 	event = "BufRead",
@@ -157,24 +169,10 @@ return {
 		})
 
 		ins_left({
-			-- Lsp server name .
 			function()
-				local msg = "No Active Lsp"
-				local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
-				local clients = vim.lsp.get_clients()
-				if next(clients) == nil then
-					return msg
-				end
-				for _, client in ipairs(clients) do
-					local filetypes = client.config.filetypes
-					if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-						return client.name
-					end
-				end
-				return msg
+				return format_time_spent()
 			end,
-			icon = " LSP:",
-			color = { fg = "#ffffff", gui = "bold" },
+			color = { fg = colors.orange, gui = "bold" },
 		})
 
 		-- Add components to right sections
