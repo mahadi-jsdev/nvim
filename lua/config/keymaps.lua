@@ -27,6 +27,3 @@ map("n", "<M-u>", ":m .-2<CR>==", { desc = "Move line up" })
 map("n", "<M-d>", ":m .+1<CR>==", { desc = "Move line down" })
 map("v", "<M-u>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 map("v", "<M-d>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-
--- Safe paste in visual mode (doesn't overwrite default register)
-map("x", "p", [["_dP]], { desc = "Paste without overwriting register" })
