@@ -341,6 +341,15 @@ local function setup()
 	hl("BlinkCmpKindCopilot", { fg = colors.buttonBackground })
 	hl("BlinkCmpKindDefault", { fg = colors.editorForeground })
 
+	-- Quickfix colors
+	hl("qfFileName", { fg = colors.constant })
+	hl("qfLineNr", { fg = colors.comment })
+	hl("qfError", { fg = colors.errorForeground, bold = true })
+	hl("qfWarning", { fg = colors.warningForeground })
+	hl("qfInfo", { fg = colors.infForeground })
+	hl("QuickFixLine", { bg = colors._transparent, bold = true })
+	hl("qfSeparator", { fg = colors.comment })
+
 	-- Terminal mode colors
 	vim.g.terminal_color_0 = colors.black
 	vim.g.terminal_color_1 = colors.red
