@@ -245,6 +245,7 @@ local function setup()
 	hl("SnacksPickerDir", { fg = colors.constant })
 	hl("SnacksPickerFile", { fg = colors.editorForeground })
 	hl("SnacksPickerPreview", { fg = colors.editorForeground, bg = "#171f2b" })
+	hl("SnacksPickerSelected", { fg = colors._pink, bg = colors.editorBackground })
 
 	-- Input
 	hl("SnacksInputBorder", { fg = "#333e4f" })
