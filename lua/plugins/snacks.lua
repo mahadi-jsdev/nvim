@@ -21,6 +21,13 @@ return {
 			desc = "search files",
 		},
 		{
+			"<leader>e",
+			function()
+				Snacks.explorer()
+			end,
+			desc = "file explorer",
+		},
+		{
 			"<leader>fb",
 			function()
 				Snacks.picker.buffers()

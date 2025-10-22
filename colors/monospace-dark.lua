@@ -247,6 +247,32 @@ local function setup()
 	hl("SnacksPickerPreview", { fg = colors.editorForeground, bg = "#171f2b" })
 	hl("SnacksPickerSelected", { fg = colors._pink, bg = colors.editorBackground })
 
+	-- Snacks explorer highlight groups
+	hl("SnacksIndent", { fg = colors.comment })
+	hl("SnacksIndentScope", { fg = colors.focusBorder })
+
+	-- File explorer specific highlights
+	hl("SnacksNotifierIconTrace", { fg = colors.magenta })
+	hl("SnacksNotifierIconDebug", { fg = colors.comment })
+	hl("SnacksNotifierIconInfo", { fg = colors.infForeground })
+	hl("SnacksNotifierIconWarn", { fg = colors.warningForeground })
+	hl("SnacksNotifierIconError", { fg = colors.errorForeground })
+
+	-- Directory and file highlights
+	hl("SnacksIndent", { fg = colors.comment })
+	hl("SnacksIndentScope", { fg = colors.focusBorder })
+
+	-- Explorer window
+	hl("SnacksNotifierBorderTrace", { fg = colors.magenta })
+	hl("SnacksNotifierBorderDebug", { fg = colors.comment })
+	hl("SnacksNotifierBorderInfo", { fg = colors.infForeground })
+	hl("SnacksNotifierBorderWarn", { fg = colors.warningForeground })
+	hl("SnacksNotifierBorderError", { fg = colors.errorForeground })
+
+	-- Additional explorer colors
+	hl("Directory", { fg = colors.blue })
+	hl("SpecialKey", { fg = colors.comment })
+
 	-- Input
 	hl("SnacksInputBorder", { fg = "#333e4f" })
 	hl("SnacksInputNormal", { fg = colors.editorForeground, bg = colors.editorBackground })
