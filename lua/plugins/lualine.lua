@@ -159,8 +159,16 @@ return {
 		})
 
 		ins_left({
-			"filename",
-			path = 1,
+			function()
+				local filepath = vim.fn.expand("%:~:.") -- relative to cwd
+				local parts = vim.split(filepath, "/")
+				local count = #parts
+				if count > 3 then
+					return table.concat({ parts[count - 2], parts[count - 1], parts[count] }, "/")
+				else
+					return filepath
+				end
+			end,
 			cond = conditions.buffer_not_empty,
 			color = { fg = colors.magenta, gui = "bold" },
 		})
