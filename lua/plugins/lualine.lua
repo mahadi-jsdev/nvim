@@ -1,15 +1,3 @@
--- Store the start time (in seconds since epoch)
-local start_time = os.time()
-
--- Function to format elapsed time as hh:mm:ss
-local function format_time_spent()
-	local elapsed = os.time() - start_time
-	local hours = math.floor(elapsed / 3600)
-	local mins = math.floor((elapsed % 3600) / 60)
-	local secs = elapsed % 60
-	return string.format(" %02d:%02d:%02d", hours, mins, secs)
-end
-
 return {
 	"nvim-lualine/lualine.nvim",
 	event = "BufRead",
@@ -134,20 +122,22 @@ return {
 		})
 
 		ins_left({
-			-- filesize component
-			"filesize",
-			cond = conditions.buffer_not_empty,
+			"branch",
+			icon = "",
+			color = { fg = colors.violet, gui = "bold" },
 		})
 
 		ins_left({
-			"filename",
-			cond = conditions.buffer_not_empty,
-			color = { fg = colors.magenta, gui = "bold" },
+			"diff",
+			-- Is it me or the symbol for modified us really weird
+			symbols = { added = " ", modified = "󰝤 ", removed = " " },
+			diff_color = {
+				added = { fg = colors.green },
+				modified = { fg = colors.orange },
+				removed = { fg = colors.red },
+			},
+			cond = conditions.hide_in_width,
 		})
-
-		ins_left({ "location" })
-
-		ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
 
 		ins_left({
 			"diagnostics",
@@ -169,10 +159,23 @@ return {
 		})
 
 		ins_left({
+			"filename",
+			path = 1,
+			cond = conditions.buffer_not_empty,
+			color = { fg = colors.magenta, gui = "bold" },
+		})
+
+		ins_left({
 			function()
-				return format_time_spent()
+				return "|"
 			end,
-			color = { fg = colors.orange, gui = "bold" },
+		})
+
+		ins_left({
+			-- filesize component
+			"filesize",
+			cond = conditions.buffer_not_empty,
+			color = { fg = colors.yellow, gui = "bold" },
 		})
 
 		-- Add components to right sections
@@ -190,23 +193,16 @@ return {
 			color = { fg = colors.green, gui = "bold" },
 		})
 
+		-- Add components to right sections
 		ins_right({
-			"branch",
-			icon = "",
-			color = { fg = colors.violet, gui = "bold" },
+			"filetype",
+			fmt = string.upper,
+			color = { fg = colors.green, gui = "bold" },
 		})
 
-		ins_right({
-			"diff",
-			-- Is it me or the symbol for modified us really weird
-			symbols = { added = " ", modified = "󰝤 ", removed = " " },
-			diff_color = {
-				added = { fg = colors.green },
-				modified = { fg = colors.orange },
-				removed = { fg = colors.red },
-			},
-			cond = conditions.hide_in_width,
-		})
+		ins_right({ "location" })
+
+		ins_right({ "progress", color = { fg = colors.fg, gui = "bold" } })
 
 		ins_right({
 			function()
