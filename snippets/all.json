@@ -13,10 +13,5 @@
     "prefix": "fix",
     "body": ["{/*FIXME: $0 */}"],
     "description": "fixme"
-  },
-  "Console Log Variable": {
-    "prefix": "log",
-    "body": ["console.log('$1:', $1);"],
-    "description": "Console log current variable"
   }
 }

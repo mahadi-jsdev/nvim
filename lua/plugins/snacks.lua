@@ -51,7 +51,7 @@ return {
 			mode = { "x" },
 		},
 		{
-			"<C-l>",
+			"<leader>fl",
 			function()
 				Snacks.picker.lines()
 			end,
