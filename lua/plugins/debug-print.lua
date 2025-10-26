@@ -8,10 +8,10 @@ return {
 	opts = {
 		keymaps = {
 			normal = {
-				variable_below = "<leader>lb",
+				variable_below = "<C-p>",
 			},
 			visual = {
-				variable_below = "<leader>lb",
+				variable_below = "<C-p>",
 			},
 		},
 	},
