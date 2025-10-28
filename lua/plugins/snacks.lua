@@ -9,7 +9,6 @@ return {
 		picker = {},
 		input = {},
 		notifier = {},
-		lazygit = {},
 		dashboard = {},
 	},
 	keys = {
@@ -19,20 +18,6 @@ return {
 				Snacks.picker.files()
 			end,
 			desc = "search files",
-		},
-		{
-			"<leader>e",
-			function()
-				Snacks.explorer()
-			end,
-			desc = "file explorer",
-		},
-		{
-			"<leader>fb",
-			function()
-				Snacks.picker.buffers()
-			end,
-			desc = "buffers",
 		},
 		{
 			"<C-f>",
@@ -57,13 +42,6 @@ return {
 			end,
 			desc = "Grep",
 			mode = { "n" },
-		},
-		{
-			"<C-g>",
-			function()
-				Snacks.picker.git_status()
-			end,
-			desc = "Git Status",
 		},
 		{
 			"<C-x>",
