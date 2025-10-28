@@ -18,8 +18,8 @@ map("n", "=", [[<cmd>vertical resize +5<cr>]])
 -- Key("n", "-", [[<cmd>vertical resize -5<cr>]])
 
 -- cycle between buffer
-map("n", "<C-j>", ":bnext<CR>", { desc = "Next buffer" })
-map("n", "<C-k>", ":bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<C-Right>", ":bnext<CR>", { desc = "Next buffer" })
+map("n", "<C-Left>", ":bprevious<CR>", { desc = "Previous buffer" })
 -- map("n", "<C-x>", ":bd<CR>", { desc = "delete buffer" })
 
 -- move lines
