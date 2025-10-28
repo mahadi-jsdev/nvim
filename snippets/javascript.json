@@ -39,7 +39,7 @@
   "React Query useQuery": {
     "prefix": "rqq",
     "body": [
-      "const { data, isLoading } = useQuery({",
+      "const { data, isPending } = useQuery({",
       "\tqueryKey: [\"$1\"],",
       "\tqueryFn: () => {",
       "\t\t// TODO",
