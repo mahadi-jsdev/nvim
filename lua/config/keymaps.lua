@@ -15,7 +15,7 @@ map("n", "<M-j>", "<CMD>cnext<CR>", { desc = "next quickfix" })
 
 -- resize window
 map("n", "=", [[<cmd>vertical resize +5<cr>]])
--- Key("n", "-", [[<cmd>vertical resize -5<cr>]])
+map("n", "-", [[<cmd>vertical resize -5<cr>]])
 
 -- cycle between buffer
 map("n", "<C-Right>", ":bnext<CR>", { desc = "Next buffer" })

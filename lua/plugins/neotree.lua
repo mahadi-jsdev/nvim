@@ -8,13 +8,20 @@ return {
 	},
 	lazy = false,
 	config = function()
-		vim.keymap.set("n", "<leader>e", "<Cmd>Neotree toggle source=filesystem reveal=true<CR>")
-		vim.keymap.set("n", "<C-space>", "<Cmd>Neotree source=buffers reveal=true<CR>")
-		vim.keymap.set("n", "<C-g>", "<Cmd>Neotree source=git_status reveal=true<CR>")
-		vim.keymap.set("n", "-", "<cmd>Neotree reveal<cr>")
+		vim.keymap.set("n", "<leader>e", "<Cmd>Neotree toggle source=filesystem reveal=true position=left<CR>")
+		vim.keymap.set("n", "<C-space>", "<Cmd>Neotree source=buffers reveal=true position=left<CR>")
+		vim.keymap.set("n", "<C-g>", "<Cmd>Neotree source=git_status reveal=true position=left<CR>")
 
 		require("neo-tree").setup({
 			close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
+			popup_border_style = "rounded", -- "double", "none", "rounded", "shadow", "single" or "solid"
+			default_component_configs = {
+				name = {
+					trailing_slash = false,
+					use_git_status_colors = true,
+					highlight = "NeoTreeFileName",
+				},
+			},
 			filesystem = {
 				filtered_items = {
 					visible = false, -- when true, they will just be displayed differently than normal items
@@ -73,5 +80,11 @@ return {
 				show_unloaded = true,
 			},
 		})
+
+		-- Custom NeoTree highlight colors
+		-- Customize these colors to match your theme
+		vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "#1e1e2e", fg = "#cdd6f4" })
+		vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "#1e1e2e", fg = "#cdd6f4" })
+		vim.api.nvim_set_hl(0, "NeoTreeSymbolicLinkTarget", { fg = "#cba6f7" })
 	end,
 }
