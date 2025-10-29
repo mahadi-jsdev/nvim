@@ -13,5 +13,10 @@
     "prefix": "fix",
     "body": ["{/*FIXME: $0 */}"],
     "description": "fixme"
+  },
+  "doc": {
+    "prefix": "doc",
+    "body": ["/**", " * $0", " */"],
+    "description": "JSDoc comment block with params and returns"
   }
 }
