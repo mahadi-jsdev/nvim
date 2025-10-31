@@ -1,55 +1,23 @@
 return {
-  "stevearc/oil.nvim",
+  "mikavilpas/yazi.nvim",
+  version = "*",
+  event = "VeryLazy",
   dependencies = {
-    { "nvim-tree/nvim-web-devicons", lazy = true },
+    { "nvim-lua/plenary.nvim", lazy = true },
   },
   keys = {
     {
       "-",
       mode = { "n", "v" },
-      function()
-        require("oil").open()
-      end,
-      desc = "Open parent directory",
+      "<cmd>Yazi<cr>",
+      desc = "Open yazi at the current file",
     },
   },
   opts = {
-    default_file_explorer = true,
-    columns = {
-      "icon",
-    },
-    view_options = {
-      show_hidden = true,
-    },
-    skip_confirm_for_simple_edits = true,
-    lsp_file_methods = {
-      enabled = true,
-      timeout_ms = 1000,
-      autosave_changes = true,
-    },
-    watch_for_changes = true,
-    keymaps = {
-      ["g?"] = "actions.show_help",
-      ["<CR>"] = "actions.select",
-      ["<C-v>"] = "actions.select_vsplit",
-      ["<C-x>"] = "actions.select_split",
-      ["<C-t>"] = "actions.select_tab",
-      ["<C-p>"] = "actions.preview",
-      ["<C-c>"] = "actions.close",
-      ["<C-l>"] = "actions.refresh",
-      ["-"] = "actions.parent",
-      ["_"] = "actions.open_cwd",
-      ["`"] = "actions.cd",
-      ["~"] = "actions.tcd",
-      ["gs"] = "actions.change_sort",
-      ["gx"] = "actions.open_external",
-      ["g."] = "actions.toggle_hidden",
-      ["q"] = "actions.close",
-    },
+    open_for_directories = true,
   },
   init = function()
     vim.g.loaded_netrwPlugin = 1
-
     -- Folders only function
     local function folders_only()
       local fd_cmd = "fdfind --type d --hidden --exclude .git"
@@ -78,15 +46,14 @@ return {
         if not selected then
           return
         end
-        require("oil").open(selected.path)
+        require("yazi").yazi({}, selected.path)
       end)
     end
-
     -- Set up key mapping for folders only
     vim.api.nvim_set_keymap("n", "<C-e>", "", {
       noremap = true,
       silent = true,
-      desc = "Folders only (Oil compatible)",
+      desc = "Folders only (Yazi compatible)",
       callback = folders_only,
     })
   end,
