@@ -10,6 +10,7 @@ return {
       on_open = function(term)
         vim.wo[term.window].winhighlight = "Normal:ToggleTermBG"
       end,
+      direction = 'float',
     })
   end
 }
