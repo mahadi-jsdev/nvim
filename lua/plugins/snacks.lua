@@ -29,7 +29,7 @@ return {
 			desc = "file explorer",
 		},
 		{
-			"<leader>fb",
+			"<C-space>",
 			function()
 				Snacks.picker.buffers()
 			end,

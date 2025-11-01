@@ -376,6 +376,31 @@ local function setup()
 	hl("QuickFixLine", { bg = colors._transparent, bold = true })
 	hl("qfSeparator", { fg = colors.comment })
 
+	-- MiniStatusline Mode highlights
+	hl("MiniStatuslineModeNormal", { fg = colors.editorBackground, bg = colors.constant, bold = true })
+	hl("MiniStatuslineModeInsert", { fg = colors.editorBackground, bg = colors.string, bold = true })
+	hl("MiniStatuslineModeVisual", { fg = colors.editorBackground, bg = colors.magenta, bold = true })
+	hl("MiniStatuslineModeReplace", { fg = colors.editorBackground, bg = colors.errorForeground, bold = true })
+	hl("MiniStatuslineModeCommand", { fg = colors.editorBackground, bg = colors.variable, bold = true })
+	hl("MiniStatuslineModeOther", { fg = colors.editorBackground, bg = colors.cyan, bold = true })
+
+	-- MiniStatusline Section highlights
+	hl("MiniStatuslineDevinfo", { fg = colors.statuslineForeground, bg = colors.statuslineBackground })
+	hl("MiniStatuslineFilename", { fg = colors.foreground, bg = colors.statuslineBackground, bold = true })
+	hl("MiniStatuslineFileinfo", { fg = colors.statuslineForeground, bg = colors.statuslineBackground })
+	hl("MiniStatuslineInactive", { fg = colors.comment, bg = colors.editorBackground })
+
+	-- MiniTabline highlights
+	hl("MiniTablineCurrent", { fg = colors.foreground, bg = colors.editorLineHighlight, bold = true })
+	hl("MiniTablineVisible", { fg = colors.statuslineForeground, bg = colors.statuslineBackground })
+	hl("MiniTablineHidden", { fg = colors.comment, bg = colors.editorBackground })
+	hl("MiniTablineModifiedCurrent", { fg = colors.diffModified, bg = colors.editorLineHighlight, bold = true })
+	hl("MiniTablineModifiedVisible", { fg = colors.diffModified, bg = colors.statuslineBackground })
+	hl("MiniTablineModifiedHidden", { fg = colors.comment, bg = colors.editorBackground, italic = true })
+	hl("MiniTablineFill", { bg = colors.statuslineBackground })
+	hl("MiniTablineTabpagesection", { fg = colors.editorBackground, bg = colors.magenta, bold = true })
+	hl("MiniTablineTrunc", { fg = colors.warningForeground, bg = colors.editorBackground, bold = true })
+
 	-- Terminal mode colors
 	vim.g.terminal_color_0 = colors.black
 	vim.g.terminal_color_1 = colors.red
