@@ -5,7 +5,7 @@ return {
 		bufDelete = {},
 		indent = {},
 		statuscolumn = {},
-		image = {},
+		-- image = {},
 		scope = {},
 		picker = {},
 		input = {},
