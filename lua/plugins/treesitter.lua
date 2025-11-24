@@ -23,8 +23,12 @@ return {
 				"java",
 				"cpp",
 				"c",
+				"http",
 			},
 			auto_install = true,
+			highlight = {
+				enable = true,
+			},
 			indent = {
 				enable = true,
 			},

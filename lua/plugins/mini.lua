@@ -4,7 +4,7 @@ return {
 	config = function()
 		require("mini.pairs").setup()
 		require("mini.statusline").setup()
-		require("mini.tabline").setup()
+		-- require("mini.tabline").setup()
 
 		-- NOTE: Hi Patterns
 		local hipatterns = require("mini.hipatterns")
