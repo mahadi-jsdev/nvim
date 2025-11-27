@@ -34,7 +34,7 @@ return {
 			map("n", "gs", function()
 				Snacks.picker.lsp_symbols()
 			end)
-			map("n", "<leader>ld", function()
+			map("n", "<leader>fd", function()
 				Snacks.picker.diagnostics()
 			end, opts)
 			map("n", "[d", vim.diagnostic.goto_prev, opts)
