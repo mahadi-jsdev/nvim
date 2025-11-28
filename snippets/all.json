@@ -19,12 +19,12 @@
     "body": ["/**", " * $0", " */"],
     "description": "JSDoc comment block with params and returns"
   },
-  "console": {
-    "prefix": "con",
+  "console.log": {
+    "prefix": "log",
     "body": ["console.log($0)"],
     "description": "console.log"
   },
-  "warn": {
+  "console.warn": {
     "prefix": "warn",
     "body": ["console.warn($0)"],
     "description": "console.warn"
