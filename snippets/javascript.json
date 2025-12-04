@@ -77,5 +77,30 @@
     "prefix": "img",
     "body": ["<Image src={$0} width={1920} height={1080} alt='img' />"],
     "description": "nextjs image component"
+  },
+  "React hook form field": {
+    "prefix": "field",
+    "body": [
+      "<FormField",
+      "\tcontrol={control}",
+      "\tname=\"\"",
+      "\trender={({ field }) => (",
+      "\t\t<FormItem className=\"\">",
+      "\t\t\t<FormLabel className=\"\">",
+      "\t\t\t</FormLabel>",
+      "\t\t\t<FormControl>",
+      "\t\t\t\t<Input",
+      "\t\t\t\t\t{...field}",
+      "\t\t\t\t\tvalue={field.value}",
+      "\t\t\t\t\tplaceholder=\"\"",
+      "\t\t\t\t\tclassName=\"\"",
+      "\t\t\t\t/>",
+      "\t\t\t</FormControl>",
+      "\t\t\t<FormMessage />",
+      "\t\t</FormItem>",
+      "\t)}",
+      "/>$0"
+    ],
+    "description": "Form field for U.S. Doing Business As input with optional label"
   }
 }
