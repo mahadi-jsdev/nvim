@@ -6,6 +6,6 @@ return {
 		"nvim-lua/plenary.nvim",
 	},
 	keys = {
-		{ "<leader>ng", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
+		{ "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
 	},
 }

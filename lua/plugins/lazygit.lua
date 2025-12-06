@@ -3,6 +3,6 @@ return {
 	event = "VeryLazy",
 	cmd = { "LazyGit" },
 	config = function()
-		vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>", { desc = "LazyGit" }) -- file tree
+		vim.keymap.set("n", "<leader>lg", "<CMD>LazyGit<CR>", { desc = "LazyGit" })
 	end,
 }
