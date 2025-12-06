@@ -4,7 +4,6 @@ return {
 	cmd = "Neogit",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"sindrets/diffview.nvim",
 	},
 	keys = {
 		{ "<leader>ng", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
