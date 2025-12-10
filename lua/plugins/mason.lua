@@ -18,7 +18,6 @@ return {
 					"lua_ls", -- lua-language-server
 					"tailwindcss", -- tailwindcss-language-server
 					"ts_ls", -- typescript-language-server,
-					"emmet_language_server", -- emmet_language_server
 				},
 				automatic_installation = true,
 			})
