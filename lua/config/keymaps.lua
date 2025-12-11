@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 -- Keymps (Basic)
-map({ "n", "i", "v" }, "<C-s>", ":w<CR>")
+map({ "n", "i", "v" }, "<C-s>", "<CMD>w<CR>")
 map("n", "<ESC>", ":nohlsearch<CR>")
 map("n", "<C-v>", ":leftabove vsplit<CR>")
 map("n", "<leader>qq", ":q<CR>")
