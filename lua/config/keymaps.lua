@@ -7,6 +7,10 @@ map("n", "<C-v>", ":leftabove vsplit<CR>")
 map("n", "<leader>qq", ":q<CR>")
 map("n", "zz", "za")
 
+-- Keep cursor centered when scrolling
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+
 -- QuickFix
 map("n", "<M-o>", ":copen<CR>", { desc = "Open quickfix" })
 map("n", "<M-x>", ":cclose<CR>", { desc = "close quickfix" })
@@ -17,8 +21,6 @@ map("n", "<M-j>", ":cnext<CR>", { desc = "next quickfix" })
 map("n", "=", [[<cmd>vertical resize +5<cr>]])
 
 -- cycle between buffer
-map("n", "<C-Right>", ":bnext<CR>", { desc = "Next buffer" })
-map("n", "<C-Left>", ":bprevious<CR>", { desc = "Previous buffer" })
 map("n", "<C-l>", ":bnext<CR>", { desc = "Next buffer" })
 map("n", "<C-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 

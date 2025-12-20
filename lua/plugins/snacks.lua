@@ -9,10 +9,16 @@ return {
 		bufDelete = {},
 		indent = {},
 		statuscolumn = {},
+		scope = {},
 		picker = {},
 		input = {},
 		notifier = {},
 		dashboard = {},
+		terminal = {},
+		lazygit = {},
+		scroll = {},
+		words = {},
+		zen = {},
 	},
 	keys = {
 		{
@@ -73,6 +79,42 @@ return {
 				Snacks.bufdelete()
 			end,
 			desc = "Delete Buffer",
+		},
+		{
+			"<leader>gg",
+			function()
+				Snacks.lazygit()
+			end,
+			desc = "Lazygit",
+		},
+		{
+			"<C-`>",
+			function()
+				Snacks.terminal()
+			end,
+			mode = { "n", "t" },
+			desc = "Toggle Terminal",
+		},
+		{
+			"<C-Right>",
+			function()
+				Snacks.words.jump(1)
+			end,
+			desc = "Next reference",
+		},
+		{
+			"<C-Left>",
+			function()
+				Snacks.words.jump(-1)
+			end,
+			desc = "Prev reference",
+		},
+		{
+			"<leader>zz",
+			function()
+				Snacks.zen()
+			end,
+			desc = "Zen mode",
 		},
 	},
 }
