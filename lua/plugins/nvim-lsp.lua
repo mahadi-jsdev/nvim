@@ -62,6 +62,8 @@ return {
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
+
+			vim.lsp.enable(lsp)
 		end
 	end,
 }

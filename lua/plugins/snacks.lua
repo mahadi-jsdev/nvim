@@ -6,6 +6,8 @@ return {
 		lazy = true,
 	},
 	opts = {
+		bigfile = {},
+		quickfile = {},
 		bufDelete = {},
 		indent = {},
 		statuscolumn = {},
