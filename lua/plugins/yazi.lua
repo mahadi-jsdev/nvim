@@ -1,7 +1,8 @@
 return {
 	"mikavilpas/yazi.nvim",
 	version = "*",
-	event = "VeryLazy",
+	-- event = "VeryLazy",
+	emd = "Yazi",
 	dependencies = {
 		{ "nvim-lua/plenary.nvim", lazy = true },
 	},
