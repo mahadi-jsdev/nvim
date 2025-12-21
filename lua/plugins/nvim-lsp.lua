@@ -51,11 +51,6 @@ return {
 			"cssls",
 		}
 
-		capabilities.textDocument.foldingRange = {
-			dynamicRegistration = false,
-			lineFoldingOnly = true,
-		}
-
 		-- Server setup
 		for _, lsp in ipairs(servers) do
 			vim.lsp.config(lsp, {

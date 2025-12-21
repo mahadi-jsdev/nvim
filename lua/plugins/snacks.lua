@@ -19,8 +19,7 @@ return {
 		terminal = {},
 		lazygit = {},
 		scroll = {},
-		words = {},
-		zen = {},
+		dim = {},
 	},
 	keys = {
 		{
@@ -98,25 +97,18 @@ return {
 			desc = "Toggle Terminal",
 		},
 		{
-			"<C-Right>",
+			"<leader>dim",
 			function()
-				Snacks.words.jump(1)
+				Snacks.dim.enable()
 			end,
-			desc = "Next reference",
+			desc = "dim mode enable",
 		},
 		{
-			"<C-Left>",
+			"<leader>dif",
 			function()
-				Snacks.words.jump(-1)
+				Snacks.dim.disable()
 			end,
-			desc = "Prev reference",
-		},
-		{
-			"<leader>zz",
-			function()
-				Snacks.zen()
-			end,
-			desc = "Zen mode",
+			desc = "dim mode disable",
 		},
 	},
 }
