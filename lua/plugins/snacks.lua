@@ -44,7 +44,7 @@ return {
 			desc = "buffers",
 		},
 		{
-			"<C-f>",
+			"<C-/>",
 			function()
 				Snacks.picker.grep()
 			end,
@@ -52,7 +52,7 @@ return {
 			mode = { "n" },
 		},
 		{
-			"<C-f>",
+			"<C-/>",
 			function()
 				Snacks.picker.grep_word()
 			end,
@@ -60,7 +60,7 @@ return {
 			mode = { "x" },
 		},
 		{
-			"<leader>fl",
+			"<C-f>",
 			function()
 				Snacks.picker.lines()
 			end,
