@@ -17,18 +17,13 @@ return {
 				follow_current_file = { enabled = true }, -- Highlight active buffer
 				group_empty_dirs = true,
 				show_unnamed = false, -- FILTER: Hide unnamed buffers
-				window = {
-					mappings = {
-						["bd"] = "buffer_delete", -- Press 'bd' to close a buffer
-					},
-				},
 			},
 			window = {
-				position = "right", -- SIDEBAR: Open on the right
-				width = 30,
+				width = 40,
 			},
 		})
 
-		vim.keymap.set("n", "<C-a>", "<CMD>Neotree  buffers<CR>", { desc = "Buffer List Sidebar" })
+		vim.keymap.set("n", "<leader>e", "<CMD>Neotree filesystem reveal toggle<CR>", { desc = "Buffer List Sidebar" })
+		vim.keymap.set("n", "<C-a>", "<CMD>Neotree buffers right reveal<CR>", { desc = "Buffer List Sidebar" })
 	end,
 }

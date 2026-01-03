@@ -15,11 +15,9 @@ return {
 		picker = {},
 		input = {},
 		notifier = {},
-		dashboard = {},
-		terminal = {},
+		-- terminal = {},
 		lazygit = {},
 		scroll = {},
-		dim = {},
 	},
 	keys = {
 		{
@@ -28,13 +26,6 @@ return {
 				Snacks.picker.files()
 			end,
 			desc = "search files",
-		},
-		{
-			"<leader>e",
-			function()
-				Snacks.explorer()
-			end,
-			desc = "file explorer",
 		},
 		{
 			"<C-space>",
@@ -81,34 +72,13 @@ return {
 			end,
 			desc = "Delete Buffer",
 		},
-		{
-			"<leader>gg",
-			function()
-				Snacks.lazygit()
-			end,
-			desc = "Lazygit",
-		},
-		{
-			"<C-`>",
-			function()
-				Snacks.terminal()
-			end,
-			mode = { "n", "t" },
-			desc = "Toggle Terminal",
-		},
-		{
-			"<leader>dim",
-			function()
-				Snacks.dim.enable()
-			end,
-			desc = "dim mode enable",
-		},
-		{
-			"<leader>dif",
-			function()
-				Snacks.dim.disable()
-			end,
-			desc = "dim mode disable",
-		},
+		-- {
+		-- 	"<C-`>",
+		-- 	function()
+		-- 		Snacks.terminal()
+		-- 	end,
+		-- 	mode = { "n", "t" },
+		-- 	desc = "Toggle Terminal",
+		-- },
 	},
 }
