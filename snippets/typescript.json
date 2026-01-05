@@ -1,0 +1,76 @@
+{
+  "React Typescript": {
+    "prefix": "ffc",
+    "body": [
+      "export default function ${TM_FILENAME_BASE}() {",
+      "  return $0",
+      "}"
+    ],
+    "description": "Stateless react function"
+  },
+  "React UseState": {
+    "prefix": "ust",
+    "body": ["const [ ${1}, set$2 ] = useState($0)"],
+    "description": "basic react usestate"
+  },
+  "React UseEffect": {
+    "prefix": "uef",
+    "body": ["useEffect(() => {$0}, []);"],
+    "description": "basic react useEffect"
+  },
+  "React Query useMutation": {
+    "prefix": "rqm",
+    "body": [
+      "const { mutate, isPending } = useMutation({",
+      "\tmutationKey: [\"$1\"],",
+      "\tmutationFn: ($2) => {",
+      "\t\t// TODO:",
+      "\t},",
+      "\tonSuccess: () => {",
+      "\t\t// TODO:",
+      "\t},",
+      "\tonError: (err) => {",
+      "\t\t// TODO:",
+      "\t},",
+      "});"
+    ],
+    "description": "React Query useMutation hook structure"
+  },
+  "React Query useQuery": {
+    "prefix": "rqq",
+    "body": [
+      "const { data, isPending } = useQuery({",
+      "\tqueryKey: [\"$1\"],",
+      "\tqueryFn: () => {",
+      "\t\t// TODO:",
+      "\t},",
+      "});"
+    ],
+    "description": "React Query useQuery hook structure"
+  },
+  "useSWR Snippet": {
+    "prefix": "swr",
+    "body": [
+      "const { data, isLoading } = useSWR($1, async () => {",
+      "    const data = await get($1);",
+      "    return data;",
+      "});"
+    ],
+    "description": "A snippet for using useSWR with async data fetching."
+  },
+  "React useTransition": {
+    "prefix": "tra",
+    "body": ["const [isPending, startTransition] = useTransition()"],
+    "description": "useTransition hook"
+  },
+  "arrow function": {
+    "prefix": "arr",
+    "body": ["const $1 = () => {$0}"],
+    "description": "basic arrow function"
+  },
+  "Try Catch Block": {
+    "prefix": "try",
+    "body": ["try {", "\t$1", "} catch (err: any) {", "\t$2", "}"],
+    "description": "Inserts a try-catch block"
+  }
+}
