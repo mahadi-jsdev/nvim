@@ -20,11 +20,11 @@ return {
 				use_libuv_file_watcher = true, -- Auto-updates when files change
 			},
 			window = {
-				width = 40,
+				width = 35,
 			},
 		})
 
 		vim.keymap.set("n", "<leader>e", "<CMD>Neotree filesystem reveal toggle<CR>", { desc = "Buffer List Sidebar" })
-		vim.keymap.set("n", "<C-a>", "<CMD>Neotree buffers right reveal<CR>", { desc = "Buffer List Sidebar" })
+		vim.keymap.set("n", "<C-b>", "<CMD>Neotree buffers right reveal<CR>", { desc = "Buffer List Sidebar" })
 	end,
 }
