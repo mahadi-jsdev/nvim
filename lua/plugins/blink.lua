@@ -1,6 +1,5 @@
 return {
 	"saghen/blink.cmp",
-	event = "LspAttach",
 	version = "1.*",
 	config = function()
 		require("blink.cmp").setup({

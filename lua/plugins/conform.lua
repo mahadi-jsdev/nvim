@@ -1,6 +1,5 @@
 return {
 	"stevearc/conform.nvim",
-	event = "BufRead",
 	config = function()
 		local prettier_formatters = {
 			"prettierd",

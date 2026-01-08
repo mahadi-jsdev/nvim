@@ -1,7 +1,6 @@
 return {
 	"jake-stewart/multicursor.nvim",
 	branch = "1.0",
-	event = "BufRead",
 	config = function()
 		local map = vim.keymap.set
 		local mc = require("multicursor-nvim")

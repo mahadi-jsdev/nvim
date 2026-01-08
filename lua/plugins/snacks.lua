@@ -15,7 +15,7 @@ return {
 		input = {},
 		notifier = {},
 		terminal = {},
-		dashboard = {},
+		-- dashboard = {},
 	},
 	keys = {
 		{
