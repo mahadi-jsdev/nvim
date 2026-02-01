@@ -25,6 +25,7 @@ return {
 					{ "diff", symbols = { added = " ", modified = " ", removed = " " } },
 				},
 				lualine_y = {
+					require("custom.pomodoro").get_status,
 					{
 						function()
 							return "󰓩 " .. #vim.fn.getbufinfo({ buflisted = 1 })
