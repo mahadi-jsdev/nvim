@@ -60,6 +60,14 @@ return {
 			mode = { "x" },
 		},
 		{
+			"<C-t>",
+			function()
+				Snacks.picker.lines()
+			end,
+			desc = "find lines",
+			mode = { "n" },
+		},
+		{
 			"<C-g>",
 			function()
 				Snacks.picker.git_status()
