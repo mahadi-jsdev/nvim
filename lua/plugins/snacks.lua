@@ -17,8 +17,8 @@ return {
 		indent = {},
 		explorer = {},
 		dashboard = {},
-		scratch = {},
-		image = {},
+		-- scratch = {},
+		-- image = {},
 		terminal = {},
 	},
 	keys = {
