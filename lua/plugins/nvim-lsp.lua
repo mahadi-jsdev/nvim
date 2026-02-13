@@ -57,5 +57,34 @@ return {
 
 			vim.lsp.enable(lsp)
 		end
+
+		-- Specific Emmet setup
+		vim.lsp.config("emmet_language_server", {
+			on_attach = on_attach,
+			capabilities = capabilities,
+			filetypes = {
+				"html",
+				"css",
+				"scss",
+				"javascriptreact",
+				"typescriptreact",
+				"javascript",
+				"less",
+				"sass",
+			},
+			-- This section is key for modern Emmet servers
+			init_options = {
+				--- @type table<string, any>
+				includeLanguages = {},
+				excludeLanguages = {},
+				showAbbreviationSuggestions = true,
+				showExpandedAbbreviation = "always",
+				showSuggestionsAsSnippets = true,
+				-- This ensures emmet doesn't take over in JS contexts
+				syntaxProfiles = {},
+				variables = {},
+			},
+		})
+		vim.lsp.enable("emmet_language_server")
 	end,
 }
