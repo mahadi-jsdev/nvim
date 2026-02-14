@@ -22,6 +22,7 @@ return {
 					"diagnostics",
 				},
 				lualine_x = {
+					"copilot",
 					{ "diff", symbols = { added = " ", modified = " ", removed = " " } },
 				},
 				lualine_y = {
