@@ -9,13 +9,10 @@ return {
 			"HakonHarnes/img-clip.nvim",
 			event = "VeryLazy",
 			opts = {
-				-- recommended settings
 				default = {
 					embed_image_as_base64 = false,
 					prompt_for_file_name = false,
-					drag_and_drop = {
-						insert_mode = true,
-					},
+					drag_and_drop = { insert_mode = true },
 				},
 			},
 		},
@@ -28,32 +25,36 @@ return {
 		},
 	},
 	keys = {
-
-		{
-			"<leader>cc",
-			"<cmd>CodeCompanionChat<cr>",
-			mode = { "n", "v" },
-			desc = "Toggle CodeCompanion Sidebar",
-		},
-		{
-			"<leader>ca",
-			"<cmd>CodeCompanionActions<cr>",
-			mode = { "n", "v" },
-			desc = "Toggle CodeCompanion Sidebar",
-		},
+		{ "<leader>cc", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "Toggle Chat" },
+		{ "<leader>ca", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "CodeCompanion Actions" },
+		-- Quick way to accept diffs when using /inline
+		{ "ga", "<cmd>CodeCompanionChat Add<cr>", mode = "v", desc = "Add Selection to Chat" },
 	},
 	opts = {
 		strategies = {
 			chat = {
 				adapter = "copilot",
+				keymaps = {
+					send = { modes = { n = "<CR>", i = "<C-s>" } },
+					close = { modes = { n = "q" } },
+				},
+			},
+			inline = {
+				adapter = "copilot",
+				keymaps = {
+					accept_change = { modes = { n = "ga" }, description = "Accept Diff" },
+					reject_change = { modes = { n = "gr" }, description = "Reject Diff" },
+				},
 			},
 		},
 		display = {
 			chat = {
+				show_settings = true,
 				window = {
 					layout = "vertical",
 					position = "right",
-					width = 0.4,
+					width = 0.40,
+					border = "rounded",
 				},
 			},
 		},
