@@ -22,16 +22,10 @@ return {
 					"diagnostics",
 				},
 				lualine_x = {
-					"copilot",
 					{ "diff", symbols = { added = " ", modified = " ", removed = " " } },
 				},
 				lualine_y = {
-					{
-						function()
-							return "󰓩 " .. #vim.fn.getbufinfo({ buflisted = 1 })
-						end,
-						color = { fg = "#7aa2f7", gui = "bold" },
-					},
+					"copilot",
 					"filetype",
 				},
 				lualine_z = {
