@@ -30,7 +30,7 @@ return {
 			desc = "search files",
 		},
 		{
-			"<C-a>",
+			"<C-space>",
 			function()
 				Snacks.picker.buffers()
 			end,
