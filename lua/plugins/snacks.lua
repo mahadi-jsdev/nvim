@@ -19,7 +19,7 @@ return {
 		dashboard = {},
 		-- scratch = {},
 		-- image = {},
-		terminal = {},
+		-- terminal = {},
 	},
 	keys = {
 		{
@@ -60,7 +60,7 @@ return {
 			mode = { "x" },
 		},
 		{
-			"<C-t>",
+			"<leader>fl",
 			function()
 				Snacks.picker.lines()
 			end,
@@ -80,22 +80,6 @@ return {
 				Snacks.bufdelete()
 			end,
 			desc = "Delete Buffer",
-		},
-		{
-			"<C-`>",
-			function()
-				Snacks.terminal.toggle()
-			end,
-			desc = "toggle terminal",
-			mode = { "n" },
-		},
-		{
-			"<C-`>",
-			function()
-				Snacks.terminal.toggle()
-			end,
-			desc = "toggle terminal",
-			mode = { "t" },
 		},
 	},
 }
