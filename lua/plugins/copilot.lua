@@ -1,9 +1,6 @@
 return {
 	"zbirenbaum/copilot.lua",
 	event = "InsertEnter",
-	dependencies = {
-		"AndreM222/copilot-lualine",
-	},
 	config = function()
 		require("copilot").setup({
 			suggestion = {
