@@ -7,14 +7,10 @@ return {
 	opts = {
 		prompts = {
 			Commit = {
-				prompt = [[Write a detailed commit message using the Commitizen convention:
-        - Begin with a clear type and optional scope, in the format: type(scope): summary
-        - Add a concise, descriptive summary/title for the change
-        - Provide a detailed description as a bulleted list
-        - Reference related issues (e.g., Closes #123) if applicable
-        - Format the message as a `gitcommit` code block
-
-        Example types: feat, fix, docs, chore, style, refactor, test, build
+				prompt = [[
+        Write commit message for the change with commitizen convention. 
+        Give a good title and make commit message as list and as detailed as possible. 
+        Format as a gitcommit code block.
         ]],
 				resources = {
 					"gitdiff:staged",
