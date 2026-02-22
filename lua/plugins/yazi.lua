@@ -54,7 +54,7 @@ return {
 		end
 
 		-- Set up key mapping for folders only
-		vim.api.nvim_set_keymap("n", "<C-e>", "", {
+		vim.api.nvim_set_keymap("n", "<C-space>", "", {
 			noremap = true,
 			silent = true,
 			desc = "Folders only (Yazi compatible)",
