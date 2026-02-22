@@ -9,7 +9,7 @@ return {
 			Commit = {
 				prompt = [[
         Write commit message for the change with commitizen convention. 
-        Give a good title and make commit message as list and as detailed as possible. 
+        Give a good title under 50 characters and make commit message as list and as detailed as possible. 
         Format as a gitcommit code block.
         ]],
 				resources = {
