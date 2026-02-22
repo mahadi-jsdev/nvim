@@ -3,7 +3,6 @@ return {
 	lazy = false,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
-		lazy = true,
 	},
 	opts = {
 		picker = {},
