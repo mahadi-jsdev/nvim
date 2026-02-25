@@ -28,13 +28,14 @@ return {
 			end,
 			desc = "search files",
 		},
-		-- {
-		-- 	"<C-`>",
-		-- 	function()
-		-- 		Snacks.picker.buffers()
-		-- 	end,
-		-- 	desc = "buffers",
-		-- },
+		{
+			",",
+			function()
+				Snacks.picker.buffers()
+			end,
+			mode = { "n" },
+			desc = "buffers",
+		},
 		{
 			"<leader>e",
 			function()
