@@ -1,3 +1,4 @@
+-- Snacks for features that telescope doesn't handle
 return {
 	"folke/snacks.nvim",
 	lazy = false,
@@ -5,7 +6,6 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	opts = {
-		picker = {},
 		bigfile = {},
 		quickfile = {},
 		bufDelete = {},
@@ -13,66 +13,19 @@ return {
 		scope = {},
 		input = {},
 		notifier = {},
+		picker = {},
 		indent = {},
 		explorer = {},
 		dashboard = {},
-		-- scratch = {},
 		image = {},
-		-- terminal = {},
 	},
 	keys = {
-		{
-			"<leader><leader>",
-			function()
-				Snacks.picker.files()
-			end,
-			desc = "search files",
-		},
-		{
-			",",
-			function()
-				Snacks.picker.buffers()
-			end,
-			mode = { "n" },
-			desc = "buffers",
-		},
 		{
 			"<leader>e",
 			function()
 				Snacks.explorer()
 			end,
 			desc = "explorer",
-		},
-		{
-			"<C-f>",
-			function()
-				Snacks.picker.grep()
-			end,
-			desc = "Grep",
-			mode = { "n" },
-		},
-		{
-			"<C-f>",
-			function()
-				Snacks.picker.grep_word()
-			end,
-			desc = "Visual selection or word",
-			mode = { "x" },
-		},
-		{
-			"<leader>fl",
-			function()
-				Snacks.picker.lines()
-			end,
-			desc = "find lines",
-			mode = { "n" },
-		},
-		{
-			"<C-g>",
-			function()
-				Snacks.picker.git_status()
-			end,
-			desc = "Git Status",
 		},
 		{
 			"<C-x>",
