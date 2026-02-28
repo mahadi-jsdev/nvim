@@ -17,7 +17,7 @@ return {
 		indent = {},
 		explorer = {},
 		dashboard = {},
-		image = {},
+		-- image = {},
 	},
 	keys = {
 		{
