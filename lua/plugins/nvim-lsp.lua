@@ -2,8 +2,14 @@ return {
 	"neovim/nvim-lspconfig",
 	event = "BufReadPre",
 	config = function()
-		local blink = require("blink.cmp")
-		local capabilities = blink.get_lsp_capabilities() or {}
+		local capabilities = (function()
+			local ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+			local caps = vim.lsp.protocol.make_client_capabilities()
+			if ok and cmp_nvim_lsp and cmp_nvim_lsp.default_capabilities then
+				return cmp_nvim_lsp.default_capabilities(caps)
+			end
+			return caps
+		end)()
 
 		local on_attach = function(_, bufnr)
 			local map = vim.keymap.set
