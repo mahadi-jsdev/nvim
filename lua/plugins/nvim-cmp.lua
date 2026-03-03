@@ -6,16 +6,29 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"onsails/lspkind-nvim",
+		"L3MON4D3/LuaSnip", -- Snippet Engine
+		"saadparwaiz1/cmp_luasnip", -- Snippet Source
 	},
 	config = function()
 		local cmp_ok, cmp = pcall(require, "cmp")
 		if not cmp_ok then
 			return
 		end
+
 		local lspkind_ok, lspkind = pcall(require, "lspkind")
+		local luasnip = require("luasnip")
+
+		-- looks for snippets in ~/.config/nvim/snippets/
+		require("luasnip.loaders.from_vscode").lazy_load({
+			paths = { vim.fn.stdpath("config") .. "/snippets" },
+		})
+
 		cmp.setup({
-			-- snippets disabled (no-op expand required by nvim-cmp)
-			snippet = { expand = function(_) end },
+			snippet = {
+				expand = function(args)
+					luasnip.lsp_expand(args.body)
+				end,
+			},
 			mapping = {
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 				["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
@@ -28,6 +41,7 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "buffer" },
 				{ name = "path" },
+				{ name = "luasnip" },
 			}),
 			formatting = {
 				format = function(entry, vim_item)
