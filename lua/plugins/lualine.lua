@@ -57,9 +57,10 @@ return {
 					"diagnostics",
 				},
 				lualine_x = {
-					{ "diff", symbols = { added = " ", modified = " ", removed = " " } },
+					"copilot",
 				},
 				lualine_y = {
+					{ "diff", symbols = { added = " ", modified = " ", removed = " " } },
 					"filetype",
 				},
 				lualine_z = {
