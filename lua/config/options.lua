@@ -28,6 +28,24 @@ opt.autoread = true
 opt.conceallevel = 2
 vim.g.loaded_netrwPlugin = 1
 
+-- Tte 'leader' key is usually Space or Backslash
+vim.keymap.set('n', '<leader>tw', function()
+  -- Check if wrap is currently on
+  local is_on = vim.opt.wrap:get()
+
+  if is_on then
+    vim.opt.wrap = false
+    vim.opt.linebreak = false
+    vim.opt.breakindent = false
+    print("Tailwind Wrap: OFF")
+  else
+    vim.opt.wrap = true
+    vim.opt.linebreak = true
+    vim.opt.breakindent = true
+    print("Tailwind Wrap: ON")
+  end
+end, { desc = "Toggle Tailwind Friendly Wrap" })
+
 
 -- Diagnostics appearance
 vim.diagnostic.config({
