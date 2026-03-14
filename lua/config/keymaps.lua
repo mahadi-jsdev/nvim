@@ -31,3 +31,11 @@ map("n", "<M-u>", "<CMD>m .-2<CR>==", { desc = "Move line up" })
 map("n", "<M-d>", "<CMD>m .+1<CR>==", { desc = "Move line down" })
 map("v", "<M-u>", "<CMD>m '<-2<CR>gv=gv", { desc = "Move selection up" })
 map("v", "<M-d>", "<CMD>m '>+1<CR>gv=gv", { desc = "Move selection down" })
+
+
+-- Copy relative path to clipboard
+vim.keymap.set("n", "<leader>cf", function()
+  local relative_path = vim.fn.expand("%:.")       -- Get path relative to cwd
+  vim.fn.setreg("+", relative_path)                -- Write to system clipboard register
+  print("Copied relative path: " .. relative_path) -- Confirmation message
+end, { desc = "Copy relative file path to clipboard" })
