@@ -13,7 +13,7 @@ return {
     {
       "<c-o>",
       function()
-        require("sidekick.cli").toggle({ name = "cursor", focus = true })
+        require("sidekick.cli").toggle({ name = "opencode", focus = true })
       end,
       desc = "Sidekick Toggle",
       mode = { "n", "t", "i", "x" },
