@@ -20,7 +20,6 @@ map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
 
 return {
   'romgrk/barbar.nvim',
-  event = 'BufReadPre',
   dependencies = {
     'lewis6991/gitsigns.nvim',
     'nvim-tree/nvim-web-devicons',
