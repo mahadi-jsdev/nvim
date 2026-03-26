@@ -4,7 +4,7 @@ return {
   event = "BufRead",
   version = "*",
   config = function()
-    -- require("mini.tabline").setup()
+    require("mini.tabline").setup()
 
     local hipatterns = require("mini.hipatterns")
     hipatterns.setup({
