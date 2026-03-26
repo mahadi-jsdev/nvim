@@ -21,10 +21,10 @@ map("n", "<M-j>", "<CMD>cnext<CR>", { desc = "next quickfix" })
 map("n", "=", [[<CMD>vertical resize +5<CR>]])
 
 -- cycle between buffer
--- map("n", "<C-l>", "<CMD>bnext<CR>", { desc = "Next buffer" })
--- map("n", "<C-h>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
--- map("n", "<C-Right>", "<CMD>bnext<CR>", { desc = "Next buffer" })
--- map("n", "<C-Left>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<C-l>", "<CMD>bnext<CR>", { desc = "Next buffer" })
+map("n", "<C-h>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
+map("n", "<C-Right>", "<CMD>bnext<CR>", { desc = "Next buffer" })
+map("n", "<C-Left>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
 
 -- move lines
 map("n", "<M-u>", "<CMD>m .-2<CR>==", { desc = "Move line up" })
@@ -39,3 +39,7 @@ vim.keymap.set("n", "<leader>cf", function()
   vim.fn.setreg("+", relative_path)                -- Write to system clipboard register
   print("Copied relative path: " .. relative_path) -- Confirmation message
 end, { desc = "Copy relative file path to clipboard" })
+
+
+-- open note.md file
+map("n", "<C-n>", "<CMD>edit ~/note.md<CR>", { desc = "Open note.md" })
