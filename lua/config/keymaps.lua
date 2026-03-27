@@ -39,7 +39,3 @@ vim.keymap.set("n", "<leader>cf", function()
   vim.fn.setreg("+", relative_path)                -- Write to system clipboard register
   print("Copied relative path: " .. relative_path) -- Confirmation message
 end, { desc = "Copy relative file path to clipboard" })
-
-
--- open note.md file
-map("n", "<C-n>", "<CMD>edit ~/note.md<CR>", { desc = "Open note.md" })
