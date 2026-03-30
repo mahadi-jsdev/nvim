@@ -44,13 +44,6 @@ return {
       desc = "explorer",
     },
     {
-      "-",
-      function()
-        Snacks.explorer()
-      end,
-      desc = "explorer",
-    },
-    {
       "<C-f>",
       function()
         Snacks.picker.grep()
