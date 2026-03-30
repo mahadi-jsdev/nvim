@@ -74,13 +74,13 @@ return {
       end,
       desc = "Git Status",
     },
-    -- {
-    --   "<C-x>",
-    --   function()
-    --     Snacks.bufdelete()
-    --   end,
-    --   desc = "Delete Buffer",
-    -- },
+    {
+      "<C-x>",
+      function()
+        Snacks.bufdelete()
+      end,
+      desc = "Delete Buffer",
+    },
     {
       "<C-t>",
       function()

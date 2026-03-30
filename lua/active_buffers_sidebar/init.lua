@@ -7,6 +7,10 @@ local defaults = {
   highlight = {
     active = "ActiveBuffersSidebarCurrent",
     inactive = "ActiveBuffersSidebarInactive",
+    icon = "ActiveBuffersSidebarIcon",
+    accent = "ActiveBuffersSidebarAccent",
+    modified = "ActiveBuffersSidebarModified",
+    unstaged = "ActiveBuffersSidebarUnstaged",
   },
 }
 
@@ -45,6 +49,136 @@ local function normalize_position(position)
   return "left"
 end
 
+local function get_hl(name)
+  local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = name, link = false })
+  if ok then
+    return hl
+  end
+
+  return {}
+end
+
+local function get_hl_fg(name)
+  return get_hl(name).fg
+end
+
+local function get_devicon(path)
+  local ok, devicons = pcall(require, "nvim-web-devicons")
+  if not ok then
+    return "󰈚", state.opts.highlight.icon
+  end
+
+  local filename = vim.fn.fnamemodify(path, ":t")
+  local ext = vim.fn.fnamemodify(path, ":e")
+  local icon, icon_hl = devicons.get_icon(filename, ext, { default = true })
+  return icon or "󰈚", icon_hl or state.opts.highlight.icon
+end
+
+local function has_unstaged_changes(bufnr)
+  if vim.bo[bufnr].modified then
+    return false
+  end
+
+  local status = vim.b[bufnr].gitsigns_status_dict
+  if type(status) ~= "table" then
+    return false
+  end
+
+  return (status.added or 0) > 0 or (status.changed or 0) > 0 or (status.removed or 0) > 0
+end
+
+local function split_path_parts(path)
+  local normalized = vim.fn.fnamemodify(path, ":~:.")
+  local parts = vim.split(normalized, "/", { plain = true, trimempty = true })
+
+  if vim.endswith(normalized, "/") then
+    table.remove(parts, #parts)
+  end
+
+  return parts
+end
+
+local function build_display_names(buffers)
+  local grouped = {}
+
+  for _, buffer in ipairs(buffers) do
+    grouped[buffer.name] = grouped[buffer.name] or {}
+    table.insert(grouped[buffer.name], buffer)
+  end
+
+  for _, group in pairs(grouped) do
+    if #group == 1 then
+      group[1].display_name = group[1].name
+    else
+      for _, buffer in ipairs(group) do
+        buffer.path_parts = split_path_parts(buffer.full_name)
+        buffer.display_name = buffer.name
+      end
+
+      local depth = 1
+      local unresolved = true
+
+      while unresolved do
+        unresolved = false
+        local seen = {}
+
+        for _, buffer in ipairs(group) do
+          local parts = buffer.path_parts
+          local filename_index = #parts
+          local start_index = math.max(1, filename_index - depth)
+          local candidate = table.concat(vim.list_slice(parts, start_index, filename_index), "/")
+
+          buffer.display_name = candidate ~= "" and candidate or buffer.name
+          seen[buffer.display_name] = seen[buffer.display_name] or 0
+          seen[buffer.display_name] = seen[buffer.display_name] + 1
+        end
+
+        for _, count in pairs(seen) do
+          if count > 1 then
+            unresolved = true
+            depth = depth + 1
+            break
+          end
+        end
+
+        if depth > 12 then
+          break
+        end
+      end
+    end
+  end
+end
+
+local function truncate_from_left(text, max_width)
+  if max_width <= 0 then
+    return ""
+  end
+
+  if vim.fn.strdisplaywidth(text) <= max_width then
+    return text
+  end
+
+  local ellipsis = "…"
+  local target_width = max_width - vim.fn.strdisplaywidth(ellipsis)
+
+  if target_width <= 0 then
+    return ellipsis
+  end
+
+  local chars = vim.fn.strchars(text)
+  local result = ""
+
+  for index = chars, 1, -1 do
+    local char = vim.fn.strcharpart(text, index - 1, 1)
+    if vim.fn.strdisplaywidth(char .. result) > target_width then
+      break
+    end
+    result = char .. result
+  end
+
+  return ellipsis .. result
+end
+
 local function list_buffers()
   local buffers = {}
 
@@ -54,11 +188,16 @@ local function list_buffers()
       local name = vim.api.nvim_buf_get_name(info.bufnr)
       if name ~= "" then
         local display_name = vim.fn.fnamemodify(name, ":t")
+        local icon, icon_hl = get_devicon(name)
 
         table.insert(buffers, {
           bufnr = info.bufnr,
+          full_name = name,
           name = display_name,
           changed = vim.bo[info.bufnr].modified,
+          unstaged = has_unstaged_changes(info.bufnr),
+          icon = icon,
+          icon_hl = icon_hl,
         })
       end
     end
@@ -67,6 +206,8 @@ local function list_buffers()
   table.sort(buffers, function(a, b)
     return a.bufnr < b.bufnr
   end)
+
+  build_display_names(buffers)
 
   return buffers
 end
@@ -110,14 +251,44 @@ local function find_replacement_buf(exclude)
 end
 
 local function ensure_highlights()
+  local normal = get_hl("Normal")
+  local visual = get_hl("Visual")
+  local comment_fg = get_hl_fg("Comment")
+  local function_fg = get_hl_fg("Function")
+  local changed_fg = get_hl_fg("GitSignsChange") or get_hl_fg("DiffChange") or get_hl_fg("DiagnosticInfo") or 0x5FAFFF
+
   vim.api.nvim_set_hl(0, defaults.highlight.active, {
     default = true,
-    link = "Visual",
+    fg = visual.fg or function_fg,
+    bold = true,
   })
 
   vim.api.nvim_set_hl(0, defaults.highlight.inactive, {
     default = true,
-    link = "Comment",
+    fg = comment_fg,
+  })
+
+  vim.api.nvim_set_hl(0, defaults.highlight.icon, {
+    default = true,
+    fg = function_fg,
+  })
+
+  vim.api.nvim_set_hl(0, defaults.highlight.accent, {
+    default = true,
+    fg = visual.fg or function_fg,
+    bold = true,
+  })
+
+  vim.api.nvim_set_hl(0, defaults.highlight.modified, {
+    default = true,
+    fg = get_hl_fg("DiagnosticWarn") or 0xD7AF00,
+    bold = true,
+  })
+
+  vim.api.nvim_set_hl(0, defaults.highlight.unstaged, {
+    default = true,
+    fg = changed_fg,
+    bold = true,
   })
 end
 
@@ -133,8 +304,17 @@ local function ensure_sidebar_buf()
   vim.bo[state.buf].modifiable = false
   vim.bo[state.buf].swapfile = false
 
-  local function jump_to_line()
+  local function jump_to_line(use_mouse)
     local line = vim.api.nvim_win_get_cursor(0)[1]
+
+    if use_mouse then
+      local mouse = vim.fn.getmousepos()
+      if mouse and mouse.winid == state.win and mouse.line > 0 then
+        line = mouse.line
+        pcall(vim.api.nvim_win_set_cursor, state.win, { line, 0 })
+      end
+    end
+
     local target = state.line_map[line]
 
     if not is_valid_buf(target) then
@@ -166,21 +346,27 @@ local function ensure_sidebar_buf()
     M.refresh()
   end
 
-  vim.keymap.set("n", "<CR>", jump_to_line, {
+  vim.keymap.set("n", "<CR>", function()
+    jump_to_line(false)
+  end, {
     buffer = state.buf,
     nowait = true,
     silent = true,
     desc = "Open selected buffer",
   })
 
-  vim.keymap.set("n", "<LeftMouse>", jump_to_line, {
+  vim.keymap.set("n", "<LeftMouse>", function()
+    jump_to_line(true)
+  end, {
     buffer = state.buf,
     nowait = true,
     silent = true,
     desc = "Open clicked buffer",
   })
 
-  vim.keymap.set("n", "<2-LeftMouse>", jump_to_line, {
+  vim.keymap.set("n", "<2-LeftMouse>", function()
+    jump_to_line(true)
+  end, {
     buffer = state.buf,
     nowait = true,
     silent = true,
@@ -202,9 +388,18 @@ local function configure_sidebar_win(winid)
   vim.wo[winid].winfixwidth = true
   vim.wo[winid].wrap = false
   vim.wo[winid].winhighlight = table.concat({
-    "Normal:Normal",
+    "Normal:NormalFloat",
     "EndOfBuffer:EndOfBuffer",
   }, ",")
+end
+
+local function add_segment(line, col, text, hl)
+  if text == "" then
+    return col
+  end
+
+  vim.api.nvim_buf_add_highlight(state.buf, state.namespace, hl, line - 1, col, col + #text)
+  return col + #text
 end
 
 local function render()
@@ -219,13 +414,21 @@ local function render()
   state.line_map = {}
 
   if #buffers == 0 then
-    lines = { " No active buffers" }
+    lines = { " 󰈔 No active buffers" }
   else
     for index, buffer in ipairs(buffers) do
-      local prefix = buffer.bufnr == active_buf and "▎" or " "
-      local modified = buffer.changed and " [+]" or ""
-      lines[index] = string.format("%s %d %s%s", prefix, buffer.bufnr, buffer.name, modified)
+      local marker = buffer.bufnr == active_buf and "▌" or " "
+      local name_width = math.max(8, state.opts.width - 4)
+      local display_name = truncate_from_left(buffer.display_name or buffer.name, name_width)
+
+      lines[index] = string.format(
+        "%s %s %s",
+        marker,
+        buffer.icon,
+        display_name
+      )
       state.line_map[index] = buffer.bufnr
+      buffer.render_name = display_name
     end
   end
 
@@ -235,9 +438,38 @@ local function render()
 
   vim.api.nvim_buf_clear_namespace(state.buf, state.namespace, 0, -1)
 
-  for line, bufnr in pairs(state.line_map) do
-    if bufnr == active_buf then
-      vim.api.nvim_buf_add_highlight(state.buf, state.namespace, state.opts.highlight.active, line - 1, 0, -1)
+  for line, bufnr in ipairs(state.line_map) do
+    local buffer
+
+    for _, item in ipairs(buffers) do
+      if item.bufnr == bufnr then
+        buffer = item
+        break
+      end
+    end
+
+    if buffer then
+      local is_active = bufnr == active_buf
+      local line_hl = is_active and state.opts.highlight.active or state.opts.highlight.inactive
+      local name_hl = line_hl
+      local col = 0
+
+      if buffer.changed then
+        name_hl = state.opts.highlight.modified
+      elseif buffer.unstaged then
+        name_hl = state.opts.highlight.unstaged
+      end
+
+      col = add_segment(line, col, is_active and "▌" or " ", state.opts.highlight.accent)
+      col = add_segment(line, col, " ", line_hl)
+      col = add_segment(line, col, buffer.icon, buffer.icon_hl)
+      col = add_segment(line, col, " ", line_hl)
+      col = add_segment(
+        line,
+        col,
+        buffer.render_name or buffer.display_name or buffer.name,
+        name_hl
+      )
     end
   end
 end
@@ -405,6 +637,21 @@ function M.setup(opts)
       if args.buf == state.last_real_buf then
         state.last_real_buf = find_replacement_buf(args.buf)
       end
+      vim.schedule(M.refresh)
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("BufWritePost", {
+    group = state.augroup,
+    callback = function()
+      vim.schedule(M.refresh)
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("User", {
+    group = state.augroup,
+    pattern = "GitSignsUpdate",
+    callback = function()
       vim.schedule(M.refresh)
     end,
   })

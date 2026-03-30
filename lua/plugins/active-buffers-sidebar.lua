@@ -6,7 +6,7 @@ return {
     config = function()
       require("active_buffers_sidebar").setup({
         position = "left",
-        width = 28,
+        width = 34,
       })
     end,
     keys = {
