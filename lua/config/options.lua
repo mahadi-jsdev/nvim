@@ -25,6 +25,11 @@ opt.swapfile = false
 opt.backup = false
 opt.writebackup = false
 opt.autoread = true
+-- Essential for external AI agents (Claude Code / Codex)
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  command = "checktime",
+})
 opt.conceallevel = 2
 vim.g.loaded_netrwPlugin = 1
 
