@@ -5,7 +5,7 @@ return {
     lazy = false,
     config = function()
       require("active_buffers_sidebar").setup({
-        position = "left",
+        position = "right",
         width = 34,
       })
     end,
