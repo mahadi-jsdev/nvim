@@ -20,11 +20,7 @@ map("n", "<M-j>", "<CMD>cnext<CR>", { desc = "next quickfix" })
 -- resize window
 map("n", "=", [[<CMD>vertical resize +5<CR>]])
 
--- cycle between buffer
--- map("n", "<C-l>", "<CMD>bnext<CR>", { desc = "Next buffer" })
--- map("n", "<C-h>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
--- map("n", "<C-Right>", "<CMD>bnext<CR>", { desc = "Next buffer" })
--- map("n", "<C-Left>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
+
 
 -- move lines
 map("n", "<M-u>", "<CMD>m .-2<CR>==", { desc = "Move line up" })
