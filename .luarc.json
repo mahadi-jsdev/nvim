@@ -1,5 +1,6 @@
 {
-  "diagnostics.globals": ["vim", "Snacks", "BufferSticks"],
+  "diagnostics.globals": ["vim", "Snacks", "BufferSticks",
+        "MiniSessions"],
     "diagnostics.disable": [
         "undefined-field"
     ]
