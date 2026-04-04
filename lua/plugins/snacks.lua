@@ -15,7 +15,7 @@ return {
     notifier = {},
     indent = {},
     explorer = {},
-    -- dashboard = {},
+    dashboard = {},
     -- scratch = {},
     -- image = {},
     terminal = {},
