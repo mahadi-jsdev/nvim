@@ -32,10 +32,6 @@ return {
       require("mini.bufremove").delete(0, false)
     end, { desc = "Delete Buffer" })
 
-
-    -- git commit from terminal
-    map("n", "<leader>gc", "<Cmd>Git commit<CR>", { desc = "Git commit" })
-
     -- cycle between buffer
     map("n", "<C-l>", "<CMD>bnext<CR>", { desc = "Next buffer" })
     map("n", "<C-h>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
