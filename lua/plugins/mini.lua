@@ -4,7 +4,7 @@ return {
   version = "*",
   event = "BufRead",
   config = function()
-    require("mini.tabline").setup()
+    -- require("mini.tabline").setup()
     require("mini.statusline").setup()
     require('mini.icons').setup()
     require('mini.pairs').setup()
@@ -25,18 +25,5 @@ return {
         hex_color = hipatterns.gen_highlighter.hex_color(),
       },
     })
-
-    local map = vim.keymap.set
-
-    -- delete buffer
-    vim.keymap.set("n", "<C-x>", function()
-      require("mini.bufremove").delete(0, false)
-    end, { desc = "Delete Buffer" })
-
-    -- cycle between buffer
-    map("n", "<C-l>", "<CMD>bnext<CR>", { desc = "Next buffer" })
-    map("n", "<C-h>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
-    map("n", "<C-Right>", "<CMD>bnext<CR>", { desc = "Next buffer" })
-    map("n", "<C-Left>", "<CMD>bprevious<CR>", { desc = "Previous buffer" })
   end,
 }
