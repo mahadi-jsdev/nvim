@@ -2,6 +2,7 @@ return {
   "nvim-mini/mini.nvim",
   branch = "stable",
   version = "*",
+  event = "BufRead",
   config = function()
     require("mini.tabline").setup()
     require("mini.statusline").setup()
