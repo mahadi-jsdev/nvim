@@ -18,10 +18,7 @@ vim.pack.add({
   "https://github.com/saghen/blink.cmp",
   "https://github.com/stevearc/conform.nvim",
   "https://github.com/chrisgrieser/nvim-origami",
-  "https://github.com/kevinhwang91/promise-async",
-  "https://github.com/kevinhwang91/nvim-ufo",
   "https://github.com/esmuellert/codediff.nvim",
-  "https://github.com/mistweaverco/kulala.nvim",
   "https://github.com/akinsho/toggleterm.nvim",
   "https://github.com/sainnhe/gruvbox-material"
 })
