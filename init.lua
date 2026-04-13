@@ -17,13 +17,12 @@ vim.pack.add({
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/saghen/blink.cmp",
   "https://github.com/stevearc/conform.nvim",
+  "https://github.com/chrisgrieser/nvim-origami",
   "https://github.com/kevinhwang91/promise-async",
   "https://github.com/kevinhwang91/nvim-ufo",
   "https://github.com/esmuellert/codediff.nvim",
   "https://github.com/mistweaverco/kulala.nvim",
-  "https://github.com/jake-stewart/multicursor.nvim",
   "https://github.com/akinsho/toggleterm.nvim",
-  -- "https://github.com/nvim-treesitter/nvim-treesitter",
   "https://github.com/sainnhe/gruvbox-material"
 })
 
@@ -36,10 +35,7 @@ require("plugins.mason").setup()
 require("plugins.blink").setup()
 require("plugins.nvim-lsp").setup()
 require("plugins.conform").setup()
--- require("plugins.nvim-ufo").setup()
+require("plugins.origami").setup()
 require("plugins.codediff").setup()
--- require("plugins.kulala").setup()
-require("plugins.multicursor").setup()
 require("plugins.toggleterm").setup()
--- require("plugins.treesitter").setup()
 require("plugins.theme").setup()

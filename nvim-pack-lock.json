@@ -60,6 +60,10 @@
       "rev": "8a9378a822719346a0288fa004dab302ca3c0a8f",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
+    "nvim-origami": {
+      "rev": "67c15fd14037778644371487fc68855b530ccd7d",
+      "src": "https://github.com/chrisgrieser/nvim-origami"
+    },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
