@@ -20,7 +20,8 @@ vim.pack.add({
   "https://github.com/chrisgrieser/nvim-origami",
   "https://github.com/esmuellert/codediff.nvim",
   "https://github.com/akinsho/toggleterm.nvim",
-  "https://github.com/sainnhe/gruvbox-material"
+  "https://github.com/sainnhe/gruvbox-material",
+  "https://github.com/nvim-treesitter/nvim-treesitter",
 })
 
 require("plugins.telescope").setup()
@@ -36,3 +37,4 @@ require("plugins.origami").setup()
 require("plugins.codediff").setup()
 require("plugins.toggleterm").setup()
 require("plugins.theme").setup()
+require("plugins.treesitter").setup()
