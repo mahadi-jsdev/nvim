@@ -1,32 +1,28 @@
-return {
-  "mason-org/mason-lspconfig.nvim",
-  opts = {},
-  event = "BufReadPre",
-  dependencies = {
-    { "mason-org/mason.nvim", opts = {} },
-    "neovim/nvim-lspconfig",
-  },
-  config = function()
-    require("mason").setup({
-      ui = {
-        icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗",
-        },
-      },
-    })
+local M = {}
 
-    require("mason-lspconfig").setup({
-      ensure_installed = {
-        "lua_ls",
-        "ts_ls",
-        "eslint",
-        "tailwindcss",
-        "html",
-        "cssls",
-        "emmet_language_server"
+function M.setup()
+  require("mason").setup({
+    ui = {
+      icons = {
+        package_installed = "✓",
+        package_pending = ">",
+        package_uninstalled = "x",
       },
-    })
-  end,
-}
+    },
+  })
+
+  require("mason-lspconfig").setup({
+    ensure_installed = {
+      "lua_ls",
+      "ts_ls",
+      "eslint",
+      "tailwindcss",
+      "html",
+      "cssls",
+      "emmet_language_server",
+    },
+    automatic_enable = false,
+  })
+end
+
+return M

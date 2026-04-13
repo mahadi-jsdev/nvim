@@ -1,9 +1,7 @@
-return {
-  "esmuellert/codediff.nvim",
-  cmd = "CodeDiff",
-  keys = {
-    {
-      "<leader>cd", "<CMD>CodeDiff<CR>"
-    }
-  }
-}
+local M = {}
+
+function M.setup()
+  vim.keymap.set("n", "<leader>cd", "<cmd>CodeDiff<cr>", { desc = "CodeDiff" })
+end
+
+return M
