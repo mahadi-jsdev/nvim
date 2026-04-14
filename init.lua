@@ -19,6 +19,7 @@ vim.pack.add({
   "https://github.com/mason-org/mason-lspconfig.nvim",
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/saghen/blink.cmp",
+  "https://github.com/saghen/blink.indent",
   "https://github.com/stevearc/conform.nvim",
   "https://github.com/chrisgrieser/nvim-origami",
   "https://github.com/esmuellert/codediff.nvim",
@@ -34,6 +35,7 @@ require("plugins.mini").setup()
 require("plugins.neotree").setup()
 require("plugins.mason").setup()
 require("plugins.blink").setup()
+require("plugins.blink-indent").setup()
 require("plugins.nvim-lsp").setup()
 require("plugins.conform").setup()
 require("plugins.origami").setup()
