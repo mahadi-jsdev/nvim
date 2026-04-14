@@ -8,13 +8,15 @@ function M.setup()
 
   treesitter.setup()
 
-  local languages = {
+  local filetypes = {
     "lua",
     "vim",
     "vimdoc",
     "query",
     "javascript",
+    "javascriptreact",
     "typescript",
+    "typescriptreact",
     "tsx",
     "html",
     "css",
@@ -26,7 +28,7 @@ function M.setup()
   }
 
   vim.api.nvim_create_autocmd("FileType", {
-    pattern = languages,
+    pattern = filetypes,
     callback = function(args)
       vim.treesitter.start(args.buf)
     end,
