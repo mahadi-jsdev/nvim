@@ -4,6 +4,9 @@ require("config.autocmds")
 
 vim.pack.add({
   "https://github.com/nvim-lua/plenary.nvim",
+  "https://github.com/CopilotC-Nvim/CopilotChat.nvim",
+  "https://github.com/sudo-tee/opencode.nvim",
+  "https://github.com/MeanderingProgrammer/render-markdown.nvim",
   "https://github.com/nvim-telescope/telescope.nvim",
   "https://github.com/nvim-tree/nvim-web-devicons",
   "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
@@ -38,3 +41,5 @@ require("plugins.codediff").setup()
 require("plugins.toggleterm").setup()
 require("plugins.theme").setup()
 require("plugins.treesitter").setup()
+require("plugins.opencode").setup()
+require("plugins.copilotchat").setup()
