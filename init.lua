@@ -13,7 +13,6 @@ vim.pack.add({
   "https://github.com/lewis6991/gitsigns.nvim",
   "https://github.com/nvim-mini/mini.nvim",
   "https://github.com/MunifTanjim/nui.nvim",
-  "https://github.com/nvim-neo-tree/neo-tree.nvim",
   "https://github.com/mason-org/mason.nvim",
   "https://github.com/mason-org/mason-lspconfig.nvim",
   "https://github.com/neovim/nvim-lspconfig",
@@ -22,6 +21,7 @@ vim.pack.add({
   "https://github.com/stevearc/conform.nvim",
   "https://github.com/chrisgrieser/nvim-origami",
   "https://github.com/esmuellert/codediff.nvim",
+  "https://github.com/stevearc/oil.nvim",
   "https://github.com/sainnhe/gruvbox-material",
   "https://github.com/nvim-treesitter/nvim-treesitter",
 })
@@ -30,7 +30,6 @@ require("plugins.telescope").setup()
 require("plugins.lazygit").setup()
 require("plugins.gitsigns").setup()
 require("plugins.mini").setup()
-require("plugins.neotree").setup()
 require("plugins.mason").setup()
 require("plugins.blink").setup()
 require("plugins.blink-indent").setup()
@@ -38,6 +37,7 @@ require("plugins.nvim-lsp").setup()
 require("plugins.conform").setup()
 require("plugins.origami").setup()
 require("plugins.codediff").setup()
+require("plugins.oil").setup()
 require("plugins.theme").setup()
 require("plugins.treesitter").setup()
 require("plugins.opencode").setup()
