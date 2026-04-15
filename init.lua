@@ -21,7 +21,7 @@ vim.pack.add({
   "https://github.com/stevearc/conform.nvim",
   "https://github.com/chrisgrieser/nvim-origami",
   "https://github.com/esmuellert/codediff.nvim",
-  "https://github.com/stevearc/oil.nvim",
+  "https://github.com/mikavilpas/yazi.nvim",
   "https://github.com/sainnhe/gruvbox-material",
   "https://github.com/nvim-treesitter/nvim-treesitter",
 })
@@ -37,7 +37,7 @@ require("plugins.nvim-lsp").setup()
 require("plugins.conform").setup()
 require("plugins.origami").setup()
 require("plugins.codediff").setup()
-require("plugins.oil").setup()
+require("plugins.yazi").setup()
 require("plugins.theme").setup()
 require("plugins.treesitter").setup()
 require("plugins.opencode").setup()

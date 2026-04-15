@@ -64,10 +64,6 @@
       "rev": "c72328a5494b4502947a022fe69c0c47e53b6aa6",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
-    "oil.nvim": {
-      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
-      "src": "https://github.com/stevearc/oil.nvim"
-    },
     "opencode.nvim": {
       "rev": "0ce125b609744604054bab5c67e6ff4601a4853d",
       "src": "https://github.com/sudo-tee/opencode.nvim"
@@ -91,6 +87,10 @@
     "telescope.nvim": {
       "rev": "f7c673b8e46e8f233ff581d3624a517d33a7e264",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
+    },
+    "yazi.nvim": {
+      "rev": "a4c292e0cb2647773e91ae29eeb87dd26f33c6b9",
+      "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }
 }

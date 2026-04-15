@@ -13,16 +13,16 @@ function M.setup()
   local finders = require("telescope.finders")
   local pickers = require("telescope.pickers")
 
-  local function open_oil(path)
-    local oil_ok, oil = pcall(require, "oil")
-    if not oil_ok then
+  local function open_yazi(path)
+    local yazi_ok, yazi = pcall(require, "yazi")
+    if not yazi_ok then
       return
     end
 
-    oil.open(path)
+    yazi.yazi(nil, path)
   end
 
-  local function open_oil_directory_picker()
+  local function open_yazi_directory_picker()
     local root = vim.fn.getcwd()
     local directories = { "/root" }
     local fd_output = vim.fn.systemlist({ "fd", "--type", "directory", "--follow", "--exclude", ".git", ".", root })
@@ -48,11 +48,11 @@ function M.setup()
           end
 
           if selection[1] == "/root" then
-            open_oil(root)
+            open_yazi(root)
             return
           end
 
-          open_oil(selection[1])
+          open_yazi(selection[1])
         end)
 
         return true
@@ -84,9 +84,9 @@ function M.setup()
   map("n", "<C-f>", builtin.live_grep, { desc = "Grep" })
   map("x", "<C-f>", builtin.grep_string, { desc = "Visual selection or word" })
   map("n", "<leader>fl", builtin.current_buffer_fuzzy_find, { desc = "find lines" })
-  map("n", "<leader>e", open_oil_directory_picker, { desc = "search directories" })
+  map("n", "<leader>e", open_yazi_directory_picker, { desc = "search directories" })
   map("n", "<C-g>", builtin.git_status, { desc = "Git Status" })
-  map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+  map("n", "-", "<CMD>Yazi<CR>", { desc = "Open yazi" })
 end
 
 return M
