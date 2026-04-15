@@ -7,8 +7,7 @@ function M.setup()
   require("mini.comment").setup()
   require("mini.git").setup()
   require("mini.bufremove").setup()
-  require('mini.starter').setup()
-  require("mini.tabline").setup()
+  require('mini.pick').setup()
 
   local hipatterns = require("mini.hipatterns")
   hipatterns.setup({

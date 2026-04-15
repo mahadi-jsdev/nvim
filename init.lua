@@ -4,7 +4,6 @@ require("config.autocmds")
 
 vim.pack.add({
   "https://github.com/nvim-lua/plenary.nvim",
-  "https://github.com/CopilotC-Nvim/CopilotChat.nvim",
   "https://github.com/sudo-tee/opencode.nvim",
   "https://github.com/MeanderingProgrammer/render-markdown.nvim",
   "https://github.com/nvim-telescope/telescope.nvim",
@@ -23,7 +22,6 @@ vim.pack.add({
   "https://github.com/stevearc/conform.nvim",
   "https://github.com/chrisgrieser/nvim-origami",
   "https://github.com/esmuellert/codediff.nvim",
-  "https://github.com/akinsho/toggleterm.nvim",
   "https://github.com/sainnhe/gruvbox-material",
   "https://github.com/nvim-treesitter/nvim-treesitter",
 })
@@ -40,7 +38,6 @@ require("plugins.nvim-lsp").setup()
 require("plugins.conform").setup()
 require("plugins.origami").setup()
 require("plugins.codediff").setup()
-require("plugins.toggleterm").setup()
 require("plugins.theme").setup()
 require("plugins.treesitter").setup()
 require("plugins.opencode").setup()

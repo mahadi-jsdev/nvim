@@ -23,10 +23,11 @@ function M.setup()
       },
     },
     ui = {
-      window_width = 0.50,
+      window_width = 0.30,
       questions = {
         use_vim_ui_select = true,
       },
+      position = 'left', -- 'right' (default), 'left' or 'current'. Position of the UI split. 'current' uses the current window for the output.
     },
   })
 end

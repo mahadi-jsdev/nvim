@@ -19,8 +19,8 @@ function M.setup()
       untracked = { text = "┆" },
     },
     signs_staged_enable = true,
-    signcolumn = false,
-    numhl = true,
+    signcolumn = true,
+    numhl = false,
     linehl = false,
     word_diff = false,
     watch_gitdir = {
