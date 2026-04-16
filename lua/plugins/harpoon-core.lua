@@ -21,8 +21,8 @@ function M.setup()
   map("n", "<A-1>", ":lua require('harpoon-core').nav_file(1)<CR>", { desc = "harpoon 1" })
   map("n", "<A-2>", ":lua require('harpoon-core').nav_file(2)<CR>", { desc = "harpoon 2" })
   map("n", "<A-3>", ":lua require('harpoon-core').nav_file(3)<CR>", { desc = "harpoon 3" })
-  map("n", "<A-4>", ":lua require('harpoon-core').nav_file(2)<CR>", { desc = "harpoon 4" })
-  map("n", "<A-5>", ":lua require('harpoon-core').nav_file(3)<CR>", { desc = "harpoon 5" })
+  map("n", "<A-4>", ":lua require('harpoon-core').nav_file(4)<CR>", { desc = "harpoon 4" })
+  map("n", "<A-5>", ":lua require('harpoon-core').nav_file(5)<CR>", { desc = "harpoon 5" })
 end
 
 return M
