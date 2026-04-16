@@ -24,6 +24,7 @@ vim.pack.add({
   "https://github.com/mikavilpas/yazi.nvim",
   "https://github.com/sainnhe/gruvbox-material",
   "https://github.com/nvim-treesitter/nvim-treesitter",
+  'https://github.com/MeanderingProgrammer/harpoon-core.nvim',
 })
 
 require("plugins.telescope").setup()
@@ -41,3 +42,4 @@ require("plugins.yazi").setup()
 require("plugins.theme").setup()
 require("plugins.treesitter").setup()
 require("plugins.opencode").setup()
+require('plugins.harpoon-core').setup()

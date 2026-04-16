@@ -84,7 +84,7 @@ function M.setup()
   map("n", "<C-f>", builtin.live_grep, { desc = "Grep" })
   map("x", "<C-f>", builtin.grep_string, { desc = "Visual selection or word" })
   map("n", "<leader>fl", builtin.current_buffer_fuzzy_find, { desc = "find lines" })
-  map("n", "<leader>e", open_yazi_directory_picker, { desc = "search directories" })
+  map("n", "<C-space>", open_yazi_directory_picker, { desc = "search directories" })
   map("n", "<C-g>", builtin.git_status, { desc = "Git Status" })
   map("n", "-", "<CMD>Yazi<CR>", { desc = "Open yazi" })
 end
