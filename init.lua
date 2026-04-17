@@ -2,46 +2,188 @@ require("config.options")
 require("config.keymaps")
 require("config.autocmds")
 
-vim.pack.add({
-  "https://github.com/nvim-lua/plenary.nvim",
-  "https://github.com/sudo-tee/opencode.nvim",
-  "https://github.com/MeanderingProgrammer/render-markdown.nvim",
-  "https://github.com/nvim-telescope/telescope.nvim",
-  "https://github.com/nvim-tree/nvim-web-devicons",
-  "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
-  "https://github.com/kdheepak/lazygit.nvim",
-  "https://github.com/lewis6991/gitsigns.nvim",
-  "https://github.com/nvim-mini/mini.nvim",
-  "https://github.com/MunifTanjim/nui.nvim",
-  "https://github.com/mason-org/mason.nvim",
-  "https://github.com/mason-org/mason-lspconfig.nvim",
-  "https://github.com/neovim/nvim-lspconfig",
-  "https://github.com/saghen/blink.cmp",
-  "https://github.com/saghen/blink.indent",
-  "https://github.com/stevearc/conform.nvim",
-  "https://github.com/chrisgrieser/nvim-origami",
-  "https://github.com/esmuellert/codediff.nvim",
-  "https://github.com/mikavilpas/yazi.nvim",
-  "https://github.com/sainnhe/gruvbox-material",
-  "https://github.com/nvim-treesitter/nvim-treesitter",
-  'https://github.com/MeanderingProgrammer/harpoon-core.nvim',
-  "https://github.com/akinsho/toggleterm.nvim",
-})
+local lazypath = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy", "lazy.nvim")
 
-require("plugins.telescope").setup()
-require("plugins.lazygit").setup()
-require("plugins.gitsigns").setup()
-require("plugins.mini").setup()
-require("plugins.mason").setup()
-require("plugins.blink").setup()
-require("plugins.blink-indent").setup()
-require("plugins.nvim-lsp").setup()
-require("plugins.conform").setup()
-require("plugins.origami").setup()
-require("plugins.codediff").setup()
-require("plugins.yazi").setup()
-require("plugins.theme").setup()
-require("plugins.treesitter").setup()
-require("plugins.opencode").setup()
-require('plugins.harpoon-core').setup()
-require("plugins.toggleterm").setup()
+if not vim.uv.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  {
+    "sainnhe/gruvbox-material",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("plugins.theme").setup()
+    end,
+  },
+  {
+    "folke/snacks.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("plugins.snacks").setup()
+    end,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    keys = {
+      "<leader><leader>",
+      ",",
+      "<C-f>",
+      "<leader>fl",
+      "<C-space>",
+      "<C-g>",
+      "-",
+    },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      "mikavilpas/yazi.nvim",
+    },
+    config = function()
+      require("plugins.telescope").setup()
+    end,
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = "LazyGit",
+    keys = { "<leader>gg" },
+    config = function()
+      require("plugins.lazygit").setup()
+    end,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("plugins.gitsigns").setup()
+    end,
+  },
+  {
+    "nvim-mini/mini.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("plugins.mini").setup()
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "mason-org/mason.nvim",
+      "mason-org/mason-lspconfig.nvim",
+      "saghen/blink.cmp",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("plugins.mason").setup()
+      require("plugins.nvim-lsp").setup()
+    end,
+  },
+  {
+    "saghen/blink.cmp",
+    event = { "InsertEnter", "CmdlineEnter" },
+    config = function()
+      require("plugins.blink").setup()
+    end,
+  },
+  {
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("plugins.conform").setup()
+    end,
+  },
+  {
+    "chrisgrieser/nvim-origami",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require("plugins.origami").setup()
+    end,
+  },
+  {
+    "esmuellert/codediff.nvim",
+    cmd = "CodeDiff",
+    keys = { "<leader>cd" },
+    config = function()
+      require("plugins.codediff").setup()
+    end,
+  },
+  {
+    "mikavilpas/yazi.nvim",
+    cmd = "Yazi",
+    keys = { "-" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("plugins.yazi").setup()
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPost", "BufNewFile" },
+    build = ":TSUpdate",
+    config = function()
+      require("plugins.treesitter").setup()
+    end,
+  },
+  {
+    "sudo-tee/opencode.nvim",
+    event = "VeryLazy",
+    keys = { "<C-o>" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "MeanderingProgrammer/render-markdown.nvim",
+    },
+    config = function()
+      require("plugins.opencode").setup()
+    end,
+  },
+  {
+    "MeanderingProgrammer/harpoon-core.nvim",
+    keys = {
+      "<leader>ml",
+      "<leader>ma",
+      "<leader>mr",
+      "<C-l>",
+      "<C-h>",
+      "<A-1>",
+      "<A-2>",
+      "<A-3>",
+      "<A-4>",
+      "<A-5>",
+    },
+    config = function()
+      require("plugins.harpoon-core").setup()
+    end,
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    cmd = "ToggleTerm",
+    keys = { "<C-t>" },
+    config = function()
+      require("plugins.toggleterm").setup()
+    end,
+  },
+}, {
+  defaults = {
+    lazy = true,
+  },
+  install = {
+    colorscheme = { "gruvbox-material" },
+  },
+})

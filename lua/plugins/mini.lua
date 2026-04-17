@@ -33,7 +33,6 @@ function M.setup()
   require("mini.git").setup()
   require("mini.bufremove").setup()
   require('mini.pick').setup()
-  require("mini.starter").setup()
 
   -- mini session management
   vim.fn.mkdir(session_dir, "p")
