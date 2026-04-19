@@ -98,6 +98,38 @@ require("lazy").setup({
     end,
   },
   {
+    "romgrk/barbar.nvim",
+    event = "BufReadPre",
+    keys = {
+      "<A-p>",
+      "<C-x>",
+      "<C-h>",
+      "<C-l>",
+      "<C-Left>",
+      "<C-Right>",
+      "<A-1>",
+      "<A-2>",
+      "<A-3>",
+      "<A-4>",
+      "<A-5>",
+      "<A-6>",
+      "<A-7>",
+      "<A-8>",
+      "<A-9>",
+    },
+    dependencies = {
+      "lewis6991/gitsigns.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    version = "^1.0.0",
+    config = function()
+      require("plugins.barbar").setup()
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
