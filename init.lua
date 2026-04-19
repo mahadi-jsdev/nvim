@@ -37,6 +37,11 @@ require("lazy").setup({
     end,
   },
   {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    opts = {},
+  },
+  {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     keys = {
