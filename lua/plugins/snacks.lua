@@ -8,7 +8,7 @@ function M.setup()
     input = {},
     notifier = {},
     indent = {},
-    dashboard = {},
+    -- dashboard = {},
   })
 end
 
