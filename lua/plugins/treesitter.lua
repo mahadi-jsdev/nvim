@@ -25,6 +25,7 @@ function M.setup()
     "bash",
     "markdown",
     "markdown_inline",
+    "http"
   }
 
   vim.api.nvim_create_autocmd("FileType", {
