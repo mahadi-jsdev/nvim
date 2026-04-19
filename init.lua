@@ -154,24 +154,6 @@ require("lazy").setup({
     end,
   },
   {
-    "MeanderingProgrammer/harpoon-core.nvim",
-    keys = {
-      "<leader>ml",
-      "<leader>ma",
-      "<leader>mr",
-      "<C-l>",
-      "<C-h>",
-      "<A-1>",
-      "<A-2>",
-      "<A-3>",
-      "<A-4>",
-      "<A-5>",
-    },
-    config = function()
-      require("plugins.harpoon-core").setup()
-    end,
-  },
-  {
     "akinsho/toggleterm.nvim",
     cmd = "ToggleTerm",
     keys = { "<C-t>" },
