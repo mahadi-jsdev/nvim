@@ -1,20 +1,66 @@
-return {
-  -- Telescope for fuzzy finding
-  "nvim-telescope/telescope.nvim",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons",
-    {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-    },
-  },
-  config = function(_, opts)
-    local telescope = require("telescope")
-    telescope.setup(opts)
-    telescope.load_extension("fzf")
-  end,
-  opts = {
+local M = {}
+
+function M.setup()
+  local ok, telescope = pcall(require, "telescope")
+  if not ok then
+    return
+  end
+
+  local builtin = require("telescope.builtin")
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+  local conf = require("telescope.config").values
+  local finders = require("telescope.finders")
+  local pickers = require("telescope.pickers")
+
+  local function open_yazi(path)
+    local yazi_ok, yazi = pcall(require, "yazi")
+    if not yazi_ok then
+      return
+    end
+
+    yazi.yazi(nil, path)
+  end
+
+  local function open_yazi_directory_picker()
+    local root = vim.fn.getcwd()
+    local directories = { "/root" }
+    local fd_output = vim.fn.systemlist({ "fd", "--type", "directory", "--follow", "--exclude", ".git", ".", root })
+
+    if vim.v.shell_error == 0 then
+      vim.list_extend(directories, fd_output)
+    end
+
+    pickers.new({}, {
+      prompt_title = "Search Directories",
+      finder = finders.new_table({
+        results = directories,
+      }),
+      previewer = false,
+      sorter = conf.generic_sorter({}),
+      attach_mappings = function(prompt_bufnr)
+        actions.select_default:replace(function()
+          local selection = action_state.get_selected_entry()
+          actions.close(prompt_bufnr)
+
+          if not selection then
+            return
+          end
+
+          if selection[1] == "/root" then
+            open_yazi(root)
+            return
+          end
+
+          open_yazi(selection[1])
+        end)
+
+        return true
+      end,
+    }):find()
+  end
+
+  telescope.setup({
     defaults = {
       layout_config = {
         prompt_position = "top",
@@ -28,53 +74,19 @@ return {
         ignore_current_buffer = true,
       },
     },
-  },
-  keys = {
-    {
-      "<leader><leader>",
-      function()
-        require("telescope.builtin").find_files()
-      end,
-      desc = "search files",
-    },
-    {
-      ",",
-      function()
-        require("telescope.builtin").buffers()
-      end,
-      mode = { "n" },
-      desc = "buffers",
-    },
-    {
-      "<C-f>",
-      function()
-        require("telescope.builtin").live_grep()
-      end,
-      desc = "Grep",
-      mode = { "n" },
-    },
-    {
-      "<C-f>",
-      function()
-        require("telescope.builtin").grep_string()
-      end,
-      desc = "Visual selection or word",
-      mode = { "x" },
-    },
-    {
-      "<leader>fl",
-      function()
-        require("telescope.builtin").current_buffer_fuzzy_find()
-      end,
-      desc = "find lines",
-      mode = { "n" },
-    },
-    {
-      "<C-g>",
-      function()
-        require("telescope.builtin").git_status()
-      end,
-      desc = "Git Status",
-    },
-  },
-}
+  })
+
+  pcall(telescope.load_extension, "fzf")
+
+  local map = vim.keymap.set
+  map("n", "<leader><leader>", builtin.find_files, { desc = "search files" })
+  map("n", ",", builtin.buffers, { desc = "search buffers" })
+  map("n", "<C-f>", builtin.live_grep, { desc = "Grep" })
+  map("x", "<C-f>", builtin.grep_string, { desc = "Visual selection or word" })
+  map("n", "<leader>fl", builtin.current_buffer_fuzzy_find, { desc = "find lines" })
+  map("n", "<C-space>", open_yazi_directory_picker, { desc = "search directories" })
+  map("n", "<C-g>", builtin.git_status, { desc = "Git Status" })
+  map("n", "-", "<CMD>Yazi<CR>", { desc = "Open yazi" })
+end
+
+return M
