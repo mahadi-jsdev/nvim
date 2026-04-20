@@ -37,8 +37,8 @@ function M.setup()
     },
   })
 
+  vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle filesystem left<cr>", { desc = "Buffers" })
   vim.keymap.set("n", "<leader>b", "<cmd>Neotree toggle buffers right<cr>", { desc = "Buffers" })
-  vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle filesystem right<cr>", { desc = "Buffers" })
 end
 
 return M

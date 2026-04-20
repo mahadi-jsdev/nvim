@@ -98,36 +98,21 @@ require("lazy").setup({
     end,
   },
   {
-    "romgrk/barbar.nvim",
-    event = "BufReadPre",
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
     keys = {
-      "<A-p>",
-      "<C-x>",
-      "<C-h>",
-      "<C-l>",
-      "<C-Left>",
-      "<C-Right>",
-      "<A-1>",
-      "<A-2>",
-      "<A-3>",
-      "<A-4>",
-      "<A-5>",
-      "<A-6>",
-      "<A-7>",
-      "<A-8>",
-      "<A-9>",
+      "<leader>e",
+      "<leader>b",
     },
     dependencies = {
-      "lewis6991/gitsigns.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
       "nvim-tree/nvim-web-devicons",
     },
-    init = function()
-      vim.g.barbar_auto_setup = false
-    end,
-    version = "^1.0.0",
+    lazy = false,
     config = function()
-      require("plugins.barbar").setup()
-    end,
+      require("plugins.neotree").setup()
+    end
   },
   {
     "neovim/nvim-lspconfig",
