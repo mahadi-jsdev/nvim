@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   {
-    "sainnhe/gruvbox-material",
+    "catppuccin/nvim",
     lazy = false,
     priority = 1000,
     config = function()
@@ -198,8 +198,5 @@ require("lazy").setup({
 }, {
   defaults = {
     lazy = true,
-  },
-  install = {
-    colorscheme = { "gruvbox-material" },
   },
 })
