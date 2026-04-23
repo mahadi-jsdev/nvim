@@ -104,6 +104,7 @@ require("lazy").setup({
       "<leader>e",
       "<leader>b",
     },
+    cmd = "NeoTree",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
@@ -178,6 +179,7 @@ require("lazy").setup({
     "sudo-tee/opencode.nvim",
     event = "VeryLazy",
     keys = { "<C-o>" },
+    cmd = "Opencode",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
