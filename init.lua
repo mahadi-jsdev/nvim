@@ -76,24 +76,6 @@ require("lazy").setup({
       end,
     },
     {
-      "nvim-neo-tree/neo-tree.nvim",
-      branch = "v3.x",
-      keys = {
-        "<leader>e",
-        "<leader>b",
-      },
-      cmd = "NeoTree",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
-        "nvim-tree/nvim-web-devicons",
-      },
-      lazy = false,
-      config = function()
-        require("plugins.neotree").setup()
-      end
-    },
-    {
       "neovim/nvim-lspconfig",
       event = { "BufReadPre", "BufNewFile" },
       dependencies = {

@@ -42,6 +42,7 @@ function M.setup()
 
   require("snacks").setup({
     picker = {},
+    explorer = {},
     statuscolumn = {},
     scope = {},
     input = {},
@@ -54,6 +55,9 @@ function M.setup()
   map("n", "<leader><leader>", function()
     Snacks.picker.files()
   end, { desc = "search files" })
+  map("n", "<leader>e", function()
+    Snacks.explorer()
+  end, { desc = "file explorer" })
   map("n", ",", function()
     Snacks.picker.buffers({ sort_lastused = true, current = false })
   end, { desc = "search buffers" })
