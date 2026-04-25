@@ -5,9 +5,13 @@ function M.setup()
   local capabilities = blink.get_lsp_capabilities() or {}
 
   local on_attach = function(_, bufnr)
-    local builtin = require("telescope.builtin")
     local map = vim.keymap.set
     local opts = { noremap = true, silent = true, buffer = bufnr }
+    local function picker(name)
+      return function()
+        Snacks.picker[name]()
+      end
+    end
 
     map("n", "<leader>lr", vim.lsp.buf.rename, opts)
     map("n", "<leader>la", vim.lsp.buf.code_action, opts)
@@ -22,10 +26,10 @@ function M.setup()
       })
     end, opts)
     map("n", "K", vim.lsp.buf.hover, opts)
-    map("n", "gd", builtin.lsp_definitions, opts)
-    map("n", "gr", builtin.lsp_references, opts)
-    map("n", "gs", builtin.lsp_document_symbols, opts)
-    map("n", "<leader>fd", builtin.diagnostics, opts)
+    map("n", "gd", picker("lsp_definitions"), opts)
+    map("n", "gr", picker("lsp_references"), opts)
+    map("n", "gs", picker("lsp_symbols"), opts)
+    map("n", "<leader>fd", picker("diagnostics"), opts)
     map("n", "[d", vim.diagnostic.goto_prev, opts)
     map("n", "]d", vim.diagnostic.goto_next, opts)
   end
