@@ -43,6 +43,7 @@ function M.setup()
   require("snacks").setup({
     picker = {},
     explorer = {},
+    terminal = {},
     statuscolumn = {},
     scope = {},
     input = {},
@@ -74,6 +75,9 @@ function M.setup()
   map("n", "<C-g>", function()
     Snacks.picker.git_status()
   end, { desc = "Git Status" })
+  map({ "n", "t" }, "<C-t>", function()
+    Snacks.terminal.toggle()
+  end, { desc = "toggle terminal" })
 end
 
 return M
