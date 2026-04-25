@@ -166,14 +166,14 @@ require("lazy").setup({
         require("plugins.opencode").setup()
       end,
     },
-    -- {
-    --   "akinsho/toggleterm.nvim",
-    --   cmd = "ToggleTerm",
-    --   keys = { "<C-t>" },
-    --   config = function()
-    --     require("plugins.toggleterm").setup()
-    --   end,
-    -- },
+    {
+      "akinsho/toggleterm.nvim",
+      cmd = "ToggleTerm",
+      keys = { "<C-t>" },
+      config = function()
+        require("plugins.toggleterm").setup()
+      end,
+    },
   },
   {
     defaults = {
