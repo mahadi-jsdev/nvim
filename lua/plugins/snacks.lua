@@ -46,6 +46,9 @@ function M.setup()
     terminal = {},
     statuscolumn = {},
     scope = {},
+    image = {
+      enabled = false
+    },
     input = {},
     notifier = {},
     indent = {},
