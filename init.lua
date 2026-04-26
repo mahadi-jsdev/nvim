@@ -135,6 +135,15 @@ require("lazy").setup({
       end,
     },
     {
+      'akinsho/bufferline.nvim',
+      version = "*",
+      event = "BufRead",
+      dependencies = 'nvim-tree/nvim-web-devicons',
+      config = function()
+        require("plugins.bufferline").setup()
+      end
+    },
+    {
       "sudo-tee/opencode.nvim",
       event = "VeryLazy",
       keys = { "<C-o>" },
