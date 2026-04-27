@@ -78,7 +78,7 @@ function M.setup()
   map("n", "<C-g>", function()
     Snacks.picker.git_status()
   end, { desc = "Git Status" })
-  map({ "n", "t" }, "<C-t>", function()
+  map({ "n", "t" }, "<C-`>", function()
     Snacks.terminal.toggle()
   end, { desc = "toggle terminal" })
 end

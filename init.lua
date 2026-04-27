@@ -145,7 +145,6 @@ require("lazy").setup({
     },
     {
       "sudo-tee/opencode.nvim",
-      event = "VeryLazy",
       keys = { "<C-o>" },
       cmd = "Opencode",
       dependencies = {
