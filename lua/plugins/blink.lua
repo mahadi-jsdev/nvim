@@ -4,9 +4,6 @@ function M.setup()
   require("blink.cmp").setup({
     fuzzy = {
       implementation = "prefer_rust",
-      prebuilt_binaries = {
-        force_version = "v*",
-      },
     },
     keymap = {
       preset = "none",

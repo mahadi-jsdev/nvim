@@ -91,6 +91,12 @@ require("lazy").setup({
     {
       "saghen/blink.cmp",
       event = { "InsertEnter", "CmdlineEnter" },
+      dependencies = {
+        "saghen/blink.lib",
+      },
+      build = function()
+        require("blink.cmp").build():wait(60000)
+      end,
       config = function()
         require("plugins.blink").setup()
       end,
