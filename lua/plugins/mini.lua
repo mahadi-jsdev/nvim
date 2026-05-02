@@ -4,7 +4,7 @@ function M.setup()
   require("mini.statusline").setup()
   require("mini.icons").setup()
   require("mini.pairs").setup()
-  require("mini.comment").setup()
+  -- require("mini.comment").setup()
   require("mini.git").setup()
   require("mini.bufremove").setup()
 

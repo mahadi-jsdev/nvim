@@ -116,14 +116,6 @@ require("lazy").setup({
       end,
     },
     {
-      "esmuellert/codediff.nvim",
-      cmd = "CodeDiff",
-      keys = { "<leader>cd" },
-      config = function()
-        require("plugins.codediff").setup()
-      end,
-    },
-    {
       "mikavilpas/yazi.nvim",
       cmd = "Yazi",
       keys = { "-" },
@@ -150,6 +142,21 @@ require("lazy").setup({
       end
     },
     {
+      "mahadi-jsdev/deltaview.nvim",
+      dependencies = {
+        "kokusenz/delta.lua",
+      },
+      cmd = { "Delta", "DeltaMenu", "DeltaView" },
+      keys = {
+        { "<leader>dd", "<cmd>DeltaView<cr>", desc = "Delta view current file" },
+      },
+      config = function()
+        require("deltaview").setup({
+          use_nerdfonts = true,
+        })
+      end,
+    },
+    {
       "sudo-tee/opencode.nvim",
       keys = { "<C-o>" },
       cmd = "Opencode",
@@ -166,5 +173,8 @@ require("lazy").setup({
   {
     defaults = {
       lazy = true,
+    },
+    checker = {
+      enabled = false,
     },
   })
