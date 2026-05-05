@@ -1,0 +1,99 @@
+---@type ChadrcConfig
+local M = {}
+
+M.base46 = {
+  theme = "ashes",
+  theme_toggle = { "ashes", "one_light" },
+  transparency = false,
+  integrations = {
+    "render-markdown",
+  },
+}
+
+M.ui = {
+  cmp = {
+    icons_left = true,
+    style = "default", -- default, flat_light, flat_dark, atom, atom_colored
+    abbr_maxwidth = 60,
+    format_colors = { lsp = true, icon = "󱓻" },
+  },
+
+  statusline = {
+    enabled = true,
+    theme = "default",           -- default, vscode, vscode_colored, minimal
+    separator_style = "default", -- default, round, block, arrow
+  },
+
+  tabufline = {
+    enabled = true,
+    lazyload = true,
+    order = { "treeOffset", "buffers", "tabs", "btns" },
+  },
+}
+
+M.nvdash = {
+  load_on_startup = false,
+  header = {
+    "",
+    "███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗",
+    "████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║",
+    "██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║",
+    "██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║",
+    "██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║",
+    "╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝",
+    "",
+  },
+  buttons = {
+    { txt = "  Find File", keys = "f", cmd = "lua Snacks.picker.files()" },
+    { txt = "󰱼  Find Word", keys = "g", cmd = "lua Snacks.picker.grep()" },
+    { txt = "  Recent Files", keys = "r", cmd = "lua Snacks.picker.recent()" },
+    { txt = "  Explorer", keys = "e", cmd = "lua Snacks.explorer()" },
+    { txt = "󰏗  Lazy", keys = "l", cmd = "Lazy" },
+    { txt = "󰊢  LazyGit", keys = "G", cmd = "LazyGit" },
+    { txt = "󱥚  Themes", keys = "t", cmd = "lua require('config.nvchad').open_theme_picker()" },
+    { txt = "  Mappings", keys = "m", cmd = "NvCheatsheet" },
+    { txt = "  Quit", keys = "q", cmd = "qa" },
+  },
+}
+
+M.term = {
+  startinsert = true,
+  base46_colors = true,
+  winopts = { number = false, relativenumber = false, signcolumn = "no" },
+  sizes = { sp = 0.3, vsp = 0.35, ["bo sp"] = 0.3, ["bo vsp"] = 0.35 },
+  float = {
+    relative = "editor",
+    row = 0.12,
+    col = 0.12,
+    width = 0.76,
+    height = 0.72,
+    border = "rounded",
+  },
+}
+
+M.lsp = {
+  signature = true,
+}
+
+M.cheatsheet = {
+  theme = "grid",
+  excluded_groups = { "terminal (t)", "autopairs", "Nvim", "Opens" },
+}
+
+M.mason = {
+  pkgs = {
+    "stylua",
+    "prettierd",
+    "prettier",
+  },
+  skip = {},
+}
+
+M.colorify = {
+  enabled = true,
+  mode = "virtual", -- virtual, fg, bg
+  virt_text = "",
+  highlight = { hex = true, lspvars = true },
+}
+
+return M

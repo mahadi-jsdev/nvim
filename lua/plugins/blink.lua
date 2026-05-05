@@ -1,6 +1,10 @@
 local M = {}
 
 function M.setup()
+  local nvchad_blink = require("nvchad.blink")
+  local menu = vim.deepcopy(nvchad_blink.menu)
+  menu.draw.padding = 1
+
   require("blink.cmp").setup({
     fuzzy = {
       implementation = "prefer_rust",
@@ -28,24 +32,7 @@ function M.setup()
     },
     completion = {
       accept = { auto_brackets = { enabled = false } },
-      menu = {
-        draw = {
-          columns = {
-            { "kind_icon", "label", "label_description", gap = 1 },
-          },
-          treesitter = { "lsp" },
-          components = {
-            label = {
-              text = function(ctx)
-                return ctx.item.label
-              end,
-              highlight = function(ctx)
-                return ctx.highlights
-              end,
-            },
-          },
-        },
-      },
+      menu = menu,
       documentation = { auto_show = true, auto_show_delay_ms = 300 },
     },
   })

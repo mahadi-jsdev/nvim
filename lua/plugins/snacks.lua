@@ -43,16 +43,8 @@ function M.setup()
   require("snacks").setup({
     picker = {},
     explorer = {},
-    terminal = {},
-    statuscolumn = {},
-    scope = {},
-    image = {
-      enabled = false
-    },
-    input = {},
-    notifier = {},
     indent = {},
-    dashboard = {},
+    statuscolumn = {}
   })
 
   local map = vim.keymap.set
@@ -78,9 +70,6 @@ function M.setup()
   map("n", "<C-g>", function()
     Snacks.picker.git_status()
   end, { desc = "Git Status" })
-  map({ "n", "t" }, "<C-`>", function()
-    Snacks.terminal.toggle()
-  end, { desc = "toggle terminal" })
 end
 
 return M

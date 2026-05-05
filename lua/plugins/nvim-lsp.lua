@@ -13,7 +13,7 @@ function M.setup()
       end
     end
 
-    map("n", "<leader>lr", vim.lsp.buf.rename, opts)
+    map("n", "<leader>lr", require("nvchad.lsp.renamer"), opts)
     map("n", "<leader>la", vim.lsp.buf.code_action, opts)
     map("n", "<leader>ld", vim.diagnostic.open_float, opts)
     map("n", "<leader>ff", function()

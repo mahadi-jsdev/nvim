@@ -2,6 +2,8 @@ require("config.options")
 require("config.keymaps")
 require("config.autocmds")
 
+vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46_cache/"
+
 local lazypath = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy", "lazy.nvim")
 
 if not vim.uv.fs_stat(lazypath) then
@@ -18,20 +20,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    {
-      "catppuccin/nvim",
-      lazy = false,
-      priority = 1000,
-      config = function()
-        require("plugins.theme").setup()
-      end,
-    },
+    { "nvim-tree/nvim-web-devicons", lazy = true },
     {
       "folke/snacks.nvim",
       lazy = false,
-      dependencies = {
-        "nvim-tree/nvim-web-devicons",
-      },
       config = function()
         require("plugins.snacks").setup()
       end,
@@ -125,21 +117,33 @@ require("lazy").setup({
       end,
     },
     {
+      "nvchad/ui",
+      lazy = false,
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons",
+        "nvchad/base46",
+        "nvchad/volt",
+      },
+    },
+    {
+      "nvchad/volt",
+      lazy = true,
+    },
+    {
+      "nvchad/base46",
+      lazy = true,
+      build = function()
+        require("base46").load_all_highlights()
+      end,
+    },
+    {
       "nvim-treesitter/nvim-treesitter",
       event = { "BufReadPost", "BufNewFile" },
       build = ":TSUpdate",
       config = function()
         require("plugins.treesitter").setup()
       end,
-    },
-    {
-      'akinsho/bufferline.nvim',
-      version = "*",
-      event = "BufRead",
-      dependencies = 'nvim-tree/nvim-web-devicons',
-      config = function()
-        require("plugins.bufferline").setup()
-      end
     },
     {
       "mahadi-jsdev/deltaview.nvim",
@@ -178,3 +182,21 @@ require("lazy").setup({
       enabled = false,
     },
   })
+
+-- Load cached Base46 highlights for NvChad UI components.
+if vim.fn.isdirectory(vim.g.base46_cache) == 0 then
+  require("base46").load_all_highlights()
+end
+
+for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
+  dofile(vim.g.base46_cache .. v)
+end
+
+require("nvchad")
+
+local opening_file = vim.api.nvim_buf_get_name(0)
+local is_startup_buffer = opening_file == "" and not vim.bo.modified
+
+if is_startup_buffer then
+  require("nvchad.nvdash").open(vim.api.nvim_get_current_buf())
+end
