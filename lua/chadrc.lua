@@ -12,7 +12,7 @@ M.base46 = {
 
 M.ui = {
   cmp = {
-    icons_left = false,
+    icons_left = true,
     style = "default", -- default, flat_light, flat_dark, atom, atom_colored
     abbr_maxwidth = 60,
     format_colors = { lsp = true, icon = "󱓻" },
@@ -92,7 +92,7 @@ M.mason = {
 M.colorify = {
   enabled = true,
   mode = "virtual", -- virtual, fg, bg
-  virt_text = "󱓻 ",
+  virt_text = "",
   highlight = { hex = true, lspvars = true },
 }
 
