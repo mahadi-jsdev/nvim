@@ -1,4 +1,4 @@
----@type ChadrcConfig
+---@type table
 local M = {}
 
 M.base46 = {
@@ -22,6 +22,42 @@ M.ui = {
     enabled = true,
     theme = "default",           -- default, vscode, vscode_colored, minimal
     separator_style = "default", -- default, round, block, arrow
+    modules = {
+      file = function()
+        local utils = require("nvchad.stl.utils")
+        local sep_style = require("nvconfig").ui.statusline.separator_style
+        local sep = utils.separators[sep_style].right
+        local bufnr = utils.stbufnr()
+        local status = vim.b[bufnr].gitsigns_status_dict
+
+        if not status or not status.head then
+          return "%#St_file# 󰊢 No Git %#St_file_sep#" .. sep
+        end
+
+        local added = status.added and status.added > 0 and ("  " .. status.added) or ""
+        local changed = status.changed and status.changed > 0 and ("  " .. status.changed) or ""
+        local removed = status.removed and status.removed > 0 and ("  " .. status.removed) or ""
+
+        return "%#St_file#  " .. status.head .. added .. changed .. removed .. " %#St_file_sep#" .. sep
+      end,
+
+      git = function()
+        local utils = require("nvchad.stl.utils")
+        local bufnr = utils.stbufnr()
+        local path = vim.api.nvim_buf_get_name(bufnr)
+        local name = path == "" and "Empty" or vim.fn.fnamemodify(path, ":.")
+        local icon = "󰈚"
+
+        if path ~= "" then
+          local ok, devicons = pcall(require, "nvim-web-devicons")
+          if ok then
+            icon = devicons.get_icon(vim.fn.fnamemodify(path, ":t")) or icon
+          end
+        end
+
+        return "%#St_gitIcons# " .. icon .. " " .. name .. " "
+      end,
+    },
   },
 
   tabufline = {
