@@ -34,8 +34,8 @@ function M.setup()
       },
     },
     filters = {
-      dotfiles = false,
-      git_ignored = false,
+      dotfiles = true,
+      git_ignored = true,
     },
     git = {
       enable = true,
