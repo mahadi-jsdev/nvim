@@ -10,17 +10,14 @@ local function open_yazi(path)
 end
 
 local function visual_selection()
-  local _, start_row, start_col = table.unpack(vim.fn.getpos("'<"))
-  local _, end_row, end_col = table.unpack(vim.fn.getpos("'>"))
-  local lines = vim.fn.getline(start_row, end_row)
+  local saved_reg = vim.fn.getreg("z")
+  local saved_regtype = vim.fn.getregtype("z")
 
-  if #lines == 0 then
-    return ""
-  end
+  vim.cmd([[normal! "zy]])
+  local selection = vim.fn.getreg("z")
+  vim.fn.setreg("z", saved_reg, saved_regtype)
 
-  lines[#lines] = string.sub(lines[#lines], 1, end_col)
-  lines[1] = string.sub(lines[1], start_col)
-  return table.concat(lines, "\n")
+  return selection
 end
 
 local function yazi_directory_picker()
@@ -94,6 +91,7 @@ function M.setup()
     },
   })
 
+  telescope.load_extension("fzf")
   telescope.load_extension("ui-select")
 
   local builtin = require("telescope.builtin")
