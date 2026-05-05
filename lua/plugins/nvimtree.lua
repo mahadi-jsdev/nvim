@@ -1,5 +1,13 @@
 local M = {}
 
+function M.open_current_folder()
+  local api = require("nvim-tree.api")
+  local name = vim.api.nvim_buf_get_name(0)
+  local path = name ~= "" and vim.fn.fnamemodify(name, ":p:h") or vim.fn.getcwd()
+
+  api.tree.open({ path = path })
+end
+
 function M.setup()
   dofile(vim.g.base46_cache .. "nvimtree")
 
@@ -48,6 +56,8 @@ function M.setup()
       },
     },
   })
+
+  vim.keymap.set("n", "-", M.open_current_folder, { desc = "Open nvim-tree folder" })
 end
 
 return M

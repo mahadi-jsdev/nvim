@@ -1,12 +1,12 @@
 local M = {}
 
-local function open_yazi(path)
-  local ok, yazi = pcall(require, "yazi")
+local function open_nvim_tree_folder(path)
+  local ok, api = pcall(require, "nvim-tree.api")
   if not ok then
     return
   end
 
-  yazi.yazi(nil, path)
+  api.tree.open({ path = vim.fn.fnamemodify(path, ":p") })
 end
 
 local function visual_selection()
@@ -20,7 +20,7 @@ local function visual_selection()
   return selection
 end
 
-local function yazi_directory_picker()
+local function directory_picker()
   local root = vim.fn.getcwd()
   local finders = require("telescope.finders")
   local pickers = require("telescope.pickers")
@@ -61,7 +61,7 @@ local function yazi_directory_picker()
             actions.close(prompt_bufnr)
 
             if selection then
-              open_yazi(selection.value.path)
+              open_nvim_tree_folder(selection.value.path)
             end
           end)
 
@@ -106,7 +106,7 @@ function M.setup()
     builtin.grep_string({ search = visual_selection() })
   end, { desc = "Visual selection or word" })
   map("n", "<leader>fl", builtin.current_buffer_fuzzy_find, { desc = "find lines" })
-  map("n", "<C-space>", yazi_directory_picker, { desc = "search directories" })
+  map("n", "<C-space>", directory_picker, { desc = "search directories" })
   map("n", "<C-g>", builtin.git_status, { desc = "Git Status" })
 end
 

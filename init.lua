@@ -127,19 +127,11 @@ require("lazy").setup({
       end,
     },
     {
-      "mikavilpas/yazi.nvim",
-      cmd = "Yazi",
-      keys = { "-" },
-      dependencies = { "nvim-lua/plenary.nvim" },
-      config = function()
-        require("plugins.yazi").setup()
-      end,
-    },
-    {
       "nvim-tree/nvim-tree.lua",
       cmd = { "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
       keys = {
-        { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "File explorer" },
+        { "<leader>e", "<cmd>NvimTreeToggle<cr>",                                        desc = "File explorer" },
+        { "-",         function() require("plugins.nvimtree").open_current_folder() end, desc = "Open nvim-tree folder" },
       },
       dependencies = { "nvim-tree/nvim-web-devicons" },
       config = function()
