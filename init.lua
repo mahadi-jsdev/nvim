@@ -22,16 +22,24 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     { "nvim-tree/nvim-web-devicons", lazy = true },
     {
-      "folke/snacks.nvim",
+      "nvim-telescope/telescope.nvim",
       lazy = false,
+      cmd = "Telescope",
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons",
+        "nvim-telescope/telescope-ui-select.nvim",
+      },
       config = function()
-        require("plugins.snacks").setup()
+        require("plugins.telescope").setup()
       end,
     },
     {
       "folke/persistence.nvim",
       event = "BufReadPre",
-      opts = {},
+      config = function()
+        require("plugins.persistence").setup()
+      end,
     },
     {
       "kdheepak/lazygit.nvim",
@@ -94,6 +102,13 @@ require("lazy").setup({
       end,
     },
     {
+      "saghen/blink.indent",
+      event = { "BufReadPost", "BufNewFile" },
+      config = function()
+        require("plugins.blink-indent").setup()
+      end,
+    },
+    {
       "stevearc/conform.nvim",
       event = { "BufReadPre", "BufNewFile" },
       config = function()
@@ -114,6 +129,17 @@ require("lazy").setup({
       dependencies = { "nvim-lua/plenary.nvim" },
       config = function()
         require("plugins.yazi").setup()
+      end,
+    },
+    {
+      "nvim-tree/nvim-tree.lua",
+      cmd = { "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
+      keys = {
+        { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "File explorer" },
+      },
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      config = function()
+        require("plugins.nvimtree").setup()
       end,
     },
     {
