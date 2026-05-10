@@ -179,19 +179,14 @@ require("lazy").setup({
       end,
     },
     {
-      "mahadi-jsdev/deltaview.nvim",
-      dependencies = {
-        "kokusenz/delta.lua",
-      },
-      cmd = { "Delta", "DeltaMenu", "DeltaView" },
+      "esmuellert/codediff.nvim",
+      cmd = "CodeDiff",
       keys = {
-        { "<leader>dd", "<cmd>DeltaView<cr>", desc = "Delta view current file" },
+        { "<leader>cd", "<cmd>CodeDiff<CR>" }
       },
       config = function()
-        require("deltaview").setup({
-          use_nerdfonts = true,
-        })
-      end,
+        require("codediff").setup()
+      end
     },
     {
       "sudo-tee/opencode.nvim",
