@@ -9,29 +9,13 @@ end
 -- Keymps (Basic)
 map({ "n", "i", "v" }, "<C-s>", "<CMD>w<CR>")
 map("n", "<ESC>", "<CMD>nohlsearch<CR>")
-map("n", "<C-v>", "<CMD>leftabove vsplit<CR>")
 map("n", "<leader>qq", "<CMD>q<CR>")
 map("n", "zz", "za")
 
 -- NvChad UI
-map("n", "<leader>th", function()
-  require("config.nvchad").open_theme_picker({ style = "bordered" })
-end, { desc = "NvChad themes" })
-map("n", "<leader>tH", function()
-  require("config.nvchad").open_theme_picker({ style = "compact" })
-end, { desc = "NvChad themes compact" })
-map("n", "<leader>tf", function()
-  require("config.nvchad").open_theme_picker({ style = "flat" })
-end, { desc = "NvChad themes flat" })
-map({ "n", "t" }, "<A-f>", function()
-  require("nvchad.term").toggle({ pos = "float", id = "floatTerm" })
-end, { desc = "Toggle floating terminal" })
-map({ "n", "t" }, "<A-h>", function()
+map({ "n", "t" }, "<c-`>", function()
   require("nvchad.term").toggle({ pos = "bo sp", id = "hTerm" })
 end, { desc = "Toggle horizontal terminal" })
-map({ "n", "t" }, "<A-v>", function()
-  require("nvchad.term").toggle({ pos = "bo vsp", id = "vTerm" })
-end, { desc = "Toggle vertical terminal" })
 
 -- Keep cursor centered when scrolling
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
@@ -42,9 +26,6 @@ map("n", "<M-o>", "<CMD>copen<CR>", { desc = "Open quickfix" })
 map("n", "<M-x>", "<CMD>cclose<CR>", { desc = "close quickfix" })
 map("n", "<M-k>", "<CMD>cprev<CR>", { desc = "previous quickfix" })
 map("n", "<M-j>", "<CMD>cnext<CR>", { desc = "next quickfix" })
-
--- resize window
-map("n", "=", [[<CMD>vertical resize +5<CR>]])
 
 -- move lines
 map("n", "<M-u>", "<CMD>m .-2<CR>==", { desc = "Move line up" })

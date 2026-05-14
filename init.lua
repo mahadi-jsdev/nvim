@@ -179,16 +179,6 @@ require("lazy").setup({
       end,
     },
     {
-      "esmuellert/codediff.nvim",
-      cmd = "CodeDiff",
-      keys = {
-        { "<leader>cd", "<cmd>CodeDiff<CR>" }
-      },
-      config = function()
-        require("codediff").setup()
-      end
-    },
-    {
       "sudo-tee/opencode.nvim",
       keys = {
         { "<C-o>", mode = { "n", "v" }, desc = "Toggle opencode" },
