@@ -178,21 +178,6 @@ require("lazy").setup({
         require("plugins.treesitter").setup()
       end,
     },
-    {
-      "sudo-tee/opencode.nvim",
-      keys = {
-        { "<C-o>", mode = { "n", "v" }, desc = "Toggle opencode" },
-      },
-      cmd = "Opencode",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
-        "MeanderingProgrammer/render-markdown.nvim",
-      },
-      config = function()
-        require("plugins.opencode").setup()
-      end,
-    },
   },
   {
     defaults = {
