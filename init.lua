@@ -106,13 +106,6 @@ require("lazy").setup({
       end,
     },
     {
-      "saghen/blink.indent",
-      event = { "BufReadPost", "BufNewFile" },
-      config = function()
-        require("plugins.blink-indent").setup()
-      end,
-    },
-    {
       "stevearc/conform.nvim",
       event = { "BufReadPre", "BufNewFile" },
       config = function()
@@ -178,6 +171,20 @@ require("lazy").setup({
         require("plugins.treesitter").setup()
       end,
     },
+    {
+      "folke/snacks.nvim",
+      priority = 1000,
+      lazy = false,
+      opts = {
+        bigfile = { enabled = true },
+        indent = { enabled = true },
+        notifier = { enabled = true },
+        quickfile = { enabled = true },
+        scope = { enabled = true },
+        scroll = { enabled = true },
+        statuscolumn = { enabled = true },
+      },
+    }
   },
   {
     defaults = {
