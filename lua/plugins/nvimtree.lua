@@ -21,17 +21,20 @@ function M.setup()
       update_root = false,
     },
     view = {
-      width = 32,
+      width = 28,
       side = "left",
       preserve_window_proportions = true,
+      signcolumn = "no",
     },
     renderer = {
       root_folder_label = false,
       highlight_git = true,
+      indent_width = 1,
       indent_markers = {
         enable = true,
       },
       icons = {
+        padding = " ",
         git_placement = "after",
         show = {
           file = true,
