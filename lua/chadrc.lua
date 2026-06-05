@@ -60,11 +60,11 @@ M.ui = {
     },
   },
 
-  tabufline = {
-    enabled = true,
-    lazyload = true,
-    order = { "treeOffset", "buffers", "tabs", "btns" },
-  },
+  -- tabufline = {
+  --   enabled = true,
+  --   lazyload = true,
+  --   order = { "treeOffset", "buffers", "tabs", "btns" },
+  -- },
 }
 
 M.nvdash = {
@@ -84,7 +84,7 @@ M.nvdash = {
     { txt = "󰱼  Find Word", keys = "g", cmd = "Telescope live_grep" },
     { txt = "  Recent Files", keys = "r", cmd = "Telescope oldfiles" },
     { txt = "󱂬  Restore Session", keys = "s", cmd = "lua require('plugins.persistence').restore()" },
-    { txt = "  Explorer", keys = "e", cmd = "NvimTreeToggle" },
+    { txt = "  Explorer", keys = "e", cmd = "lua Snacks.explorer()" },
     { txt = "󰏗  Lazy", keys = "l", cmd = "Lazy" },
     { txt = "󰊢  LazyGit", keys = "G", cmd = "LazyGit" },
     { txt = "󱥚  Themes", keys = "t", cmd = "lua require('config.nvchad').open_theme_picker()" },

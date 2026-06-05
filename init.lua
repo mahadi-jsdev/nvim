@@ -120,29 +120,6 @@ require("lazy").setup({
       end,
     },
     {
-      "nvim-tree/nvim-tree.lua",
-      cmd = { "NvimTreeToggle", "NvimTreeFocus", "NvimTreeFindFile" },
-      keys = {
-        { "<leader>e", "<cmd>NvimTreeToggle<cr>",                                        desc = "File explorer" },
-        { "-",         function() require("plugins.nvimtree").open_current_folder() end, desc = "Open nvim-tree folder" },
-      },
-      dependencies = { "nvim-tree/nvim-web-devicons" },
-      config = function()
-        require("plugins.nvimtree").setup()
-      end,
-    },
-    {
-      "antosha417/nvim-lsp-file-operations",
-      event = "LspAttach",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-tree.lua",
-      },
-      config = function()
-        require("lsp-file-operations").setup()
-      end,
-    },
-    {
       "nvchad/ui",
       lazy = false,
       dependencies = {
@@ -172,11 +149,24 @@ require("lazy").setup({
       end,
     },
     {
+      'akinsho/bufferline.nvim',
+      version = "*",
+      event = "BufRead",
+      dependencies = 'nvim-tree/nvim-web-devicons',
+      config = function()
+        require("plugins.bufferline").setup()
+      end
+    },
+    {
       "folke/snacks.nvim",
       priority = 1000,
       lazy = false,
+      keys = {
+        { "<leader>e", function() Snacks.explorer() end, desc = "File explorer" },
+      },
       opts = {
         bigfile = { enabled = true },
+        explorer = { enabled = true, replace_netrw = true },
         indent = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },

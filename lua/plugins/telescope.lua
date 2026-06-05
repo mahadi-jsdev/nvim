@@ -1,12 +1,7 @@
 local M = {}
 
-local function open_nvim_tree_folder(path)
-  local ok, api = pcall(require, "nvim-tree.api")
-  if not ok then
-    return
-  end
-
-  api.tree.open({ path = vim.fn.fnamemodify(path, ":p") })
+local function open_snacks_explorer(path)
+  Snacks.explorer({ cwd = vim.fn.fnamemodify(path, ":p") })
 end
 
 local function visual_selection()
@@ -61,7 +56,7 @@ local function directory_picker()
             actions.close(prompt_bufnr)
 
             if selection then
-              open_nvim_tree_folder(selection.value.path)
+              open_snacks_explorer(selection.value.path)
             end
           end)
 

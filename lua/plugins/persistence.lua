@@ -7,7 +7,6 @@ function M.restore()
     require("lazy").load({
       plugins = {
         "telescope.nvim",
-        "nvim-tree.lua",
         "lazygit.nvim",
       },
     })
