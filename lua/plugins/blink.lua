@@ -30,6 +30,7 @@ function M.setup()
         "snippets",
       },
     },
+    term = { enabled = false },
     completion = {
       accept = { auto_brackets = { enabled = false } },
       menu = menu,
