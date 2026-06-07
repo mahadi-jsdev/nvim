@@ -1,7 +1,7 @@
 local M = {}
 
-local function open_snacks_explorer(path)
-  Snacks.explorer({ cwd = vim.fn.fnamemodify(path, ":p") })
+local function open_oil(path)
+  require("oil").open(vim.fn.fnamemodify(path, ":p"))
 end
 
 local function visual_selection()
@@ -56,7 +56,7 @@ local function directory_picker()
             actions.close(prompt_bufnr)
 
             if selection then
-              open_snacks_explorer(selection.value.path)
+              open_oil(selection.value.path)
             end
           end)
 

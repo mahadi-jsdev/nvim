@@ -158,15 +158,19 @@ require("lazy").setup({
       end
     },
     {
+      "stevearc/oil.nvim",
+      lazy = false,
+      dependencies = { "nvim-tree/nvim-web-devicons" },
+      config = function()
+        require("plugins.oil").setup()
+      end,
+    },
+    {
       "folke/snacks.nvim",
       priority = 1000,
       lazy = false,
-      keys = {
-        { "<leader>e", function() Snacks.explorer() end, desc = "File explorer" },
-      },
       opts = {
         bigfile = { enabled = true },
-        explorer = { enabled = true, replace_netrw = true },
         indent = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },
