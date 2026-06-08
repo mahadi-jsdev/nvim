@@ -166,6 +166,13 @@ require("lazy").setup({
       end,
     },
     {
+      "folke/sidekick.nvim",
+      event = "VeryLazy",
+      config = function()
+        require("plugins.sidekick").setup()
+      end,
+    },
+    {
       "folke/snacks.nvim",
       priority = 1000,
       lazy = false,
