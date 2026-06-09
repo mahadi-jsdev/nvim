@@ -166,13 +166,6 @@ require("lazy").setup({
       end,
     },
     {
-      "folke/sidekick.nvim",
-      event = "VeryLazy",
-      config = function()
-        require("plugins.sidekick").setup()
-      end,
-    },
-    {
       "esmuellert/codediff.nvim",
       cmd = "CodeDiff",
       keys = {
@@ -185,12 +178,16 @@ require("lazy").setup({
       lazy = false,
       opts = {
         bigfile = { enabled = true },
+        explorer = { enabled = true },
         indent = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },
         scope = { enabled = true },
         scroll = { enabled = true },
         statuscolumn = { enabled = true },
+      },
+      keys = {
+        { "<leader>e", function() require("snacks").explorer() end, desc = "Toggle Explorer" },
       },
     }
   },

@@ -13,7 +13,7 @@ map("n", "<leader>qq", "<CMD>q<CR>")
 map("n", "zz", "za")
 
 -- NvChad UI
-map({ "n", "t" }, "<c-`>", function()
+map({ "n", "t" }, "<c-t>", function()
   require("nvchad.term").toggle({ pos = "bo sp", id = "hTerm" })
 end, { desc = "Toggle horizontal terminal" })
 
