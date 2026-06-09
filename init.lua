@@ -173,6 +173,13 @@ require("lazy").setup({
       end,
     },
     {
+      "esmuellert/codediff.nvim",
+      cmd = "CodeDiff",
+      keys = {
+        { "<leader>cd", "<cmd>CodeDiff<cr>", desc = "CodeDiff toggle" },
+      },
+    },
+    {
       "folke/snacks.nvim",
       priority = 1000,
       lazy = false,
