@@ -11,6 +11,7 @@ map({ "n", "i", "v" }, "<C-s>", "<CMD>w<CR>")
 map("n", "<ESC>", "<CMD>nohlsearch<CR>")
 map("n", "<leader>qq", "<CMD>q<CR>")
 map("n", "zz", "za")
+map("n", "<C-v>", "<CMD>leftabove vsplit<CR>")
 
 -- NvChad UI
 map({ "n", "t" }, "<c-t>", function()
