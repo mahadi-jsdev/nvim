@@ -22,6 +22,27 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     { "nvim-tree/nvim-web-devicons", lazy = true },
     {
+      "dmtrKovalenko/fff.nvim",
+      build = function()
+        require("fff.download").download_or_build_binary()
+      end,
+      opts = {
+        layout = {
+          prompt_position = "top",
+        },
+        debug = {
+          enabled = true,
+          show_scores = true,
+        },
+      },
+      lazy = false,
+      keys = {
+        { "<leader><leader>", function() require("fff").find_files() end,                                    desc = "FFFind files" },
+        { "<C-f>",            function() require("fff").live_grep() end,                                     desc = "Live grep",         mode = { "n" } },
+        { "<C-f>",            function() require("fff").live_grep({ query = vim.fn.expand("<cword>") }) end, desc = "Grep current word", mode = { "x" } },
+      },
+    },
+    {
       "folke/persistence.nvim",
       event = "BufReadPre",
       config = function()
