@@ -22,23 +22,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     { "nvim-tree/nvim-web-devicons", lazy = true },
     {
-      "nvim-telescope/telescope.nvim",
-      lazy = false,
-      cmd = "Telescope",
-      dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons",
-        "nvim-telescope/telescope-ui-select.nvim",
-        {
-          "nvim-telescope/telescope-fzf-native.nvim",
-          build = "make",
-        },
-      },
-      config = function()
-        require("plugins.telescope").setup()
-      end,
-    },
-    {
       "folke/persistence.nvim",
       event = "BufReadPre",
       config = function()
@@ -181,6 +164,7 @@ require("lazy").setup({
         explorer = { enabled = true },
         indent = { enabled = true },
         notifier = { enabled = true },
+        picker = { enabled = true },
         quickfile = { enabled = true },
         scope = { enabled = true },
         scroll = { enabled = true },

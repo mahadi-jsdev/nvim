@@ -34,6 +34,45 @@ map("n", "<M-d>", "<CMD>m .+1<CR>==", { desc = "Move line down" })
 map("v", "<M-u>", "<CMD>m '<-2<CR>gv=gv", { desc = "Move selection up" })
 map("v", "<M-d>", "<CMD>m '>+1<CR>gv=gv", { desc = "Move selection down" })
 
+-- Snacks Pickers
+local function visual_selection()
+  local saved_reg = vim.fn.getreg("z")
+  local saved_regtype = vim.fn.getregtype("z")
+  vim.cmd([[normal! "zy]])
+  local selection = vim.fn.getreg("z")
+  vim.fn.setreg("z", saved_reg, saved_regtype)
+  return selection
+end
+
+local function directory_picker()
+  local root = vim.fn.getcwd()
+  local dirs = { { text = ".", _path = root } }
+  local fd_output = vim.fn.systemlist({ "fd", "--type", "directory", "--follow", "--exclude", ".git", ".", root })
+  if vim.v.shell_error == 0 then
+    for _, path in ipairs(fd_output) do
+      local label = vim.fs.relpath(root, path) or path
+      table.insert(dirs, { text = label, _path = path })
+    end
+  end
+  Snacks.picker.pick({
+    title = "Search Directories",
+    items = dirs,
+    format = "text",
+    confirm = function(picker, item)
+      picker:close()
+      if item then require("oil").open(vim.fn.fnamemodify(item._path, ":p")) end
+    end,
+  })
+end
+
+map("n", "<leader><leader>", function() Snacks.picker.files() end, { desc = "search files" })
+map("n", ",", function() Snacks.picker.buffers() end, { desc = "search buffers" })
+map("n", "<C-f>", function() Snacks.picker.grep() end, { desc = "Grep" })
+map("x", "<C-f>", function() Snacks.picker.grep({ search = visual_selection() }) end, { desc = "Visual selection grep" })
+map("n", "<leader>fl", function() Snacks.picker.lines() end, { desc = "find lines" })
+map("n", "<C-space>", directory_picker, { desc = "search directories" })
+map("n", "<C-g>", function() Snacks.picker.git_status() end, { desc = "Git Status" })
+
 -- Copy relative path to clipboard
 vim.keymap.set("n", "<leader>cf", function()
   local relative_path = vim.fn.expand("%:.") -- Get path relative to cwd

@@ -6,7 +6,6 @@ function M.restore()
   vim.schedule(function()
     require("lazy").load({
       plugins = {
-        "telescope.nvim",
         "lazygit.nvim",
       },
     })

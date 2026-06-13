@@ -7,12 +7,6 @@ function M.setup()
   local on_attach = function(_, bufnr)
     local map = vim.keymap.set
     local opts = { noremap = true, silent = true, buffer = bufnr }
-    local function picker(name)
-      return function()
-        require("telescope.builtin")[name]()
-      end
-    end
-
     map("n", "<leader>lr", require("nvchad.lsp.renamer"), opts)
     map("n", "<leader>la", vim.lsp.buf.code_action, opts)
     map("n", "<leader>ld", vim.diagnostic.open_float, opts)
@@ -26,10 +20,10 @@ function M.setup()
       })
     end, opts)
     map("n", "K", vim.lsp.buf.hover, opts)
-    map("n", "gd", picker("lsp_definitions"), opts)
-    map("n", "gr", picker("lsp_references"), opts)
-    map("n", "gs", picker("lsp_document_symbols"), opts)
-    map("n", "<leader>fd", picker("diagnostics"), opts)
+    map("n", "gd", function() Snacks.picker.lsp_definitions() end, opts)
+    map("n", "gr", function() Snacks.picker.lsp_references() end, opts)
+    map("n", "gs", function() Snacks.picker.lsp_symbols() end, opts)
+    map("n", "<leader>fd", function() Snacks.picker.diagnostics() end, opts)
     map("n", "[d", vim.diagnostic.goto_prev, opts)
     map("n", "]d", vim.diagnostic.goto_next, opts)
   end
