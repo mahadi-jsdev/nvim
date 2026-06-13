@@ -170,6 +170,11 @@ require("lazy").setup({
       end,
     },
     {
+      "windwp/nvim-ts-autotag",
+      ft = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+      opts = {},
+    },
+    {
       "esmuellert/codediff.nvim",
       cmd = "CodeDiff",
       keys = {
