@@ -38,7 +38,7 @@ map("v", "<M-d>", "<CMD>m '>+1<CR>gv=gv", { desc = "Move selection down" })
 local function directory_picker()
   local root = vim.fn.getcwd()
   local dirs = { { text = ".", _path = root } }
-  local fd_output = vim.fn.systemlist({ "fd", "--type", "directory", "--follow", "--exclude", ".git", ".", root })
+  local fd_output = vim.fn.systemlist({ "fdfind", "--type", "directory", "--follow", "--exclude", ".git", ".", root })
   if vim.v.shell_error == 0 then
     for _, path in ipairs(fd_output) do
       local label = vim.fs.relpath(root, path) or path
