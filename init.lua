@@ -150,11 +150,18 @@ require("lazy").setup({
       end
     },
     {
-      "stevearc/oil.nvim",
+      "mikavilpas/yazi.nvim",
       lazy = false,
-      dependencies = { "nvim-tree/nvim-web-devicons" },
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+      },
+      init = function()
+        -- mark netrw as loaded so it's not loaded at all (recommended when
+        -- open_for_directories = true). See yazi.nvim issue #802.
+        vim.g.loaded_netrwPlugin = 1
+      end,
       config = function()
-        require("plugins.oil").setup()
+        require("plugins.yazi").setup()
       end,
     },
     {

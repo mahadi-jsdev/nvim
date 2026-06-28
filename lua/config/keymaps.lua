@@ -14,7 +14,7 @@ map("n", "zz", "za")
 map("n", "<C-v>", "<CMD>leftabove vsplit<CR>")
 
 -- NvChad UI
-map({ "n", "t" }, "<c-t>", function()
+map({ "n", "t" }, "<c-`>", function()
   require("nvchad.term").toggle({ pos = "bo sp", id = "hTerm" })
 end, { desc = "Toggle horizontal terminal" })
 
@@ -49,9 +49,10 @@ local function directory_picker()
     title = "Search Directories",
     items = dirs,
     format = "text",
+    layout = { hidden = { "preview" } },
     confirm = function(picker, item)
       picker:close()
-      if item then require("oil").open(vim.fn.fnamemodify(item._path, ":p")) end
+      if item then require("yazi").yazi(nil, vim.fn.fnamemodify(item._path, ":p")) end
     end,
   })
 end
