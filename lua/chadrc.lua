@@ -4,7 +4,7 @@ local M = {}
 M.base46 = {
   theme = "ashes",
   theme_toggle = { "ashes", "one_light" },
-  transparency = false,
+  transparency = true,
   integrations = {
     "render-markdown",
   },
@@ -60,11 +60,11 @@ M.ui = {
     },
   },
 
-  -- tabufline = {
-  --   enabled = true,
-  --   lazyload = true,
-  --   order = { "treeOffset", "buffers", "tabs", "btns" },
-  -- },
+  tabufline = {
+    enabled = true,
+    lazyload = true,
+    order = { "treeOffset", "buffers", "tabs", "btns" },
+  },
 }
 
 M.nvdash = {

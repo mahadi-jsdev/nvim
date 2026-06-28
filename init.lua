@@ -141,15 +141,6 @@ require("lazy").setup({
       end,
     },
     {
-      'akinsho/bufferline.nvim',
-      version = "*",
-      event = "BufRead",
-      dependencies = 'nvim-tree/nvim-web-devicons',
-      config = function()
-        require("plugins.bufferline").setup()
-      end
-    },
-    {
       "mikavilpas/yazi.nvim",
       lazy = false,
       dependencies = {
